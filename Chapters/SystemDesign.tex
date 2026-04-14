@@ -1,0 +1,255 @@
+%==========SYSTEM DESIGN==========
+
+\section{System Design and Methodology}
+
+\subsection{Data Inputs}
+The main data input to the propagation of satellites in this project is Two-Line Element sets (TLEs). TLEs are a common publicly accessible format which describes Earth orbiting satellite positions. The primary source of TLE data is SpaceTrack \cite{spacetrack}}. Although SpaceTrack is the primary source many projects such as this project and other research rely on on sources such as CelesTrak which takes the data from SpaceTrack and organizes it into specific groupings\cite{celestrakTLE}. Some examples of these groupings can be seen listed in Listing \ref{list:satellite_categories}
+
+
+
+\begin{itemize}
+    \item \textbf{Starlink}
+    \item \textbf{ISS}
+    \item \textbf{Earth observation satellites}
+    \item \textbf{Weather satellites}
+    \item \textbf{Communications satellites}
+    \item \textbf{Active vs.\ debris groupings}
+\end{itemize}
+\label{list:satellite_categories}
+
+While other sites exist such as N2Y0 and AMSAT , CelesTrak remains one of the most reliable and widely used platforms due to consistent updates which are synchronized with SpaceTrack and categories which help simplify data access. Celetrak updates the majority of its TLE files approximately every two hours. Celestrak's starlink data can expect multiple updates per day, making it suitable for this projects application \cite{usradioguyNewTLE}.
+
+
+
+\subsection{Two Line Element Data}
+TLEs are a standardized format which are used to describe the orbital properties of any Earth orbiting satellites. A TLE is a representation of a satellite's orbit and a specific moment in time, this is known as the epoch. Because the TLE is simple and lightweight it is widely support and the most common way to distribute orbit data for tracking and prediction.  
+
+
+
+A TLE consists of three lines, line 0, which is optional contains the satellite name, line 1 contains information relating to satellite identification and basic orbital parameter and line 2 describes the remaining orbital elements such as the inclination angle. This can be seen in further detail in \ref{tab:summaryOfTle}. An example of TLE data can also be seen in \ref{fig:tle-starlink-5694}
+
+\begin{listing}[h!]
+\centering
+\begin{verbatim}
+STARLINK-5694
+1 55481U 23015AJ  26041.24424508  .00002920  00000+0  23114-3 0  9992
+2 55481  42.9978 128.2652 0001315 248.0292 112.0411 15.02536911166474
+\end{verbatim}
+\caption{Two-Line Element (TLE) for STARLINK-5694}
+\label{fig:tle-starlink-5694}
+\end{listing}
+
+
+
+
+\begin{table}[h!]
+\caption{Summary of Key Parameters in Two-Line Element Set}
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|p{7.5cm}|}
+\hline
+\textbf{Field} & \textbf{Value} & \textbf{Meaning} \\ \hline
+
+Satellite Name & STARLINK-5694 & Human-readable satellite identifier \\ \hline
+Catalog Number & 55481 & Unique NORAD satellite ID \\ \hline
+Classification & U & Unclassified satellite \\ \hline
+Launch Year & 2023 & Part of the International Designator (23) \\ \hline
+Launch Number & 015 & 15th launch of the year 2023 \\ \hline
+Launch Piece & AJ & Specific object from that launch \\ \hline
+Epoch (Year) & 2026 & TLE epoch year (26) \\ \hline
+Epoch (Day) & 41.24424508 & Day of year 2026 when the TLE is valid \\ \hline
+1st Derivative of Mean Motion & 0.00002920 & Rate of orbital decay (drag) \\ \hline
+2nd Derivative of Mean Motion & 0.00000 & Rarely used; typically zero \\ \hline
+BSTAR Drag Term & 2.3114e{-3} & Atmospheric drag coefficient \\ \hline
+Ephemeris Type & 0 & Always zero for SGP4 \\ \hline
+Element Set Number & 999 & TLE version counter \\ \hline
+Inclination (deg) & 42.9978 & Tilt of orbit relative to Earth's equator \\ \hline
+RAAN (deg) & 128.2652 & Longitude where orbit crosses equator going north \\ \hline
+Eccentricity & 0.0001315 & Orbit shape (nearly circular) \\ \hline
+Argument of Perigee (deg) & 248.0292 & Orientation of orbit’s closest point \\ \hline
+Mean Anomaly (deg) & 112.0411 & Satellite’s position in orbit at epoch \\ \hline
+Mean Motion (rev/day) & 15.02536911 & Orbits per day ($\approx$95.8 min period) \\ \hline
+Revolution Number & 166474 & Number of completed orbits since launch \\ \hline
+\end{tabular}
+
+\label{tab:summaryOfTle}
+\end{table}
+\FloatBarrier
+
+
+
+
+
+\subsection{Orbit Propagation}
+\textcolor{red}{\textbf{Why SGP4}}
+
+\textcolor{red}{\textbf{How SGP4 works at a high level}}
+
+
+The Simplified General Perturbations model 4 (SGP4)\cite{vtSpacetrk}
+
+\subsection{Coordinate Transformations} \label{section:coordinateTransformations}
+Coverage estimation first requires the satellite and ground location to be expressed in a common frame/coordinate system at a given epoch. Satellites which are propagated using SGP4 are expressed in True Equator, Mean Equinox frame (TEME), while ground sites are typically given in geodetic coordinates (latitude and longitude). The geodetic frame is tied to the Earth and rotates with it, unlike TEME which is fixed to the stars. It is therefore necessary to convert both of these into a common frame so that necessary calculations for visibility and choosing an optimal satellite can be carried out. This was done by converting the ground site and satellite to an Earth Centered Earth Fixed (ECEF) frame \cite{asteRisk2023} \cite{astropy:2022}.
+
+\subsubsection{TEME}
+TEME is the native coordinate output of SPG4 for a satellite's position is generated from TLE data. It uses Earth's instantaneous (true) equator at an epoch combined with the mean equinox which helps to average out potential short term wobbles in the Earth's rotation. TEME is non-rotating in respective to Earth's surface. This makes it so you cannot directly compare TEME positions to geodetic locations and TEME must first be converted into ECEF \cite{asteRisk2023}. 
+
+\subsubsection{ECEF}
+The ECEF frame is a rotating cartesian coordinate system whose origin is at the Earth's center of mass. Unlike TEME, ECEF rotates with the Earth, meaning a fixed point on the surface will stay constant with a given set of coordinates over a period of time. The axes are defined relative to the Earth's geometry. The Z-axis alings with the rotation axis toward the north pole, the X-axis passes through the intersection between the equator and Greenwich meridian, and the Y-axis  complete the right handed system at 90$^\circ$ east\cite{Navipedia_CTRS_2011}. This can be visualized in figure \ref{fig:ECEF}.  
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/ECEF.png}
+    \caption{Diagram displaying ECEF frame \cite{Navipedia_CTRS_2011}}
+    \label{fig:ECEF}
+\end{figure}
+
+\subsubsection{TEME $\rightarrow$ ECEF}
+As discussed in section \ref{section:coordinateTransformations}, to compare a satellite from SGP4 with a ground point, the TEME vector must be rotated by Earth's sidereal rotation. An example of this rotation can be seen in (\ref{eq:teme_to_ecef}).
+
+\begin{equation}\label{eq:teme_to_ecef}
+\begin{bmatrix}
+x_{\mathrm{ECEF}} \\
+y_{\mathrm{ECEF}} \\
+z_{\mathrm{ECEF}}
+\end{bmatrix}
+=
+\underbrace{
+\begin{bmatrix}
+\cos\theta & \sin\theta & 0 \\
+-\sin\theta & \cos\theta & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+}_{R_3(+\theta)}
+\begin{bmatrix}
+x_{\mathrm{TEME}} \\
+y_{\mathrm{TEME}} \\
+z_{\mathrm{TEME}}
+\end{bmatrix}
+\end{equation}
+
+This aligns the satellite position with a Earth fixed rotating frame. 
+
+\subsubsection{Geodetic $\rightarrow$ ECEF}
+To compare a satellite with an observer on Earth, the observer's latitude, longitude and altitude must be expressed as cartesian X, Y, Z coordinates in the ECEF frame. As the Earth is not a perfect sphere it is approximated as a WSG-84 ellipsoid. This is defined by it's semi major axis(the equatorial size), the flattening(how much the poles are compressed) and the first eccentricity (a measure of how non spherical the ellipsoid is). This can be seen in (\ref{eq:WGS-84}) \cite{WGS84_ECEF_Conversion}.
+
+
+\begin{equation}\label{eq:WGS-84}
+    e^2 = 2f - f^2.    
+\end{equation}
+
+As the Earth bulges at the equator, the distance from the center to the surface will change with latitude. This can be handled using a prime-vertical radius of curvature as seen in (\ref{eq:prime_vertical_radius}) \cite{WGS84_ECEF_Conversion}. 
+
+
+\begin{equation}\label{eq:prime_vertical_radius}
+N(\phi)
+= \frac{a}{\sqrt{1 - e^{2}\,\sin^{2}\phi}}
+\end{equation}
+
+Once $N(\phi)$ has been found the observer location can be described in ECEF as seen in (\ref{eq:ecef_components}) \cite{WGS84_ECEF_Conversion}.
+
+\begin{equation}\label{eq:ecef_components}
+\begin{aligned}
+X &= (N(\phi) + h)\,\cos\phi\,\cos\lambda ,\\[6pt]
+Y &= (N(\phi) + h)\,\cos\phi\,\sin\lambda ,\\[6pt]
+Z &= \bigl(N(\phi)(1 - e^{2}) + h\bigr)\,\sin\phi .
+\end{aligned}
+\end{equation}
+
+These equations convert the geodetic position ($\phi, \lambda, h$) and the satellite's equation into the ECEF frame. This allows for all later geometry such as line of sight checks to be carried out. 
+
+
+\subsection{Satellite Visibility Model}
+Determining whether a satellite can provide coverage requires evaluating the geometric line of sight(LOS) between the observer location and the satellite. Once both of these positions are expressed in ECEF, visibility can be computed using LOS vector analysis, local horizon projection and elevation angle masking.
+
+
+The first step is to compute the vector from the observer to the satellite, 
+
+\begin{equation}
+    d = r_{sat} - r_{obs}.
+\end{equation}
+
+
+This vector expresses the direction of the satellite relative to the observers location. IF the satellite lies below the horizon it cannot be deemed visible. 
+
+To know if the satellite appears in the sky from an observers perspective, the LOS vector is transformed into an East-North-Up (ENU) frame. This rotates the ECEF coordinates to be aligned with the observer's.
+
+\begin{itemize}
+    \item East (E) - horizontal axis pointing east
+    \item North (N) - horizontal axis pointing north
+    \item Up (U) - vertical axis pointing outward from Earth. 
+\end{itemize}
+
+This transformation allows for the elevation angle to be computed \cite{Navipedia_ECEF_ENU_2011}. It cal also be visualized in figure.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/ENU.png}
+    \caption{Transformation between ENU and ECEF \cite{Navipedia_ECEF_ENU_2011}}
+    \label{fig:ENU}
+\end{figure}
+
+The elevation angle then describes how high above the horizon a satellite appears as seen in (\ref{eq:elevation_angle})
+
+
+\begin{equation}\label{eq:elevation_angle}
+    \theta_{el} = arctan \left (\frac{u}{\sqrt{e^2 + n^2}}\right )
+\end{equation}
+
+The result can be interpreted as follows:
+\begin{align*}
+\theta_{\mathrm{el}} > 0^\circ \;&:\; \text{satellite is above the geometric horizon},\\[4pt]
+\theta_{\mathrm{el}} = 0^\circ \;&:\; \text{exactly on the horizon},\\[4pt]
+\theta_{\mathrm{el}} < 0^\circ \;&:\; \text{below the horizon (not visible)}.
+\end{align*}
+
+
+However, in reality, satellites close to the horizon may suffer from increased attenuation, obstruction from terrain and buildings, and doppler shifts. For this reason, a 10$^{\circ}$ elevation mask is applied. Only satellites which exceed this angle are deemed visible\cite{Washburn_EarthCov_2004}. This can be seen in figure \ref{fig:MaskAngle}, where $\beta$ is the masking angle.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/MaskAngle-cap.png}
+    \caption{Masking angle \cite{Washburn_EarthCov_2004}}
+    \label{fig:MaskAngle}
+\end{figure}
+
+
+\subsection{beam-width Model}
+To estimate when a satellite can provide service to a ground location, just the LOS is not sufficient. Even if the satellite can be visible from an observer location, the end user must also fall into the satellite's communication beam footprint. This project uses a simplified nadir-pointing beam-width model to determine if the satellites cap, which can be seen in figure \ref{fig:MaskAngle}, covers the observe's position. 
+
+Modern LEO Satellite's used for communications such as Starlink, use phased-array antennas that steer beams electronically. However, for the high level coverage analysis in this project, the beam is approximated as a fixed beam directed toward the nadir (the point directly below the satellite).
+
+The beam can be characterized by its half power beam-width which defines the angular radius of the cap
+
+\begin{equation}
+    \theta_{beam}.
+\end{equation}
+
+
+This angle represents how far off the nadir a user can be while still remaining within the satellites service region. LEo satellites can range from narrow high gain spot beams with a width of 1$^\circ$ to 5$^\circ$ for mmWave communications to wider beams which can range from 10$^\circ$ to 100$^\circ$ for more broad coverage \cite{electronics13071349}. 
+
+
+This is the basis of the second visibility filter which will be implemented, which works with the LOS filter. Even if a satellite is above the horizon and can be seen from an observer location, it cannot provide coverage unless the user is also within the cap.  
+
+
+
+\subsection{Coverage Window Detection}
+Once a satellite and it's footprint have been evaluated the next step is to determine the the coverage window. This is the interval of time which a specific satellite can be used to provide coverage for a user. As LEO satellites move rapidly across the sky, these windows are short and occur multiple times a day, the detection of these windows is import to help identify key metrics such as the optimal satellite at a given time. 
+
+To determine the visibility window, the system must evaluate the satellite positons at discrete time steps. For each time instant, the satellites positions are propagated with SGP4, the satellites elevatin angle relative to the observer is computed, an elevation mask is applied and the nadir angle is compared to the beam-width limit. 
+
+A coverage window comes from the transition between in-coverage to not in-coverage state. A coverage window will begin when, from the user's position, the state changes from no coverage to having coverage, and the window will end when there is no satellite coverage. 
+
+For each satellite which provides coverage at any point during the simulation, the system will output a start time of coverage, an end time of coverage, the duration of the coverage, and if there is more than one satellite able to provide coverage, which is the optimal satellite. 
+
+
+\subsection{Coverage Analysis}
+\textcolor{red}{\textbf{Link budget approximations }}
+
+\textcolor{red}{\textbf{Capacity estimation model }}
+
+
+
+
+

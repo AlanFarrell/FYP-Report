@@ -87,6 +87,14 @@ A.~R. Washburn, ``Earth coverage by satellites in circular orbit,'' Naval
   Available: \url{https://faculty.nps.edu/awashburn/Files/Notes/EARTHCOV.pdf}
 \BIBentrySTDinterwordspacing
 
+\bibitem{electronics13071349}
+\BIBentryALTinterwordspacing
+C.-T. Liu and J.-Y. Pan, ``Optimal beam-width for maximizing uplink coverage
+  probability in quasi earth-fixed leo satellite communication system,''
+  \emph{Electronics}, vol.~13, no.~7, 2024. [Online]. Available:
+  \url{https://www.mdpi.com/2079-9292/13/7/1349}
+\BIBentrySTDinterwordspacing
+
 \bibitem{inproceedings}
 D.~Vallado, P.~Crawford, R.~Hujsak, and T.~Kelso, ``Revisiting spacetrack
   report #3,'' 08 2006.
@@ -96,5 +104,11 @@ J.~Sanz~Subirana, J.~Juan~Zornoza, and M.~Hernández-Pajares, ``Transformations
   between ecef and enu coordinates,''
   \url{https://gssc.esa.int/navipedia/index.php/Transformations_between_ECEF_and_ENU_coordinates},
   2011, eSA Navipedia.
+
+\bibitem{comreg_coverage_map}
+{Commission for Communications Regulation (ComReg)}, ``Comreg mobile coverage
+  map,''
+  \url{https://coveragemap.comreg.ie/map?location=56.6615732,5.410097599999999&technology=5g&network=tesco&place_id=GhIJffQ8bq5UTEARH6wQoPCjFUAbib},
+  2026, accessed: 2026-04-03.
 
 \end{thebibliography}
