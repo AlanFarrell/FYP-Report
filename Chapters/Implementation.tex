@@ -1,7 +1,6 @@
+\chapter{Implementation}
+This chapter describes the logic behind the software implementation of the satellite coverage and capacity analysis which is detailed in Chapter \ref{chapter:3}. The system is implemented in Python and is designed to evaluate the availability and theoretical throughput of LEO satellite constellations for rural regions in Ireland.
 
-%==========IMPLEMENTATION==========
-
-\section{Implementation}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/FYP_Overall_Logic.pdf}
@@ -9,14 +8,106 @@
     \label{fig:ImplementationLogic}
 \end{figure}
 
-The implementation of this project consists of a Python based system which retrieves live orbital data for LEO satellites using Celestrak and then propagates each orbit using the SGP4 model. Using these propagations, geometric visibility checks for specific locations are calculated.  The system is designed to support coverage and capacity calculations by determining which satellites are optimal for downlink access at a given period in time.  
+Figure \ref{fig:ImplementationLogic} illustrates the overall execution and flow of the implementation logic. The implementation begins by setting the simulation Parameters, i.e, duration of simulation,  frequency of time steps, the density of the coverage grid, and the size of the area being studied. Following this, the TLE data is then acquired from CelesTrak, which is used to propagate satellite orbits using the SGP4 model. At each discrete time step, satellite positions are propagated and then transformed into a common Earth fixed coordinate frame, and evaluated using an elevation mask and beam width constraints to determine which satellites can provide coverage and when.
 
-\subsection{Data acquisition}
-The first stage of implementation is acquiring up ot date orbital Parameters for the Starlink LEO constellation. TLE sets are retrieved from Celestrak. This data provides the perturbations required  to propagate the orbits using SGP4. The TLE data used in this system are taken directly from Celestrak \cite{celestrakTLE}. Downloading this data produces a text stream which has sets of three lines of text blocks, satellite name, followed by line 1 and line 2 of the TLE. The implementation of this system parses these entries for each satellite.  
+The core execution of this system is based in a loop which iterates over a grid of latitude and longitude coordinated within which visibility and coverage check are preformed for all propagated satellites at each time step. After the completion of this simulation, the collected data is stored and then processed into heatmaps to be visualized, this data will then be compared tio publicly available terrestrial data. 
 
-Using live TLEs ensures that the system accurately represents the dynamic nature of large LEO constellations, which orbital parameters may change drastically and regularly due to any number of factors such as manual maneuvers. 
 
-\subsection{Orbit propagation}
+\section{Simulation Parameter Initialization}
+
+
+
+
+
+
+
+
+\section{Data acquisition}
+The first stage of implementation is acquiring up to date orbital Parameters for the Starlink LEO constellation. TLE sets are retrieved from Celestrak. This data provides the perturbations required  to propagate the orbits using SGP4. The TLE data used in this system are taken directly from Celestrak \cite{celestrakTLE}. Downloading this data produces a text stream which has sets of three lines of text blocks, satellite name, followed by line 1 and line 2 of the TLE. The implementation of this system parses these entries for each satellite.  
+
+Using the most up to date TLEs ensures that the system accurately represents the dynamic nature of large LEO constellations, which orbital parameters may change drastically and regularly due to factors such as manual maneuvers. 
+
+Acquiring TLE data can be done through a link from CelesTrak. This project downloads raw TLE from CelesTrak using an HTTP request and then parses the reponse into a list of lines for processing. Python makes this simple with a requests library, which can be seen implmented in listing \ref{lst:PUll-TLEs}
+
+\begin{lstlisting}[caption={Pulling TLE data}, label={lst:PUll-TLEs}]
+response = requests.get("https://celestrak.org/NORAD/elements/gp.php?GROUP=starlink&FORMAT=tle")
+lines = response.text.splitlines()
+\end{lstlisting}
+
+However, this can create issues, as this project is pulling TLE data from thousands of satellites over many time steps, this can create a large number of HTTP requests which can be blocked by CelesTrak. To avoid this, the TLE data is pulled once at the start of the simulation and then stored locally for the duration of the simulation. This allows for a more efficient and robust implementation, as it avoids potential issues with rate limiting and ensures that the same TLE data is used throughout the simulation for consistency.
+
+On top of this it is critical to ensure that the TLE data is parsed at the right location in the code, as seen in figure \ref{fig:ImplementationLogic}, this project employs a 0.1 lat lon step for mapping over Ireland, which equates to 1000s of grid positions, and over a duration of 24 hours with a time step of 10 seconds, in order to prevent temporary IP bans, the TLE data must be pulled first, then stored, then used. 
+
+Even with this approach, this project experienced some rate limiting, throttling and temporary IP bans from CelesTrak, to get around this, as offline backup of the TLE data was stored and manually updated periodically. This can be seen implemented in \ref{lst:TLE-Data-Acquisition}. Should there be issues with accessing data directly from CelesTrak, it was still possible to, design and test while using an offline backup file containing TLE data.
+
+\begin{lstlisting}[caption={TLE data acquisition logic}, label={lst:TLE-Data-Acquisition}]
+        try:
+        if source.get("type") == "online":
+            response = requests.get(source["url"], timeout=8)
+            response.raise_for_status()
+            lines = response.text.strip().splitlines()
+        else:
+            raise Exception
+    except Exception:
+        here = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(here, "..", source["local"])
+        with open(path, "r") as f:
+            lines = f.read().strip().splitlines()
+
+    return lines
+\end{lstlisting}
+
+
+It is important to note that while this approach ensures consistency and avoids rate limiting, it may not capture any orbital changes that occur during the simulation period. For long simulations, spanning multiple days, it may be necessary to implement a strategy for periodically updating the TLE data to ensure that the simulation remains accurate over time.
+
+Once TLE data is acquired, it is parsed and stored in a structured format for use in the SGP4 propagation stage. Each satellite's TLE is associated with its name and catalog number, allowing for easy reference during propagation and visibility analysis. There are two types of TLE data, the first is seen before in Listing \ref{fig:tle-starlink-5694} , with lines 0, 1, and 2, the second type of TLE data does not include line 0, and only has lines 1 and 2 and example of this is shown in Listing \ref{listing:tle-44057}, which is a OneWeb satellite. 
+\begin{lstlisting}[caption={Two-Line Element (TLE) for SATELLITE-44057}, label={listing:tle-44057}]
+1 44057U 19010A   26102.43981189  .00000080  00000+0  17451-3 0  9993
+2 44057  87.9055 241.8469 0002002 112.4154 247.7189 13.16593523342917
+\end{lstlisting}
+
+The implementation of this project accounts for both formats, ensuring that all available TLE data can be utilized effectively, and can be seen in \ref{lst:TLE-1line-2line}
+
+\begin{lstlisting}[caption={TLE data acquisition logic}, label={lst:TLE-1line-2line}]
+    tles = []
+    i = 0
+
+    while i < len(lines) - 1:
+
+        # Case 1: bare 2-line TLE
+        if lines[i].startswith("1 ") and lines[i + 1].startswith("2 "):
+            line1 = lines[i].strip()
+            line2 = lines[i + 1].strip()
+            name = f"SAT-{line1[2:7]}"
+            i += 2
+        else:
+            name = lines[i].strip()
+            line1 = lines[i + 1].strip()
+            line2 = lines[i + 2].strip()
+            i += 3
+
+        tles.append((name, line1, line2))
+
+    return tles
+\end{lstlisting}
+This results in an array which  can be easily iterated over for propagation and visibility checks, an example of this array is shown in Listing \ref{list:tles_array}.
+
+\begin{lstlisting}[language=Python, caption={In-memory representation of parsed TLE data as stored in the \texttt{tles} array}, label={list:tles_array}]
+tles = [
+    (
+        "SAT-44057",
+        "1 44057U 19010A   26102.43981189  .00000080  00000+0  17451-3 0  9993",
+        "2 44057  87.9055 241.8469 0002002 112.4154 247.7189 13.16593523342917"
+    ),
+    (
+        "STARLINK-5694",
+        "1 55481U 23015AJ  26041.24424508  .00002920  00000+0  23114-3 0  9992",
+        "2 55481  42.9978 128.2652 0001315 248.0292 112.0411 15.02536911166474"
+    )
+]
+\end{lstlisting}
+
+\section{Orbit propagation}
 Once the TLEs have been retrieved and parsed in a suitable manner, each satellite's position and velocity are computed using the SGP4 algorithm. In this system each satellites state vector can be generated as seen in Listing \ref{code:sgp4}.
 
 \begin{lstlisting}[language=Python, caption={SGP4 propagation example}, label={code:sgp4}]
@@ -28,21 +119,62 @@ e, r, v = satellite.sgp4(jd, fr)
 The outputs of the \ref{code:sgp4} are as follows:
 
 \begin{itemize}
-    \item \textbf{r}: The satellite position vector $\left(x, y, z\right)$ expressed in the True Equator Mean Equinox (TEME) reference frame.
-    \item \textbf{v}: The satellite velocity vector in the TEME coordinate frame.
+    \item \textbf{r}: The satellite position vector $\left(x, y, z\right)$ expressed in the True Equator Mean Equinox (TEME) reference frame. This can be described as the satellite's position in respect to Earth's center of mass.
+    \item \textbf{v}: The satellite velocity vector in the TEME coordinate frame. Also in respect to Earth's center of mass, this vector describes the satellite's velocity in three-dimensional space.
     \item \textbf{e}: An error flag returned by the propagator, where a value of zero indicates successful propagation and non-zero values correspond to specific SGP4 error conditions.
 \end{itemize}
 
-The Julian Date (jd, fr) is computed using the current UTC timestamp to ensure a precise propagation epoch. Any satellite with a non zero error flags are discarded to avoid propagating any invalid orbital data. 
+The Julian Date (jd, fr) is computed using the current UTC timestamp to ensure a precise propagation epoch. Any satellite with a non zero error flags are discarded to avoid propagating any invalid orbital data. As seen in code \ref{code:propagation}, this is repeated over a set period of time, with a configured time step, to generate a time series of satellite positions and velocities for later use in calculations.
+
+\begin{lstlisting}[language=Python, caption={SGP4 propagation}, label={code:propagation}]
+        while currentTime < endTime:
+        jd, fr = GetJulianDate(currentTime)
+
+        for name, sat in satellites:
+            e, r ,v = sat.sgp4(jd, fr)
+            if e == 0:
+                propagated[name].append({
+                    "time": currentTime,
+                    "r": r,  # position (km)
+                    "v": v  # velocity (km/s)
+                })
+        currentTime += time_delta
+\end{lstlisting}
+
+The code seen in \ref{code:propagation} generates a dictionary of satellite state vectors indexed by satellite name, with each entry containing a list of time stamped position and velocity vectors. An example of this is shown in Listing \ref{list:propagated_structure}. This format allows for efficient and easy access to satellite positions, and their trajectories.
+
+\begin{lstlisting}[language=Python, caption={Structure of propagated satellite state vectors stored in a dictionary}, label={list:propagated_structure}]
+propagated = {
+    "SAT-44057": [
+        {
+            "time": datetime(2026, 4, 12, 12, 0, 0),
+            "r": [-5321.84,  2154.77,  3219.65],  # km
+            "v": [ 1.92, -6.48,  3.41]           # km/s
+        },
+        {
+            "time": datetime(2026, 4, 12, 12, 1, 0),
+            "r": [-5310.12,  1765.43,  3458.90],
+            "v": [ 2.04, -6.51,  3.22]
+        }
+    ],
+
+    "STARLINK-5694": [
+        {
+            "time": datetime(2026, 4, 12, 12, 0, 0),
+            "r": [1034.55, -6882.21,  1421.88],
+            "v": [ 7.32,   1.14,     0.98]
+        }
+    ]
+}
+\end{lstlisting}
 
 
-\subsection{Coordinate Transformations}
+\section{Coordinate Transformations}
 Satellite positions produced by SGP4 are given in True Equator, Mean Equinox (TEME) format. TEME remains fixed to relative to the stars not to the Earth. It uses the Earths true equatorial plane at that moment in tim, but for the x-axis it uses the mean equinox which helps smooth out some of the short term wobbles in the Earths's rotation.  
 
 As TEME does not rotate with the Earth, but ground locations given in latitude and longitude do rotate with the Earth, for visibility and elevation calculations, both the satellite and the observer location need to be in the same rotating frame. For this reason TEME must be converted to Earth Centered Earth Fixed (ECEF) coordinate system \cite{inproceedings}. 
  
-\subsubsection{TEME to ECEF}
-\endL
+\subsection{TEME to ECEF}
 The conversion for TEME to ECEF is as follows \ldots
 
 \begin{equation}
@@ -87,18 +219,26 @@ z_{\text{TEME}}
 \end{bmatrix}
 \end{equation}
 
+This aligns the satellite position with a Earth fixed rotating frame.
 
-\subsubsection{Latitude Longitude to ECEF}
+\subsection{Geodetic ECEF}
+To compare a satellite with an observer on Earth, the observer's latitude, longitude and altitude must be expressed as cartesian X, Y, Z coordinates in the ECEF frame. As the Earth is not a perfect sphere it is approximated as a WSG-84 ellipsoid. This is defined by it's semi major axis(the equatorial size), the flattening(how much the poles are compressed) and the first eccentricity (a measure of how non spherical the ellipsoid is). This can be seen in (\ref{eq:WGS-84}) \cite{WGS84_ECEF_Conversion}.
 
-\endL
-\newline
+\begin{equation}\label{eq:WGS-84}
+f = \frac{a - b}{a},
+\end{equation}
+where $a$ is the semi-major axis and $b$ is the semi-minor axis of the Earth. The first eccentricity is then given by
+\begin{equation}
+e^2 = 2f - f^2.
+\end{equation}
+
 \noindent\textbf{Given:}
 \begin{itemize}
     \item Latitude: $\phi$ \, (radians)
     \item Longitude: $\lambda$ \, (radians)
     \item Altitude: $h$ \, (meters above the WGS--84 reference ellipsoid)
 \end{itemize}
-
+ 
 
 \noindent\textbf{WGS--84 Ellipsoid Constants:}
 \begin{itemize}
@@ -107,25 +247,25 @@ z_{\text{TEME}}
     \item $e^{2} = 2f - f^{2}$ \quad (first eccentricity squared)
 \end{itemize}
 
-The first step is to find the distance from Earth's center to the surface at a given latitude \ldots
+ 
+The first step is to find the distance from Earth's center to the surface at a given latitude accounting for any potential bulges at the equator. This can be seen in \ref{eq:prime_vertical_radius} \cite{WGS84_ECEF_Conversion}
 
-
-\begin{equation}
+\begin{equation} \label{eq:prime_vertical_radius}
 N(\phi) = \frac{a}{\sqrt{1 - e^{2}\sin^{2}\phi}}.
 \end{equation}
 
+Once $N(\phi)$ has been found the observer location can be described in ECEF as seen in (\ref{eq:ecef_components}) \cite{WGS84_ECEF_Conversion}.
 
-Knowing this means it is now possible to compute the ECEF coordinate.
 
-
-\begin{align}
+\begin{align} \label{eq:ecef_components}
 X &= \left( N(\phi) + h \right)\cos\phi\cos\lambda \\[6pt]
 Y &= \left( N(\phi) + h \right)\cos\phi\sin\lambda \\[6pt]
 Z &= \left( N(\phi)(1 - e^{2}) + h \right)\sin\phi
 \end{align}
 
+These equations convert the geodetic position ($\phi, \lambda, h$) and the satellite's equation into the ECEF frame. This allows for all later geometry such as line of sight checks to be carried out. 
 
-\subsection{Visibility Logic}
+\section{Visibility Logic}
 Once both the ground observer and the satellites propagated position are represented in ECEF the first filter check for visibility can be applied. This is based on computing the satellite's elevation angle relative to the observers horizon. 
 
 Given the satellite position,
@@ -134,18 +274,13 @@ Given the satellite position,
      r_{\text{satellite}}^{\text{ECEF}} = (s_x, s_y, s_z),
 \end{equation}
 
-
-
 and the observer position, 
-
 
 \begin{equation}
      r_{\text{observer}}^{\text{ECEF}} = (g_x, g_y, g_z),
 \end{equation}
 
 the line of sight vector (LOS) can be represented as,
-
-
 
 \begin{equation}
      d = r_{\text{satellite}}^{\text{ECEF}} - r_{\text{observer}}^{\text{ECEF}}= (d_x, d_y, d_z),
@@ -167,18 +302,131 @@ Using this, the elevation angle can then be computed as the angle between the LO
     \theta_{\text{el}} = \arctan\left( \frac{u}{\sqrt{e^2 + n^2}} \right)
 \end{equation}
 
-Then, to filter out any satellites which are too close to the horizon or below the horizon, a mask angle of $10^{\circ}$ is applied. 
+Then, to filter out any satellites which are too close to the horizon or below the horizon, a mask angle of $15^{\circ}$ is applied. 
 
 
 \begin{equation}
     \text{el} \geq \theta_{\text{mask}}, \qquad 
-    \theta_{\text{mask}} = 10^\circ
+    \theta_{\text{mask}} = 15^\circ
 \end{equation}
 
+\section{Beam width Coverage Model}  
+At each time step, satellite and observer positions are represented in ECEF coordinate frame. If we let the satellite position be $r_{sat}$ and the observer position be $r_{obs}$, and the nadir direction of the satellite is defined as a vector pointing from the satellite towards the Earth's centre be given by $-r_{sat}$. The direction from the satellite to the observer can be found with $r_{obs} - r_{sat}$. The angle between the satellite nadir direction and the observer direction can then be computed as seen in \ref{eq:nadirAngle}
 
-\subsection{Coverage Loop}
+\begin{equation}\label{eq:nadirAngle}
+\theta = \cos^{-1}\!\left(
+\frac{
+(-\mathbf{r}_{sat}) \cdot (\mathbf{r}_{obs} - \mathbf{r}_{sat})
+}{
+\lVert \mathbf{r}_{sat} \rVert \, \lVert \mathbf{r}_{obs} - \mathbf{r}_{sat} \rVert
+}
+\right)
+\end{equation}
 
-\subsection{TLE offline Fallback}
+A satellite is capable of providing server if this angle is less than or equal to the configured half power beam with of a satellite $\theta_{beam}.$ 
+
+The beam width parameter is configured within the system allowing different antenna characteristics to be evaluated without modifying the core implementation. This beam width check is executed for every visible satellite at each simulation time step. In this project the half power is set to be $7.5^{\circ}$, this is a liberal angle in order to attempt to account for beam forming techniques. \cite{electronics13071349}
+\begin{equation}
+    \theta \leq \theta_{beam}
+\end{equation}
+
+\section{Coverage Window Detection and Tracking}
+To determine coverage for a given area, the system iterates over a grid of latitude and longitude points within the area of interest. For each point, at each time step, the visibility and beam width checks are applied to all propagated satellites. If one or more satellites satisfy both conditions, that grid point is marked as having coverage for that time step. The system tracks when coverage becomes available and when it is lost, allowing it to identify coverage windows. Each window is recorded with its start time, end time, duration, and the satellite(s) providing coverage during that window. This information is crucial for analyzing the availability of satellite service in the region. This logic can be seen implemented in code \ref{lst:Visibility-Window-Logic}.
+
+\begin{lstlisting}[caption={Visibility window logic}, label={lst:Visibility-Window-Logic}]
+    coverage_windows = []
+    in_coverage = False
+    window_start = None
+
+    for t, _, _, visible_satellites in visibility_by_time:
+
+        filtered_satellites, _ = BeamFilter(
+            visible_satellites, jd, fr, lat, lon,
+            obs_alt=0.0, beamwidth_deg=beamwidth
+        )
+
+        coverage_available = len(filtered_satellites) > 0
+
+        if coverage_available and not in_coverage:
+            in_coverage = True
+            window_start = t
+
+        if not coverage_available and in_coverage:
+            in_coverage = False
+            coverage_windows.append((window_start, t))
+
+    # Close final window if coverage persists
+    if in_coverage:
+        coverage_windows.append((window_start, visibility_by_time[-1][0]))
+
+\end{lstlisting}
+
+\section{Coverage Capability}
+Coverage capability is measured in the theoretical maximum throughput that a satellite can provide to a given location using Shannon's capacity formula. This is calculated for each satellite that satisfies the visibility and beam width checks at each time step. The system assumes a fixed bandwidth and signal-to-noise ratio (SNR). This allows for an analysis of how much data throughput can be expected during those coverage windows.
+
+\begin{equation}
+P_{\text{received}} \text{ (dBm)} = P_{\text{transmitted}} \text{ (dBm)} + G_t \text{ (dB)} + G_r \text{ (dB)} - L_{\text{path}} \text{ (dB)} - L_{\text{other}} \text{ (dB)}.
+\label{eq:receivedPower}
+\end{equation}
+In Equation~\eqref{eq:receivedPower},
+\(P_{\text{received}}\) (dBm) is the power level at the receiver input after all gains and losses along the communication link have been applied. It represents the signal strength available for demodulation at the receiver.
+
+\(P_{\text{transmitted}}\) (dBm) is the output power of the transmitting radio or antenna system, expressed on a logarithmic decibel-milliwatt scale.
+
+\(G_t\) (dB) is the transmitter antenna gain, which quantifies the ability of the transmitting antenna to direct radiated power toward the receiver relative to an isotropic radiator.
+
+\(G_r\) (dB) is the receiver antenna gain, representing the effectiveness of the receiving antenna in capturing incoming electromagnetic energy from the direction of the transmitter.
+
+\(L_{\text{path}}\) (dB) is theaptoror free-space path loss, accounting for signal attenuation due to geometric spreading of the electromagnetic wave as it propagates over the distance between transmitter and receiver.
+
+\(L_{\text{other}}\) (dB) represents additional system losses not captured by free-space path loss alone, including atmospheric attenuation, polarization mismatch, pointing losses, hardware losses, and implementation-related inefficiencies.
+
+Equation \ref{eq:receivedPower} (Link budget equation), calculates the received power, in dBm based on transmitted power, antenna gains, and losses in the communication path. This allows the power of a signal at a user's location to be calculated. 
+
+\begin{equation}
+P_{\text{interference}} = 10 \log_{10} \left( \sum_{i=1}^{N} 10^{\frac{P_i}{10}} \right) \; .
+\label{eq:interference}
+\end{equation}
+
+Equation \ref{eq:interference} \cite{goncharenko2023optimization} converts dBM into watts, sums all interfering signals received at a given location, and converts these interfering signals back into dB. This allows us to see the total interfering power. 
+
+\begin{equation}
+P_{\text{noise}} = -174 + 10 \log_{10}(B) + NF
+\label{eq:noise}.
+\end{equation}
+
+Equation \ref{eq:noise} \cite{CEPTdoc1417}calculates the thermal noise power at room temperature, which simply gives a baseline which can be used to estimate background noise which will limit how well a receiver could detect a signal. B is the channel bandwidth in Hz and NF is the noise figure which comes from the receiver hardware.
+
+\begin{equation}
+\text{SNR} = P_{\text{signal}} - P_{\text{noise}}
+\label{eq:snr}.
+\end{equation}
+
+Equation \ref{eq:snr} \cite{CEPTdoc1417}calculates the signal to noise ratio, this is  a measure of the main signal's strength relative to background noise. 
+
+\begin{equation}
+\text{SIR} = P_{\text{signal}} - P_{\text{interference}}.
+\label{eq:interferingNoise}
+\end{equation}
+
+Equation \ref{eq:interferingNoise} \cite{CEPTdoc1417} is similar to \ref{eq:noise}, except that it calculates the strength of the main signals relative to interference signals from nearby towers. 
 
 
-\subsection{Visualisations}
+\begin{equation}
+\text{SINR (dB)} = 10 \log_{10} \left( \frac{10^{\frac{P_{\text{signal}}}{10}}}{10^{\frac{P_{\text{interference}}}{10}} + 10^{\frac{P_{\text{noise}}}{10}}} \right).
+\label{eq:sinr}
+\end{equation}
+
+SINR is calculated as the main signal power divided by the sum of interference and noise. This is done in a linear scale (mV) and then converted back into dB. 
+
+Given these calculations, the Shannon capacity (theoretical maximum data rate) can be found. This can be seen in \ref{eq:capacity} \cite{goncharenko2023optimization}
+
+\begin{equation}
+C = B \cdot \log_2 \left( 1 + \text{SINR}_{\text{linear}} \right).
+\label{eq:capacity}
+\end{equation}
+
+These equations were implemented in the system to calculate the theoretical maximum throughput for each satellite providing coverage at each time step. This allows for an analysis of coverage in Ireland. 
+
+
+\section{Optimal Satellite Selection}

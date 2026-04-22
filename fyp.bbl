@@ -69,14 +69,8 @@ J.~S. Subirana, J.~M.~J. Zornoza, and M.~Hernández-Pajares, ``Conventional
   \url{https://gssc.esa.int/navipedia/index.php/Conventional_Terrestrial_Reference_System}
 \BIBentrySTDinterwordspacing
 
-\bibitem{WGS84_ECEF_Conversion}
-``Gps and ecef conversion (wgs-84 ellipsoid),''
-  \url{http://www.mathforengineers.com/math-calculators/GGPS-and-ECEF-converter.html},
-  accessed 2026.
-
 \bibitem{Navipedia_ECEF_ENU_2011}
-J.~S. Subirana, J.~M.~J. Zornoza, and M.~Hernández-Pajares, ``Transformations
-  between ecef and enu coordinates,''
+------, ``Transformations between ecef and enu coordinates,''
   \url{https://gssc.esa.int/navipedia/index.php/Transformations_between_ECEF_and_ENU_coordinates},
   2011, navipedia, European Space Agency.
 
@@ -87,6 +81,21 @@ A.~R. Washburn, ``Earth coverage by satellites in circular orbit,'' Naval
   Available: \url{https://faculty.nps.edu/awashburn/Files/Notes/EARTHCOV.pdf}
 \BIBentrySTDinterwordspacing
 
+\bibitem{inproceedings}
+D.~Vallado, P.~Crawford, R.~Hujsak, and T.~Kelso, ``Revisiting spacetrack
+  report 3,'' 08 2006.
+
+\bibitem{WGS84_ECEF_Conversion}
+``Gps and ecef conversion (wgs-84 ellipsoid),''
+  \url{http://www.mathforengineers.com/math-calculators/GGPS-and-ECEF-converter.html},
+  accessed 2026.
+
+\bibitem{Navipedia_ECEF_ENU}
+J.~Sanz~Subirana, J.~Juan~Zornoza, and M.~Hernández-Pajares, ``Transformations
+  between ecef and enu coordinates,''
+  \url{https://gssc.esa.int/navipedia/index.php/Transformations_between_ECEF_and_ENU_coordinates},
+  2011, eSA Navipedia.
+
 \bibitem{electronics13071349}
 \BIBentryALTinterwordspacing
 C.-T. Liu and J.-Y. Pan, ``Optimal beam-width for maximizing uplink coverage
@@ -95,15 +104,15 @@ C.-T. Liu and J.-Y. Pan, ``Optimal beam-width for maximizing uplink coverage
   \url{https://www.mdpi.com/2079-9292/13/7/1349}
 \BIBentrySTDinterwordspacing
 
-\bibitem{inproceedings}
-D.~Vallado, P.~Crawford, R.~Hujsak, and T.~Kelso, ``Revisiting spacetrack
-  report #3,'' 08 2006.
+\bibitem{goncharenko2023optimization}
+A.~Goncharenko, ``Optimization and analysis of wireless network characteristics
+  with service quality maintaining,'' in \emph{Proceedings of the CMiGiN 2023
+  Workshop, CEUR Workshop Proceedings, Vol. 3530}, 2023, pp. 24--34.
 
-\bibitem{Navipedia_ECEF_ENU}
-J.~Sanz~Subirana, J.~Juan~Zornoza, and M.~Hernández-Pajares, ``Transformations
-  between ecef and enu coordinates,''
-  \url{https://gssc.esa.int/navipedia/index.php/Transformations_between_ECEF_and_ENU_coordinates},
-  2011, eSA Navipedia.
+\bibitem{CEPTdoc1417}
+{European Conference of Postal and Telecommunications Administrations (CEPT)},
+  ``Title to be verified,'' CEPT -- ECO Documentation Database, Tech. Rep. Doc
+  1417, n.d., accessed: 2025-11-15.
 
 \bibitem{comreg_coverage_map}
 {Commission for Communications Regulation (ComReg)}, ``Comreg mobile coverage
