@@ -3,7 +3,7 @@
 \section{Data Inputs}
 The main data input to the propagation of satellites in this project is Two-Line Element sets (TLEs). TLEs are a common publicly accessible format which describes Earth-orbiting satellite positions. The primary source of TLE data is SpaceTrack \cite{spacetrack}. Although SpaceTrack is the primary source, many projects such as this project and other research rely on sources such as CelesTrak, which takes the data from SpaceTrack and organizes it into specific groupings \cite{celestrakTLE}. Some examples of these groupings are shown in Listing~\ref{list:satellite_categories}.
 
-\begin{figure}[h!]
+\begin{figure}[ht]
 \centering
 \begin{minipage}{0.6\linewidth}
 \begin{itemize}
@@ -26,7 +26,7 @@ TLEs are a standardized format used to describe the orbital properties of Earth-
 
 A TLE consists of three lines: line 0 (optional) contains the satellite name, line 1 contains identification and basic orbital parameters, and line 2 describes remaining orbital elements such as inclination. This is summarized in Table~\ref{tab:summaryOfTle}. An example of TLE data is shown in Listing~\ref{fig:tle-starlink-5694}.
 
-\begin{figure}[h!]
+\begin{figure}[ht]
 \centering
 \begin{verbatim}
 STARLINK-5694
@@ -37,7 +37,7 @@ STARLINK-5694
 \label{fig:tle-starlink-5694}
 \end{figure}
 
-\begin{table}[h!]
+\begin{table}[ht]
 \caption{Summary of key parameters in a Two-Line Element}
 \centering
 \small
@@ -62,42 +62,50 @@ Mean Motion (rev/day) & 15.02536911 & Orbits per day ($\approx$95.8 min period) 
 \FloatBarrier
 
 \section{Orbit Propagation}
-The Simplified General Perturbations Model 4 (SGP4) \cite{vtSpacetrk} is used for orbit propagation.
+TLE data describes a satellite's orbit at a specific moment in time, know as the epoch. To determine a given satellite's position at times throughout the simulation, an orbit propagation model is required. Orbit propagation uses the orbital parameters contained within the TLE along with a model for orbital perturbations to predict the satellites's future position and velocity as a given time stamp
+ 
+In this project, the Simplified General Perturbations Model 4 (SGP4) \cite{vtSpacetrk} is used for orbit propagation. SPG4 is a widely used algorithm for propagating satellite orbits for organizations such as NORAD and NASA \cite{patt1994sgp4}. THe model accounts for dominant perturbations which affect LEO satellites such as Earth's uneven gravitational field, and atmospheric drag. SGP4 is computationally efficient and provides sufficient accuracy for coverage estimation.
 
-\section{Coordinate Transformations} \label{section:coordinateTransformations}
-Coverage estimation first requires the satellite and observer to be expressed in a common coordinate system at a given epoch. Satellites propagated using SGP4 are expressed in the True Equator Mean Equinox (TEME) frame, while ground sites are typically given in geodetic coordinates. It is therefore necessary to convert both to an Earth-Centered Earth-Fixed (ECEF) frame \cite{asteRisk2023, astropy:2022}.
+For each satellite, SGP4 computes a time varying state vector consisting of position and velocity in the True Equator Mean Equinox (TEME) frame. This allows the system to determine where each satellite is located at any given time during the simulation, which is essential for evaluating visibility and coverage. These are calculated at discrete time intervals defined by the simulation parameters, such as every 10 seconds, to balance accuracy and computational load.
+
+
+\section{Coordinate Systems} \label{section:coordinateTransformations}
+TO determine satellite visibility and coverage, satellite orbits and ground user locations must be expressed in a common coordinate system. This allows for accurate calculations of line-of-sight and beam-width constraints. Different coordinate systems are used at different stages of the analysis, with each serving a distinct purpose in representing satellite motion or Earth fixed locations. This sections aims to introduce the coordinate systems used in this project and their roles in the methodology. The mathematical transformations between these coordinate systems will be discussed in section \ref{section:mathematical_coordinate_transformation}.
+
+In this project, the satellites which are propagated using SGP4 are expressed in the True Equator Mean Equinox (TEME) frame, while ground sites are typically given in geodetic coordinates. It is therefore necessary to convert both to an Earth-Centered Earth-Fixed (ECEF) frame \cite{asteRisk2023, astropy:2022}. This provides a common reference frame for enable geometric calculations such as line-of-sight and beam-width evaluations.
+
+
 
 \subsection{TEME}
-TEME is the native output frame of SGP4. It is non-rotating with respect to Earth's surface and must be converted before comparison with geodetic locations \cite{asteRisk2023}.
+TEME is the native output frame of SGP4. It is non-rotating with respect to Earth's surface and must be converted before comparison with geodetic locations. TEME is an Earth centered reference frame whose orientation is relative to Earth's equatorial plane and mean equinox. It is designed specifically for use with TLE data and the mathematical approximations which are employed in SGP4 \cite{asteRisk2023}.
+
+TEME is well suited for representing satellite motion because it provides a stable reference for orbit prediction that is not fixed to the Earth's surface which rotates. However, as this coordinate system does not rotate with the Earth, positions expressed in this frame cannot be directly compared with ground locations which rotate with the Earth directly. 
+
 
 \subsection{ECEF}
-ECEF is a rotating Cartesian frame whose origin is at Earth's center of mass. The axes align with Earth's rotation and geometry \cite{Navipedia_CTRS_2011}. This is shown in Figure~\ref{fig:ECEF}.
+ECEF is a rotation cartesian coordinate system which is fixed relative to the Earth's surface. It's origin is located at the Earth's center of mass, with axes alinged to the Earth's rotation and geographic geometry. As it rotates with the Earth, ECEF is ideal for representing ground locations.  ECEF is used to describe the observer's positions which come from latitude, longitude coordinates, and provides a common reference frame for evaluation relationships between satellites and ground locations. By expressing both the ground user and the satellite in ECEF, direct calculations such as line-of-sight and beam-width evaluations can be carried out \cite{Navipedia_CTRS_2011}. a Comparison between geodetic and ECEF coordinates is shown in Figure~\ref{fig:ECEF}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/ECEF.png}
-    \caption{ECEF Coordinate System}
+    \includegraphics[width=0.4\textwidth]{figures/ECEF.png}
+    \caption{ECEF Coordinate System \cite{mathworks_radar_coordinates}}
     \label{fig:ECEF}
 \end{figure}
 
-\section{Satellite Visibility Model}
-Visibility is evaluated using line-of-sight (LOS) analysis. The vector from observer to satellite is
+\FloatBarrier
+\section{Assumptions}
+To simplify the analysis and focus on the core aspects of satellite coverage, several assumptions are made in this project. These assumptions simplify the modelling process while preserving sufficient accuracy for the intended analysis. 
 
-\begin{equation}
-d = r_{sat} - r_{obs}.
-\end{equation}
+The first assumption is that the satellites are assumed to follow trajectories predicted by SGP4 when initialized with publicly available TLE data. While SPG4 accounts for things such as Earth's oblate shape and atmospheric drag, it does not capture all short term maneuvering. Satellites are assumed to follow the predicted trajectories without performing maneuvers such as station keeping or collision avoidance. 
 
-The LOS vector is transformed into the East-North-Up (ENU) frame, enabling calculation of the elevation angle \cite{Navipedia_ECEF_ENU_2011}.
+The second assumption is that the Earth is modelled using a WGS-84 ellipsoid for al geodetic to ECEF transformations. Local terrain variation, orography, and surface irregularities  are not considered. Ground users are assumed to be at sea level unless otherwise specified, visibility issues due to terrain and other obstructions such as buildings or vegetation are not considered. A free space path model loss model is instead implemented. Even with this free space path loss model, atmospheric effects such as rain, wind and any other weather related fading effects are not included in the analysis. There is a constant loss factor per unit of distance which is assumed. 
 
-\begin{equation}
-\theta_{el} = \arctan \left( \frac{u}{\sqrt{e^2 + n^2}} \right)
-\end{equation}
+The third assumption is the antenna radiation patterns are simplified using a fixed half-power beam width model. Each satellite is assumed to have a single, ideal beam centered on its nadir direction, and beam forming, side-lobe effects, and other complexities of real antenna patterns are not considered. The beam width is assumed to be constant and does not vary with frequency or other factors. Beam-t0-ground aligned is evaluated purely geometrically, based on angular separation without accounting for adaptive beam scheduling or multi-beam operation. To attempt to account for this a relatively wide beam width of 15 degrees is used, which is wider than the typical beam width of a LEO satellite, to provide a more conservative estimate of coverage.
 
-Only satellites exceeding a $15^\circ$ elevation mask are considered visible \cite{Washburn_EarthCov_2004}.
+The fourth assumption is that interference between satellites is modelled in a simplified manner. If multiple satellites are visible to a ground user at the same time, it is assumed that the satellite with the strongest signal (i.e., the smallest angular separation from the user's zenith) provides coverage, while others do not. Interference power is estimated by summing the reduced contributions of all visible satellites transmit power power based on a constant scalar.  
 
-\section{Beam-width Model}
-Visibility alone does not guarantee service. A simplified nadir-pointing beam model is used, where a user must lie within a maximum off-nadir angle $\theta_{beam}$. Only satellites satisfying both elevation and beam-width constraints are deemed capable of providing coverage.
+The sixth assumption is that handover dynamics are not explicitly modelled. WHen multiple satellites satisfy coverage criteria, the satellite which provides service is assumed to be the one with the best geometric alignment. Latency associated with handover, beam switching, and gateway routing is neglected. 
 
-\section{Coverage Window Detection}
-Coverage windows are determined by evaluating satellite visibility at discrete time steps. A window begins when coverage becomes available and ends when it is lost. For each window, the system records start time, end time, duration, and optimal satellite selection.
+The seventh assumption is that user demand is assumed to be uniform across the coverage grid. Traffic load, contention between user, and scheduling policies, are outside the scope of this project. Throughput is modelled using the Shannon capacity formula to represent theoretical data rates. 
 
+Finally, the analysis assumes that satellites are operate continuously and are always transmitting at their maximum power when they are visible. Satellite maintenance periods, power constraints, and operational outages are not considered.

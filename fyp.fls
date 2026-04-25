@@ -1203,30 +1203,47 @@ INPUT ./fyp.toc
 INPUT fyp.toc
 INPUT fyp.toc
 OUTPUT fyp.toc
-INPUT ./Chapters/Introduction.tex
-INPUT Chapters/Introduction.tex
-INPUT ./Chapters/Introduction.tex
-INPUT Chapters/Introduction.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-33.def
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-33.def
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-33.def
-INPUT /usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-33.def
-INPUT ./Chapters/LitReview.tex
-INPUT Chapters/LitReview.tex
-INPUT ./Chapters/LitReview.tex
-INPUT Chapters/LitReview.tex
-INPUT ./Chapters/SystemDesign.tex
-INPUT Chapters/SystemDesign.tex
-INPUT ./Chapters/SystemDesign.tex
-INPUT Chapters/SystemDesign.tex
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr12.tfm
+INPUT ./Chapters/Introduction.tex
+INPUT Chapters/Introduction.tex
+INPUT ./Chapters/Introduction.tex
+INPUT Chapters/Introduction.tex
+INPUT ./figures/IrelandBroadband.png
+INPUT ./figures/IrelandBroadband.png
+INPUT figures/IrelandBroadband.png
+INPUT ./figures/IrelandBroadband.png
+INPUT ./figures/IrelandBroadband.png
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr9.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx9.tfm
+INPUT ./Chapters/LitReview.tex
+INPUT Chapters/LitReview.tex
+INPUT ./Chapters/LitReview.tex
+INPUT Chapters/LitReview.tex
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT ./figures/Alaska_broadband_budget.png
+INPUT ./figures/Alaska_broadband_budget.png
+INPUT figures/Alaska_broadband_budget.png
+INPUT ./figures/Alaska_broadband_budget.png
+INPUT ./figures/Alaska_broadband_budget.png
+INPUT ./figures/alaska-broadband-provide.png
+INPUT ./figures/alaska-broadband-provide.png
+INPUT figures/alaska-broadband-provide.png
+INPUT ./figures/alaska-broadband-provide.png
+INPUT ./figures/alaska-broadband-provide.png
+INPUT ./figures/alaska-broadband-provide (1).png
+INPUT ./figures/alaska-broadband-provide (1).png
+INPUT figures/alaska-broadband-provide (1).png
+INPUT ./figures/alaska-broadband-provide (1).png
+INPUT ./figures/alaska-broadband-provide (1).png
+INPUT ./Chapters/SystemDesign.tex
+INPUT Chapters/SystemDesign.tex
+INPUT ./Chapters/SystemDesign.tex
+INPUT Chapters/SystemDesign.tex
 INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmr10.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr9.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx9.tfm
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
@@ -1242,7 +1259,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT ./figures/ECEF.png
 INPUT ./figures/ECEF.png
 INPUT figures/ECEF.png
@@ -1263,6 +1279,8 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx7.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx5.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr7.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr5.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx9.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx6.tfm
 INPUT ./Chapters/Results.tex
 INPUT Chapters/Results.tex
 INPUT ./Chapters/Results.tex
@@ -1336,3 +1354,4 @@ INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

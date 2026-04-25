@@ -21,6 +21,40 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{NBPMap}
+{Department of the Environment, Climate and Communications}, ``{National
+  Broadband Plan Map},''
+  \url{https://www.gov.ie/en/publication/5634d-national-broadband-plan-map/},
+  2024, accessed: 25 April 2026.
+
+\bibitem{telesat_canada_leo_2026}
+\BIBentryALTinterwordspacing
+{Fierce Network}, ``Telesat works with canada’s government to reach remote
+  areas with leo,'' 2026. [Online]. Available:
+  \url{https://www.fierce-network.com/broadband/telesat-works-canadas-government-reach-remote-areas-leo}
+\BIBentrySTDinterwordspacing
+
+\bibitem{nbn_kuiper_2025}
+\BIBentryALTinterwordspacing
+{NBN Co}, ``Nbn co selects amazon’s project kuiper to bring low earth orbit
+  (leo) satellite broadband to australia,'' 2025. [Online]. Available:
+  \url{https://www.nbnco.com.au/corporate-information/media-centre/media-statements/nbn-co-selects-amazons-project-kuiper}
+\BIBentrySTDinterwordspacing
+
+\bibitem{aasb_starlink_alaska}
+\BIBentryALTinterwordspacing
+{Association of Alaska School Boards}, ``Starlink in alaska: Bridging distances
+  and elevating education,'' 2024. [Online]. Available:
+  \url{https://aasb.org/commentary/starlink-in-alaska-bridging-distances-and-elevating-education/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ookla_alaska_connectivity_2026}
+\BIBentryALTinterwordspacing
+{Ookla Research}, ``Closing the gap: Alaska’s push for statewide
+  connectivity,'' 2026. [Online]. Available:
+  \url{https://www.ookla.com/articles/alaskas-push-for-statewide-connectivity}
+\BIBentrySTDinterwordspacing
+
 \bibitem{spacetrack}
 {U.S. Space Force}, ``{Space-Track.org Login},''
   \url{https://www.space-track.org/auth/login}, 2026, accessed: 2026-02-24.
@@ -39,6 +73,15 @@ C.~K. Ho and R.~C. Johnson, ``Space track: Theory and practice of satellite
   orbit tracking,'' Department of Aerospace and Ocean Engineering, Virginia
   Tech, Tech. Rep. AOE4134, 2014, pDF downloaded from Virginia Tech AOE
   archive; accessed 2025-12-05.
+
+\bibitem{patt1994sgp4}
+\BIBentryALTinterwordspacing
+F.~S. Patt, C.~M. Hoisington, W.~W. Gregg, and P.~L. Coronado, ``Analysis of
+  selected orbit propagation models for the seawifs mission,'' NASA Goddard
+  Space Flight Center, Greenbelt, MD, USA, NASA Technical Memorandum TM-104566,
+  1994. [Online]. Available:
+  \url{https://ntrs.nasa.gov/api/citations/19940018865/downloads/19940018865.pdf}
+\BIBentrySTDinterwordspacing
 
 \bibitem{asteRisk2023}
 \BIBentryALTinterwordspacing
@@ -69,17 +112,10 @@ J.~S. Subirana, J.~M.~J. Zornoza, and M.~Hernández-Pajares, ``Conventional
   \url{https://gssc.esa.int/navipedia/index.php/Conventional_Terrestrial_Reference_System}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Navipedia_ECEF_ENU_2011}
-------, ``Transformations between ecef and enu coordinates,''
-  \url{https://gssc.esa.int/navipedia/index.php/Transformations_between_ECEF_and_ENU_coordinates},
-  2011, navipedia, European Space Agency.
-
-\bibitem{Washburn_EarthCov_2004}
-\BIBentryALTinterwordspacing
-A.~R. Washburn, ``Earth coverage by satellites in circular orbit,'' Naval
-  Postgraduate School, Monterey, California, Tech. Rep., 2004. [Online].
-  Available: \url{https://faculty.nps.edu/awashburn/Files/Notes/EARTHCOV.pdf}
-\BIBentrySTDinterwordspacing
+\bibitem{mathworks_radar_coordinates}
+{MathWorks}, ``Radar coordinate systems and frames,''
+  \url{https://kr.mathworks.com/help/radar/ug/radar-coordinate-systems-and-frames.html},
+  2026, mATLAB \& Simulink Documentation, Radar Toolbox.
 
 \bibitem{inproceedings}
 D.~Vallado, P.~Crawford, R.~Hujsak, and T.~Kelso, ``Revisiting spacetrack
@@ -113,6 +149,40 @@ A.~Goncharenko, ``Optimization and analysis of wireless network characteristics
 {European Conference of Postal and Telecommunications Administrations (CEPT)},
   ``Title to be verified,'' CEPT -- ECO Documentation Database, Tech. Rep. Doc
   1417, n.d., accessed: 2025-11-15.
+
+\bibitem{FCC22_91A1}
+\BIBentryALTinterwordspacing
+{Federal Communications Commission}, ``Order and authorization: Space
+  exploration holdings, llc request for orbital deployment and operating
+  authority for the spacex gen2 ngso satellite system,'' Federal Communications
+  Commission, Tech. Rep. FCC 22-91, Dec. 2022, adopted November 29, 2022;
+  Released December 1, 2022. [Online]. Available:
+  \url{https://docs.fcc.gov/public/attachments/FCC-22-91A1.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Wang2025FCCStarlinkDTC}
+\BIBentryALTinterwordspacing
+B.~Wang. (2025, Mar.) Fcc allows spacex starlink direct to cellphone power for
+  4g/5g speeds. NextBigFuture.com. [Online]. Available:
+  \url{https://www.nextbigfuture.com/2025/03/fcc-allows-spacex-starlink-direct-to-cellphone-power-for-4g-5g-speeds.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{SpaceX2021SATLOA00145}
+\BIBentryALTinterwordspacing
+{Space Exploration Holdings, LLC}, ``Application for orbital deployment and
+  operating authority,'' Federal Communications Commission, Tech. Rep. IBFS
+  File No. SAT-LOA-20211104-00145, Nov. 2021. [Online]. Available:
+  \url{https://fcc.report/IBFS/SAT-LOA-20211104-00145/13337528.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{OneWeb2020SATMPL00062}
+\BIBentryALTinterwordspacing
+{OneWeb Ltd.}, ``Modification to authorized non-geostationary satellite system
+  (leo) — phase 2 attachment b technical information,'' Federal
+  Communications Commission, Tech. Rep. IBFS File No. SAT-MPL-20200526-00062,
+  May 2020. [Online]. Available:
+  \url{https://fcc.report/IBFS/SAT-MPL-20200526-00062/2379706.pdf}
+\BIBentrySTDinterwordspacing
 
 \bibitem{comreg_coverage_map}
 {Commission for Communications Regulation (ComReg)}, ``Comreg mobile coverage

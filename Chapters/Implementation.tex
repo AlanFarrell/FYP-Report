@@ -1,33 +1,41 @@
-\chapter{Implementation}
+\chapter{Implementation}\label{chapter:4}
 This chapter describes the logic behind the software implementation of the satellite coverage and capacity analysis which is detailed in Chapter \ref{chapter:3}. The system is implemented in Python and is designed to evaluate the availability and theoretical throughput of LEO satellite constellations for rural regions in Ireland.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/FYP_Overall_Logic.pdf}
+    \includegraphics[width=\textwidth]{figures/FYP_Overall_Logic.pdf}
     \caption{Implementation Logic}
     \label{fig:ImplementationLogic}
 \end{figure}
-
 Figure \ref{fig:ImplementationLogic} illustrates the overall execution and flow of the implementation logic. The implementation begins by setting the simulation Parameters, i.e, duration of simulation,  frequency of time steps, the density of the coverage grid, and the size of the area being studied. Following this, the TLE data is then acquired from CelesTrak, which is used to propagate satellite orbits using the SGP4 model. At each discrete time step, satellite positions are propagated and then transformed into a common Earth fixed coordinate frame, and evaluated using an elevation mask and beam width constraints to determine which satellites can provide coverage and when.
 
 The core execution of this system is based in a loop which iterates over a grid of latitude and longitude coordinated within which visibility and coverage check are preformed for all propagated satellites at each time step. After the completion of this simulation, the collected data is stored and then processed into heatmaps to be visualized, this data will then be compared tio publicly available terrestrial data. 
 
 
 \section{Simulation Parameter Initialization}
-
-
-
-
-
-
-
+The first stage of implementation involves defining a set of simulation parameters which will be utilized in the later stages of implementation. The core parameters for the simulation are as follows:
+\begin{itemize}
+    \item \textbf{Simulation Duration}: The total time span for which the simulation will run, in hours.
+    \item \textbf{Simulation Start Time}: The UTC timestamp marking the beginning of the simulation period.
+    \item \textbf{Time Step}: The interval at which satellite positions are propagated and visibility checks are performed, in seconds.
+    \item \textbf{Grid Resolution}: The spacing between latitude and longitude points in the coverage grid, in degrees.
+    \item \textbf{Area of Interest}: The latitude and longitude ranges of the area over which coverage will be evaluated.
+    \item \textbf{Beam Width}: The half power beam width of the satellite's antenna, in degrees, which defines the coverage area of the satellite.
+    \item \textbf{Elevation Mask}: The minimum elevation angle above the horizon required for a satellite to be considered visible, in degrees.
+    \item \textbf{Bandwidth}: The communication bandwidth available for the satellite link, in MHz.
+    \item \textbf{Noise Figure}: The noise figure of the receiver, in dB, which quantifies the degradation of the signal-to-noise ratio due to the receiver's internal noise.
+    \item \textbf{Transmit Power}: The power at which the satellite transmits signals, in dBW.
+    \item \textbf{Receiver Gain}: The gain of the receiver's antenna, in dBi, which quantifies its ability to capture incoming signals.
+    \item \textbf{Frequency}: The frequency at which the satellite operates, in GHz, which affects the path loss and atmospheric attenuation.
+    \item \textbf{TLE Data Source}: The source from which TLE data will be acquired, such as CelesTrak, and any fallback options for offline data.
+\end{itemize}
 
 \section{Data acquisition}
-The first stage of implementation is acquiring up to date orbital Parameters for the Starlink LEO constellation. TLE sets are retrieved from Celestrak. This data provides the perturbations required  to propagate the orbits using SGP4. The TLE data used in this system are taken directly from Celestrak \cite{celestrakTLE}. Downloading this data produces a text stream which has sets of three lines of text blocks, satellite name, followed by line 1 and line 2 of the TLE. The implementation of this system parses these entries for each satellite.  
+The next stage of the implementation is acquiring up-to-date orbital Parameters for the given LEO constellation(Starlink, Kuiper, OneWeb). TLE sets are retrieved from Celestrak. This data provides the perturbations required  to propagate the orbits using SGP4. The TLE data used in this system are taken directly from Celestrak \cite{celestrakTLE}. Downloading this data produces a text stream which has sets of three lines of text blocks, satellite name, followed by line 1 and line 2 of the TLE. The implementation of this system parses these entries for each satellite.  
 
 Using the most up to date TLEs ensures that the system accurately represents the dynamic nature of large LEO constellations, which orbital parameters may change drastically and regularly due to factors such as manual maneuvers. 
 
-Acquiring TLE data can be done through a link from CelesTrak. This project downloads raw TLE from CelesTrak using an HTTP request and then parses the reponse into a list of lines for processing. Python makes this simple with a requests library, which can be seen implmented in listing \ref{lst:PUll-TLEs}
+Acquiring TLE data can be done through a link from CelesTrak. This project downloads raw TLE from CelesTrak using an HTTP request and then parses the response into a list of lines for processing. Python makes this simple with a requests library, which can be seen implemented in listing \ref{lst:PUll-TLEs}
 
 \begin{lstlisting}[caption={Pulling TLE data}, label={lst:PUll-TLEs}]
 response = requests.get("https://celestrak.org/NORAD/elements/gp.php?GROUP=starlink&FORMAT=tle")
@@ -36,9 +44,9 @@ lines = response.text.splitlines()
 
 However, this can create issues, as this project is pulling TLE data from thousands of satellites over many time steps, this can create a large number of HTTP requests which can be blocked by CelesTrak. To avoid this, the TLE data is pulled once at the start of the simulation and then stored locally for the duration of the simulation. This allows for a more efficient and robust implementation, as it avoids potential issues with rate limiting and ensures that the same TLE data is used throughout the simulation for consistency.
 
-On top of this it is critical to ensure that the TLE data is parsed at the right location in the code, as seen in figure \ref{fig:ImplementationLogic}, this project employs a 0.1 lat lon step for mapping over Ireland, which equates to 1000s of grid positions, and over a duration of 24 hours with a time step of 10 seconds, in order to prevent temporary IP bans, the TLE data must be pulled first, then stored, then used. 
+On top of this it is critical to ensure that the TLE data is parsed at the right location in the code, as seen in Figure \ref{fig:ImplementationLogic}, this project employs a 0.1 lat lon step for mapping over Ireland, which equates to 1000s of grid positions, and over a duration of 24 hours with a time step of 10 seconds, in order to prevent temporary IP bans, the TLE data must be pulled first, then stored, then used. 
 
-Even with this approach, this project experienced some rate limiting, throttling and temporary IP bans from CelesTrak, to get around this, as offline backup of the TLE data was stored and manually updated periodically. This can be seen implemented in \ref{lst:TLE-Data-Acquisition}. Should there be issues with accessing data directly from CelesTrak, it was still possible to, design and test while using an offline backup file containing TLE data.
+Even with this approach, this project experienced some rate limiting, throttling and temporary IP bans from CelesTrak, to get around this, as offline backup of the TLE data was stored and manually updated periodically. This can be seen implemented in Listing \ref{lst:TLE-Data-Acquisition}. Should there be issues with accessing data directly from CelesTrak, it was still possible to, design and test while using an offline backup file containing TLE data.
 
 \begin{lstlisting}[caption={TLE data acquisition logic}, label={lst:TLE-Data-Acquisition}]
         try:
@@ -169,7 +177,7 @@ propagated = {
 \end{lstlisting}
 
 
-\section{Coordinate Transformations}
+\section{Coordinate Transformations} \label{section:mathematical_coordinate_transformation}
 Satellite positions produced by SGP4 are given in True Equator, Mean Equinox (TEME) format. TEME remains fixed to relative to the stars not to the Earth. It uses the Earths true equatorial plane at that moment in tim, but for the x-axis it uses the mean equinox which helps smooth out some of the short term wobbles in the Earths's rotation.  
 
 As TEME does not rotate with the Earth, but ground locations given in latitude and longitude do rotate with the Earth, for visibility and elevation calculations, both the satellite and the observer location need to be in the same rotating frame. For this reason TEME must be converted to Earth Centered Earth Fixed (ECEF) coordinate system \cite{inproceedings}. 
@@ -371,7 +379,7 @@ P_{\text{received}} \text{ (dBm)} = P_{\text{transmitted}} \text{ (dBm)} + G_t \
 In Equation~\eqref{eq:receivedPower},
 \(P_{\text{received}}\) (dBm) is the power level at the receiver input after all gains and losses along the communication link have been applied. It represents the signal strength available for demodulation at the receiver.
 
-\(P_{\text{transmitted}}\) (dBm) is the output power of the transmitting radio or antenna system, expressed on a logarithmic decibel-milliwatt scale.
+\(P_{\text{transmitted}}\) (dBm) is the output power of the transmitting radio or antenna system.
 
 \(G_t\) (dB) is the transmitter antenna gain, which quantifies the ability of the transmitting antenna to direct radiated power toward the receiver relative to an isotropic radiator.
 
@@ -422,11 +430,156 @@ SINR is calculated as the main signal power divided by the sum of interference a
 Given these calculations, the Shannon capacity (theoretical maximum data rate) can be found. This can be seen in \ref{eq:capacity} \cite{goncharenko2023optimization}
 
 \begin{equation}
-C = B \cdot \log_2 \left( 1 + \text{SINR}_{\text{linear}} \right).
+Capacity = Bandwidth \cdot \log_2 \left( 1 + \text{SINR}_{\text{linear}} \right).
 \label{eq:capacity}
 \end{equation}
 
 These equations were implemented in the system to calculate the theoretical maximum throughput for each satellite providing coverage at each time step. This allows for an analysis of coverage in Ireland. 
 
+Parameters for the constellations were taken from publicly available sources, and are summarized in Table \ref{tab:leo_compact}. These parameters were used to calculate the received power, interference, noise, and ultimately the Shannon capacity for each satellite providing coverage at each time step.
+
+To calculate the EIRP for Starlink, the following calculations were preformed. 
+\[
+\begin{aligned}
+\text{Given:}\quad 
+& \text{EIRP spectral density} = 17.9\text{--}21.5 \ \mathrm{dBW/MHz} \\
+& B = 250 \ \mathrm{MHz}
+\end{aligned}
+\]
+
+\[
+\text{Total EIRP (dBW)} = \text{EIRP density (dBW/MHz)} 
++ 10\log_{10}(B)
+\]
+
+\[
+10\log_{10}(250) = 23.98 \approx 24 \ \mathrm{dB}
+\]
+
+\[
+\text{Lower bound:}\quad
+17.9 + 24 = 41.9 \ \mathrm{dBW}
+\]
+
+\[
+\text{Upper bound:}\quad
+21.5 + 24 = 45.5 \ \mathrm{dBW}
+\]
+
+\[
+\boxed{
+\text{Total EIRP} \approx 41.9\text{--}45.5 \ \mathrm{dBW}
+}
+\]
+
+
+A similar calculation was preformed for the OneWeb constellation as the EIRP was not readily given. 
+
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Link budget parameters used for LEO system modelling.}
+\label{tab:leo_link_budget_paramaters}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{System} &
+\textbf{Altitude (km)} &
+\textbf{Transmit Power (dBW)} &
+\textbf{Receiver Gain (dBi)} &
+\textbf{Frequency (GHz)} \\
+\hline
+
+Starlink (FSS) \cite{FCC22_91A1} &
+550 &
+44--46 &
+33 &
+12 \\
+\hline
+
+Starlink DTC \cite{Wang2025FCCStarlinkDTC} &
+300--550 &
+$\sim$58 &
+$\sim$0 &
+2 \\
+\hline
+
+Kuiper \cite{SpaceX2021SATLOA00145}&
+590--630 &
+44--46 &
+33 &
+19 \\
+\hline
+
+OneWeb\cite{OneWeb2020SATMPL00062} &
+1200 &
+41--44 &
+33 &
+12  \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Notes:}
+Starlink and Kuiper transmit powers represent equivalent downlink EIRP derived from
+reported spectral density values. Starlink Direct-to-Cell operation is constrained by
+regulatory power-flux-density limits rather than beam EIRP. OneWeb operates at higher
+altitude, resulting in increased path loss and reduced SNR.
+
 
 \section{Optimal Satellite Selection}
+At each simulation time step, multiple satellites may satisfy the visibility and beam width checks for a given location. To determine which satellite would provide the best service, the satellite whose beam is most closely aligned with he observer is selected as the serving satellite. Alignment is measured by the angular separation between the satellite's nadir direction and the line of sight to the observer. The satellite with the smallest angle is selected as the serving satellite for that time step.
+
+Let the satellite position vector at a given time step be
+\[
+\mathbf{r}_{\text{sat}} \in \mathbb{R}^3,
+\]
+and the observer position, transformed into the same reference frame, be
+\[
+\mathbf{r}_{\text{obs}} \in \mathbb{R}^3.
+\]
+
+The nadir beam direction of the satellite is defined as
+\[
+\mathbf{u}_{\text{beam}}
+= \frac{-\mathbf{r}_{\text{sat}}}{\lVert \mathbf{r}_{\text{sat}} \rVert}.
+\]
+
+The line-of-sight vector from the satellite to the observer is
+\[
+\mathbf{v}_{\text{LOS}} = \mathbf{r}_{\text{obs}} - \mathbf{r}_{\text{sat}},
+\]
+with the corresponding unit vector
+\[
+\mathbf{u}_{\text{LOS}}
+= \frac{\mathbf{v}_{\text{LOS}}}{\lVert \mathbf{v}_{\text{LOS}} \rVert}.
+\]
+
+The angular separation between the beam centre and the observer direction is computed as
+\[
+\theta = \cos^{-1}\!\left(
+\mathbf{u}_{\text{beam}} \cdot \mathbf{u}_{\text{LOS}}
+\right).
+\]
+
+A satellite satisfies the beam-width constraint if
+\[
+\theta \leq \frac{\theta_{\text{beam}}}{2}.
+\]
+
+For a given time step, the optimal satellite is selected as
+\[
+s^\ast = \arg\min_{s_i} \; \theta_i,
+\]
+where this is preformed over all satellites that are visible and capable of providing coverage at that time step. 
+
+\section{Computational Complexity and run time}
+This sections aims to provide and overview of the dominant computational cost, scaling considerations and practical performance limitations. The overall run time of the system is influenced by several factors, including the number of satellites, the duration of the simulation, the time step size, and the resolution of the coverage grid. 
+
+We can let $N_s$ be the number of satellites, $N_t$ be the number of time steps, and $N_g$ be the number of grid points. Orbit propagation using SGP4 has a computational complexity of  $\mathcal{O}(1)$ per satellite per time step. This means, the total cost of orbit propagation is $\mathcal{O}(N_s \cdot N_t)$, as each satellite's position must be computed at each time step. For a large LEO constellation such as Starlink, with thousands of satellites and a simulation which spans multiple hours with a fine time step, this can lead to a significant computational load.
+
+Coverage analysis adds another layer to this, at each time step, visibility and beam-width checks are preformed for every satellite-grid point combination. This can result in a complexity of  $\mathcal{O}(N_s \cdot N_t \cdot N_g)$. Even though each indivudual operation, such as the coordinate transformations, angle calculations and coverage check are relatively simple and inexpensive, the sheer number of operations can lead to long run times, especially as the grid resolution increases. For example, if we have 1000 satellites, a simulation duration of 24 hours with a time step of 10 seconds (which means 8640 time steps), and a grid of 1000 points, the number of operations would be $1000 \cdot 8640 \cdot 1000 = 8.64 \times 10^9$ operations, which take hours to compute.
+
+To reduce the excessive computational costs, some design choices were implemented. FIrst, TLE data is loaded and parsed once at the beginning of the simulation and stored in memory, this avoids repeat network access or file reads which can take time. Secondly, the satellite propagation results are stored as time-indexed state vectors, allowed easy and repeated use during coverage checks without needing to re-propagate. The satellites which produce error codes at a given time step are also discarded to avoid unnecessary calculations. Finally, at any given time step at a grid point, if no satellites are visible, coverage checked are skipped entirely, and automatically marked as no coverage, this avoids the need to preform beam width checks for any satellites which are not even visible.   
+
+However, this creates issues with memory usage, as the system needs to store the propagated state vectors for all satellites at all time steps. For a large constellation and long simulation duration, this can lead to high memory consumption. To get around this, larger satellite constellations are ran for 12 hour periods instead of 24, with time steps of 30 seconds instead of 10 or 15. This increases the speed of the simulation by 2-3x. 
