@@ -19,15 +19,21 @@ In Ireland this difference is evident from Figure \ref{fig:NBPmap}, where the ar
     \label{fig:NBPmap}
 \end{figure}
 \FloatBarrier
-\section{Broadband Connectivity Challenges in Rural Ireland}
 
-\section{Low Earth Orbit Satellite Systems}
+\section{What is LEO}
+LEO satellites orbit closely to the Earth's surface, this can be anywhere below $\approx 1500\,\text{km}$, however some even orbit as low as 160km. These satellites do not have to follow a particular orbit and are not locked in one spot above the Earth. LEO satellites have a multitude of uses such as satellite imaging of the Earth due to the distance of orbit they are able to take images at a higher resolution. The Internation space station (ISS) is also in low earth orbit, this means it is cheaper and easier for the astronauts to travel to and from it. This report is largely concerned with LEOs ability to send data quickly back to Earth due to it's close proximity. Often times these satellites work as part of a constellation in order to achieve constant coverage over an area\cite{esaLEOImage2020}.
+
+This is slightly different from other types of satellites such as Geostationary orbit (GEO), medium Earth orbit satellites (MEO). GEO satellites match Earth's rotation, taking a full 23 hours and 56 minutes to orbit. These satellites are locked into place at a fixed orbit, traveling around 3 kilometers per second at an altitude of 35786 Km. GEO satellites are often used as telecommunication satellites, allowing antennas on the Earth to remain at one location. This effect is strengthened by the effect that one satellite can service a significant portion of the Earth's surface, needing only three satellites to achieve nearly global coverage. The distance from which these satellites orbit is what makes them useful for certain telecommunications and as weather satellites, but this can also be a drawback, due to the enormous distance between a satellite and a user, communications can be slow.\cite{esaOrbits} 
+
+MEO satellites can cover a large range of altitudes and occupy the space between LEO and GEO. MEO satellites are largely used for navigation such as GPS on your phone. One example of this is the Galileo constellation. Again these satellites can also suffer from slow communications due to long round trips the data has to make. \cite{esaOrbits} 
 
 \section{Comparison with Terrestrial Networks}
 
-\section{Problem Statement}
 
+\section{Problem Statement}
+Despite investment in Ireland's terrestrial broadband infrastructure through initiatives such as the National Broadband Plan \cite{NBPPolicy}, substantial challenges remain in delivering consistent high-preforming broadband connectivity to rural and sparsely populated ares. The  Economic and technical limitations with fibre deployment and mobile network density results in long rollout times with uneven service availability. While LEO constellations have emerged as a potential alternative capable of providing coverage for large areas with reduced dependency on ground based infrastructure, their practical suitability for addressing Ireland's rural connectivity challenges should be sufficiently quantified to measure how much these constellations could either provide their own service or complement an existing network. 
 \section{Research Objectives}
+The key objective of this project is to evaluate if LEO satellite constellations are capable of providing a comparable or improved broadband service to 5G across rural Ireland which may be under-served under the NBP \cite{NBPMap}. A secondary goal is to assess whether LEO systems are suitable to be part of a complementary solution to existing broadband networks. In order to achieve this a simulation framework for modelling must be developed which is capable of estimate the theoretical capacity achievable by LEO satellite links.
 
 \section{Scope of Project}
 The scope of this project is focused on evaluating the feasibility of LEO satellite constellations as a solution for rural broadband connectivity in Ireland. The work concentrates on modelling and analyzing satellite coverage availability and theoretical communication performance using a simulation based approached with publicly available data. 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.12)  25 APR 2026 03:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.12)  26 APR 2026 02:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -761,7 +761,7 @@ Package microtype Info: Character `029' is missing
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/14.4'.
 (microtype)             Ignoring protrusion settings for this character.
-<figures/_NUIM.png, id=212, 132.31416pt x 88.8622pt>
+<figures/_NUIM.png, id=216, 132.31416pt x 88.8622pt>
 File: figures/_NUIM.png Graphic file (type png)
 <use figures/_NUIM.png>
 Package pdftex.def Info: figures/_NUIM.png  used on input line 92.
@@ -807,7 +807,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/_NUIM.png>] (./fyp.tocpdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.46 ...imal Satellite Selection}{19}{section.4.9}
+l.47 ...{4.8}Coverage Capability}{22}{section.4.8}
                                                   % [1
 
 ])
@@ -822,7 +822,7 @@ l.46 ...imal Satellite Selection}{19}{section.4.9}
 l.1 \chapter
             {Introduction} \label{chapter:1} [1]
 Chapter 1.
-<figures/IrelandBroadband.png, id=296, 425.01643pt x 523.09714pt>
+<figures/IrelandBroadband.png, id=301, 425.01643pt x 523.09714pt>
 File: figures/IrelandBroadband.png Graphic file (type png)
 <use figures/IrelandBroadband.png>
 Package pdftex.def Info: figures/IrelandBroadband.png  used on input line 17.
@@ -834,32 +834,70 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ] [3 <./figures/IrelandBroadband.png>]) (./Chapters/LitReview.tex [4]
 Chapter 2.
-<figures/Alaska_broadband_budget.png, id=327, 1205.50375pt x 715.67375pt>
-File: figures/Alaska_broadband_budget.png Graphic file (type png)
-<use figures/Alaska_broadband_budget.png>
-Package pdftex.def Info: figures/Alaska_broadband_budget.png  used on input line 58.
-(pdftex.def)             Requested size: 317.53609pt x 188.50601pt.
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
+File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
+)
+<figures/TelesatMap.png, id=344, 302.12875pt x 250.9375pt>
+File: figures/TelesatMap.png Graphic file (type png)
+<use figures/TelesatMap.png>
+Package pdftex.def Info: figures/TelesatMap.png  used on input line 36.
+(pdftex.def)             Requested size: 254.02402pt x 210.98515pt.
+<figures/OneWebOrbits.png, id=347, 304.13625pt x 266.9975pt>
+File: figures/OneWebOrbits.png Graphic file (type png)
+<use figures/OneWebOrbits.png>
+Package pdftex.def Info: figures/OneWebOrbits.png  used on input line 43.
+(pdftex.def)             Requested size: 254.02402pt x 223.00932pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [5
 
 ]
-<figures/alaska-broadband-provide.png, id=343, 1479.5275pt x 1003.75pt>
+<figures/StarlinkOrbits.png, id=363, 304.13625pt x 266.9975pt>
+File: figures/StarlinkOrbits.png Graphic file (type png)
+<use figures/StarlinkOrbits.png>
+Package pdftex.def Info: figures/StarlinkOrbits.png  used on input line 65.
+(pdftex.def)             Requested size: 264.61072pt x 232.3063pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6 <./figures/TelesatMap.png> <./figures/OneWebOrbits.png>]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 74.
+See the caption package documentation for explanation.
+
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 86.
+ (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-33.def
+File: uni-33.def 2013/05/13 UCS: Unicode data U+2100..U+21FF
+) [7 <./figures/StarlinkOrbits.png>]
+<figures/Alaska_broadband_budget.png, id=395, 1205.50375pt x 715.67375pt>
+File: figures/Alaska_broadband_budget.png Graphic file (type png)
+<use figures/Alaska_broadband_budget.png>
+Package pdftex.def Info: figures/Alaska_broadband_budget.png  used on input line 142.
+(pdftex.def)             Requested size: 317.53609pt x 188.50601pt.
+ [8]
+<figures/alaska-broadband-provide.png, id=412, 1479.5275pt x 1003.75pt>
 File: figures/alaska-broadband-provide.png Graphic file (type png)
 <use figures/alaska-broadband-provide.png>
-Package pdftex.def Info: figures/alaska-broadband-provide.png  used on input line 71.
+Package pdftex.def Info: figures/alaska-broadband-provide.png  used on input line 155.
 (pdftex.def)             Requested size: 444.56152pt x 301.59447pt.
-<figures/alaska-broadband-provide (1).png, id=344, 1479.5275pt x 1003.75pt>
+<figures/alaska-broadband-provide (1).png, id=413, 1479.5275pt x 1003.75pt>
 File: figures/alaska-broadband-provide (1).png Graphic file (type png)
 <use figures/alaska-broadband-provide (1).png>
-Package pdftex.def Info: figures/alaska-broadband-provide (1).png  used on input line 78.
+Package pdftex.def Info: figures/alaska-broadband-provide (1).png  used on input line 162.
 (pdftex.def)             Requested size: 444.56152pt x 301.59447pt.
- [6 <./figures/Alaska_broadband_budget.png> <./figures/alaska-broadband-provide.png>]) (./Chapters/SystemDesign.tex [7 <./figures/alaska-broadband-provide (1).png>]
+ [9 <./figures/Alaska_broadband_budget.png> <./figures/alaska-broadband-provide.png>] [10 <./figures/alaska-broadband-provide (1).png>]) (./Chapters/SystemDesign.tex [11]
 Chapter 3.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 10.
-(/usr/share/texmf/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 31.
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -870,10 +908,10 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 45.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 45.
- [8
+ [12
 
 ]
-<figures/ECEF.png, id=387, 353.06906pt x 283.0575pt>
+<figures/ECEF.png, id=464, 353.06906pt x 283.0575pt>
 File: figures/ECEF.png Graphic file (type png)
 <use figures/ECEF.png>
 Package pdftex.def Info: figures/ECEF.png  used on input line 90.
@@ -882,96 +920,101 @@ Package pdftex.def Info: figures/ECEF.png  used on input line 90.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9]) (./Chapters/Implementation.tex [10 <./figures/ECEF.png>]
+[13]) (./Chapters/Implementation.tex [14 <./figures/ECEF.png>]
 Chapter 4.
-<figures/FYP_Overall_Logic.pdf, id=408, 581.17125pt x 513.41812pt>
+<figures/FYP_Overall_Logic.pdf, id=485, 581.17125pt x 513.41812pt>
 File: figures/FYP_Overall_Logic.pdf Graphic file (type pdf)
 <use figures/FYP_Overall_Logic.pdf>
 Package pdftex.def Info: figures/FYP_Overall_Logic.pdf  used on input line 6.
 (pdftex.def)             Requested size: 529.22144pt x 467.55591pt.
-[11
+[15
 
  <./figures/FYP_Overall_Logic.pdf>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 40.
- [12] [13] [14] [15] [16] [17]
+ [16] [17] [18] [19] [20] [21]
 
-LaTeX Warning: Reference `tab:leo_compact' on page 18 undefined on input line 439.
+LaTeX Warning: Reference `tab:leo_compact' on page 22 undefined on input line 439.
 
-[18] [19]) (./Chapters/Results.tex [20]
+[22] [23]) (./Chapters/Results.tex [24]
 Chapter 5.
-<figures/5g-48.png, id=762, 650.43pt x 822.07124pt>
+<figures/5g-48.png, id=838, 650.43pt x 822.07124pt>
 File: figures/5g-48.png Graphic file (type png)
 <use figures/5g-48.png>
 Package pdftex.def Info: figures/5g-48.png  used on input line 28.
 (pdftex.def)             Requested size: 254.02402pt x 321.05806pt.
-(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
-File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
-)
-<figures/5g-Eir.png, id=765, 662.475pt x 833.1125pt>
+<figures/5g-Eir.png, id=841, 662.475pt x 833.1125pt>
 File: figures/5g-Eir.png Graphic file (type png)
 <use figures/5g-Eir.png>
 Package pdftex.def Info: figures/5g-Eir.png  used on input line 34.
 (pdftex.def)             Requested size: 254.02402pt x 319.4463pt.
-<figures/5g-three.png, id=768, 662.475pt x 833.1125pt>
+<figures/5g-three.png, id=844, 662.475pt x 833.1125pt>
 File: figures/5g-three.png Graphic file (type png)
 <use figures/5g-three.png>
 Package pdftex.def Info: figures/5g-three.png  used on input line 43.
 (pdftex.def)             Requested size: 254.02402pt x 319.4463pt.
-<figures/5g-vodafone.png, id=771, 685.56125pt x 840.13875pt>
+<figures/5g-vodafone.png, id=847, 685.56125pt x 840.13875pt>
 File: figures/5g-vodafone.png Graphic file (type png)
 <use figures/5g-vodafone.png>
 Package pdftex.def Info: figures/5g-vodafone.png  used on input line 49.
 (pdftex.def)             Requested size: 254.02402pt x 311.29515pt.
-) (./Chapters/Conclusions.tex [21
+) (./Chapters/Conclusions.tex [25
 
-] [22 <./figures/5g-48.png> <./figures/5g-Eir.png> <./figures/5g-three.png> <./figures/5g-vodafone.png>]
+] [26 <./figures/5g-48.png> <./figures/5g-Eir.png> <./figures/5g-three.png> <./figures/5g-vodafone.png>]
 Chapter 6.
-) [23
+) [27
 
-] (./fyp.bbl (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
-File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-)
-Underfull \hbox (badness 10000) in paragraph at lines 116--119
+] (./fyp.bbl
+Underfull \hbox (badness 3525) in paragraph at lines 36--39
+[]\T1/lmr/m/n/10 (+20) European Space Agency, ``Medium earth or-bit (MEO),'' [][]$https : / / www . esa . int / Enabling _ Support / Space _
+ []
+
+
+Underfull \hbox (badness 6825) in paragraph at lines 76--79
+[]\T1/lmr/m/n/10 (+20) PayloadSpace, ``Esa re-port shows un-sus-tain-able lev-els of or-bital de-bris,'' [][]$https : / / payloadspace . com /
+ []
+
+[28
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 187--190
 []\T1/lmr/m/n/10 (+20) MathWorks, ``Radar co-or-di-nate sys-tems and frames,'' [][]$https : / / kr . mathworks . com / help / radar / ug /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--128
+Underfull \hbox (badness 10000) in paragraph at lines 196--199
 []\T1/lmr/m/n/10 (+20) ``Gps and ecef con-ver-sion (wgs-84 el-lip-soid),'' [][]$http : / / www . mathforengineers . com / math-[]calculators /
  []
 
-[24
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 188--192
+Underfull \hbox (badness 10000) in paragraph at lines 259--263
 []\T1/lmr/m/n/10 (+20) Commission for Com-mu-ni-ca-tions Reg-u-la-tion (Com-Reg), ``Com-reg mo-bile cov-er-age map,'' [][]$https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--192
+Underfull \hbox (badness 10000) in paragraph at lines 259--263
 \T1/lmr/m/n/10 (+20) / / coveragemap . comreg . ie / map ? location = 56 . 6615732 ,[] 5 . 410097599999999 & technology = 5g & network = tesco & place _
  []
 
-) [25] (./fyp.aux)
+) [29] (./fyp.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `fyp.out' has not changed.
-(rerunfilecheck)             Checksum: AF63C90B14AB9599C79385CAA69604E0;9357.
+(rerunfilecheck)             Checksum: 985835CED871B2509DBB04832DF6BB1F;8892.
  ) 
 Here is how much of TeX's memory you used:
- 30731 strings out of 478287
- 553975 string characters out of 5849289
+ 31019 strings out of 478287
+ 558073 string characters out of 5849289
  1217704 words of memory out of 5000000
- 47878 multiletter control sequences out of 15000+600000
- 570982 words of font info for 187 fonts, out of 8000000 for 9000
+ 48127 multiletter control sequences out of 15000+600000
+ 571798 words of font info for 193 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,11n,94p,1020b,1961s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on fyp.pdf (29 pages, 3468746 bytes).
+Output written on fyp.pdf (33 pages, 3897740 bytes).
 PDF statistics:
- 1004 PDF objects out of 1200 (max. 8388607)
- 838 compressed objects within 9 object streams
- 261 named destinations out of 1000 (max. 500000)
- 60892 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1101 PDF objects out of 1200 (max. 8388607)
+ 919 compressed objects within 10 object streams
+ 283 named destinations out of 1000 (max. 500000)
+ 62963 words of extra memory for PDF output out of 74296 (max. 10000000)
 

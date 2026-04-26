@@ -11,48 +11,50 @@ Database file #1: references.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty author in chalmers546711
+Warning--missing institution in chalmers546711
 Warning--empty journal in ookla_alaska_connectivity_2026
 
 Done.
-You've used 25 entries,
+You've used 38 entries,
             4087 wiz_defined-function locations,
-            974 strings with 13411 characters,
-and the built_in function-call counts, 12141 in all, are:
-= -- 1004
-> -- 271
-< -- 18
-+ -- 133
-- -- 64
-* -- 532
-:= -- 2182
-add.period$ -- 50
-call.type$ -- 25
-change.case$ -- 38
-chr.to.int$ -- 18
-cite$ -- 26
-duplicate$ -- 972
-empty$ -- 1010
-format.name$ -- 72
-if$ -- 2672
+            1046 strings with 15831 characters,
+and the built_in function-call counts, 18576 in all, are:
+= -- 1556
+> -- 357
+< -- 42
++ -- 182
+- -- 80
+* -- 787
+:= -- 3282
+add.period$ -- 77
+call.type$ -- 38
+change.case$ -- 61
+chr.to.int$ -- 75
+cite$ -- 41
+duplicate$ -- 1494
+empty$ -- 1576
+format.name$ -- 90
+if$ -- 4139
 int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 240
-newline$ -- 124
-num.names$ -- 24
-pop$ -- 579
+int.to.str$ -- 38
+missing$ -- 351
+newline$ -- 165
+num.names$ -- 36
+pop$ -- 840
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 928
+skip$ -- 1434
 stack$ -- 0
-substring$ -- 99
-swap$ -- 655
-text.length$ -- 12
+substring$ -- 265
+swap$ -- 1016
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 25
-warning$ -- 1
-while$ -- 29
-width$ -- 27
-write$ -- 278
-(There was 1 warning)
+type$ -- 38
+warning$ -- 3
+while$ -- 50
+width$ -- 40
+write$ -- 398
+(There were 3 warnings)

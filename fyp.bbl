@@ -27,16 +27,77 @@
   \url{https://www.gov.ie/en/publication/5634d-national-broadband-plan-map/},
   2024, accessed: 25 April 2026.
 
+\bibitem{esaLEOImage2020}
+E.~S. Agency, ``Low earth orbit (leo) - esa multimedia image,''
+  \url{https://www.esa.int/ESA_Multimedia/Images/2020/03/Low_Earth_orbit},
+  2020, accessed: 2025-11-18.
+
+\bibitem{esaOrbits}
+{European Space Agency}, ``Medium earth orbit {(MEO)},''
+  \url{https://www.esa.int/Enabling_Support/Space_Transportation/Types_of_orbits},
+  accessed: 2025-10-20.
+
+\bibitem{NBPPolicy}
+{Department of the Environment, Climate and Communications}, ``{National
+  Broadband Plan},''
+  \url{https://www.gov.ie/en/publication/5fb54-national-broadband-plan/}, 2024,
+  accessed: 25 April 2026.
+
+\bibitem{2019AcAau.159..123D}
+I.~{del Portillo}, B.~G. {Cameron}, and E.~F. {Crawley}, ``{A technical
+  comparison of three low earth orbit satellite constellation systems to
+  provide global broadband},'' \emph{Acta Astronautica}, vol. 159, pp.
+  123--135, Jun. 2019.
+
+\bibitem{10.1145/3286062.3286075}
+\BIBentryALTinterwordspacing
+M.~Handley, ``Delay is not an option: Low latency routing in space,'' in
+  \emph{Proceedings of the 17th ACM Workshop on Hot Topics in Networks}, ser.
+  HotNets '18.\hskip 1em plus 0.5em minus 0.4em\relax New York, NY, USA:
+  Association for Computing Machinery, 2018, pp. 85--91. [Online]. Available:
+  \url{https://doi.org/10.1145/3286062.3286075}
+\BIBentrySTDinterwordspacing
+
+\bibitem{esa_satellite_frequency_bands}
+{European Space Agency (ESA)}, ``Satellite frequency bands,''
+  \url{https://www.esa.int/Applications/Connectivity_and_Secure_Communications/Satellite_frequency_bands},
+  accessed: 2025-11-11.
+
+\bibitem{TelesatSpacexOnewebComparison}
+I.~{del Portillo}, B.~G. Cameron, and E.~F. Crawley, ``A technical comparison
+  of three low earth orbit satellite constellation systems to provide global
+  broadband,'' \emph{Acta Astronautica}, vol. 159, pp. 123--135, 2019.
+
+\bibitem{starlink_technology}
+Starlink, ``Starlink technology,'' \url{https://starlink.com/technology},
+  accessed: 2025-11-09.
+
+\bibitem{payloadspace2024_debris}
+PayloadSpace, ``Esa report shows unsustainable levels of orbital debris,''
+  \url{https://payloadspace.com/esa-report-shows-unsustainable-levels-of-orbital-debris/},
+  2024, accessed: 2025-12-06.
+
+\bibitem{ituWRS22SatelliteRegulation2023}
+{International Telecommunication Union (ITU) News}, ``Wrs-22: Regulation of
+  satellites in earth's orbit,''
+  \url{https://www.itu.int/hub/2023/01/satellite-regulation-leo-geo-wrs/}, Jan.
+  2023, accessed: 2025-12-05.
+
+\bibitem{chalmers546711}
+``Ntn overview — non-terrestrial networks,''
+  \url{https://www.3gpp.org/technologies/ntn-overview}, Tech. Rep., 2025,
+  accessed: 2025-12-05.
+
 \bibitem{telesat_canada_leo_2026}
 \BIBentryALTinterwordspacing
-{Fierce Network}, ``Telesat works with canada’s government to reach remote
+{Fierce Network}, ``Telesat works with canada's government to reach remote
   areas with leo,'' 2026. [Online]. Available:
   \url{https://www.fierce-network.com/broadband/telesat-works-canadas-government-reach-remote-areas-leo}
 \BIBentrySTDinterwordspacing
 
 \bibitem{nbn_kuiper_2025}
 \BIBentryALTinterwordspacing
-{NBN Co}, ``Nbn co selects amazon’s project kuiper to bring low earth orbit
+{NBN Co}, ``Nbn co selects amazon's project kuiper to bring low earth orbit
   (leo) satellite broadband to australia,'' 2025. [Online]. Available:
   \url{https://www.nbnco.com.au/corporate-information/media-centre/media-statements/nbn-co-selects-amazons-project-kuiper}
 \BIBentrySTDinterwordspacing
@@ -50,10 +111,20 @@
 
 \bibitem{ookla_alaska_connectivity_2026}
 \BIBentryALTinterwordspacing
-{Ookla Research}, ``Closing the gap: Alaska’s push for statewide
+{Ookla Research}, ``Closing the gap: Alaska's push for statewide
   connectivity,'' 2026. [Online]. Available:
   \url{https://www.ookla.com/articles/alaskas-push-for-statewide-connectivity}
 \BIBentrySTDinterwordspacing
+
+\bibitem{digitalregulation_d2d_services}
+{Digital Regulation Platform (International Telecommunication Union \& World
+  Bank)}, ``Satellite direct-to-device services,''
+  \url{https://digitalregulation.org/satellite-direct-to-device-services/},
+  accessed: 2025-11-11.
+
+\bibitem{MSSA_D2D_2024}
+M.~S.~S. Association, ``Considerations for direct-to-device satellite
+  technology,'' MSSA, Tech. Rep., Sep. 2024, 4 September 2024.
 
 \bibitem{spacetrack}
 {U.S. Space Force}, ``{Space-Track.org Login},''

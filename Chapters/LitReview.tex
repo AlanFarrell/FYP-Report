@@ -1,15 +1,93 @@
 \chapter{Literature Review}\label{chapter:2}
 
-\section{Overview of Low Earth Orbit Satellite Communications}
-%LEo satellite communications 
-
 \section{LEO Satellite Constellation Architectures}
-% Describes common constellation designs, orbital shells,
-% inclinations, and scaling considerations.
+Compared to geostationary satellites, LEO constellations offer significantly lower propagation delay and reduced path loss, enabling a high quality broadband service \cite{2019AcAau.159..123D} \cite{10.1145/3286062.3286075}. With LEO continuous service is achieved through coordinated constellation geometry and handover logic between satellites as opposed to fixed satellite positioning.
 
+LEO constellations are generally organized into multiple orbital planes, with satellites even spaced within each plane to ensure consistent regional coverage. Key architectural parameter include orbital altitude, inclination, number of orbital planes, and the number of satellites per plane. As the orbital altitude decreases, the latency reduces, however a larger total satellite count is then required to account for coverage gaps \cite{2019AcAau.159..123D} . These design trade-offs include system cost, performance and scalability. 
+
+LEO satellite constellation architecture is a complex trade-off between coverage, latency, and system complexity. Understanding the cost and result of key design features is crucial for successful LEO constellation deployment.  
 \section{Existing LEO Constellations}
-% Reviews major operational and planned LEO systems
-% such as Starlink, OneWeb, and Telesat.
+\FloatBarrier
+\begin{table}[h!]
+\caption{Common frequency ranges for Ku- and Ka-band satellite communications\cite{esa_satellite_frequency_bands}.}
+\centering
+\begin{tabular}{lcc}
+\hline
+\textbf{Band} & \textbf{ Frequency (GHz)} \\
+\hline
+Ku-band & 12 – 18\\
+Ka-band & 18 – 26  \\
+\hline
+\end{tabular}
+\end{table}
+
+In recent years, several companies have begun deploying extensive constellation in order to achieve global broadband services. The following section will give an overview of some of these companies. 
+\subsubsection{Telesat}
+Telesat's LEO constellation operates in the KA-band and is designed to provide global broadband coverage, with high throughput and low latency. Telesat's constellation uses 1.8GHz of the KA-band with a downlink (17.8-20.2GHz) and an uplink (27.7-30.0GHz) stream, and is made up of two sets of orbits. This consists of, six polar orbits at an altitude of \~ 1000Km and 5 inclined orbits at \~ 1200km. These orbits contain at least 12 and 5 satellites, respectively. The polar orbits are focuses on providing full global coverage while the inclined orbits mainly focus on the middle latitudes where most of Telesat's customers are.
+
+In both of these sets of orbits, optical inter-satellite links are employed to ensure that continuous connectivity is secured. Each satellite in the constellation can functions as an IP node and has an on board digital signal processing module supporting demodulation, routing and remodulation. 
+
+Each satellite uses a direct radiation array which means it can create multiple narrow communication beans instead of a singular broad signal. These beams can be steers ensuring that the satellite can ensure coverage to various locations on the ground when user location or demand changes. This ensures the system is power efficient, not wasting bandwidth and energy in areas where there are no users. \cite{TelesatSpacexOnewebComparison}
+\FloatBarrier
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/TelesatMap.png}
+        \caption{Telesat Constellation \cite{TelesatSpacexOnewebComparison}}
+        \label{fig:telesatmap}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/OneWebOrbits.png}
+        \caption{OneWeb Constellation \cite{TelesatSpacexOnewebComparison}}
+        \label{fig:onewebmap}
+    \end{subfigure}
+    \caption{Map of Telesat and OneWeb Constellations}
+    \label{fig:ConstellationComparison}
+\end{figure}
+\FloatBarrier
+
+
+\subsection{OneWeb}
+Unlike Telesat, OneWeb operates in the Ku and Ka bands and contains 720 satellites in 18 circular orbits orbitting at \~1200Km. Each satellite operates on a 'bent pipe payload' system, meaning signals received from users on the ground are amplified and forwarded to a gateway instead of being routed on board the satellite itself. Each satellite generates 16 fixed beams to ensure that users are always in view of at least one satellite. 
+
+While the Ku-band is dedicated to users, the Ka-band is dedicated to gateway links. Each satellite has two steerable antennas, one in operation and a backup antenna. Unlike many other constellations, no satellites in OneWeb's constellation uses inter-satellite links, meaning connectivity is solely reliant on whether the user and gateway are in line of sight with a satellite.\cite{TelesatSpacexOnewebComparison}
+
+\subsection{Starlink}
+SpaceX's Starlink also operates in the Ku and Ka bands and is planned to contain several thousand satellites in multiple types of orbits. Initial deployment consisted of 1600 satellites orbiting at 550Km. Each satellite has a phased array communications payload allowing it to generate multiple steerable beams which can be adjusted depending on the location of user demand and can deliver a latency of only 25ms.\cite{starlink_technology}.\cite{TelesatSpacexOnewebComparison}
+
+Starlink also deploys optical inter-satellite links.This allows satellites to communicate with one another, meaning data can be routed across the constellation without relying on ground base stations or gateways which improves coverage in remote locations. Much like OneWeb, the Ku band services the user links while the ka band services the gateway links.\cite{TelesatSpacexOnewebComparison}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/StarlinkOrbits.png}
+    \caption{Starlink constellation \cite{TelesatSpacexOnewebComparison}}
+    \label{fig:starlinkmap}
+\end{figure}
+
+\FloatBarrier
+\subsection{Summary}
+\FloatBarrier
+\begin{center}
+\captionof{table}{Comparison of LEO broadband satellite constellations.}
+\label{tab:leo-constellations}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\hline
+\textbf{System} & \textbf{Bands} & \textbf{Satellites} & \textbf{Altitude (km)} & \textbf{Inclination (°)} & \textbf{Sat./Plane} & \textbf{Payload} & \textbf{ISL} \\
+\hline
+Telesat & Ka & $\geq$117 & 1000 / 1200 & 99.5 / 37.4 & $\geq$12 / $\geq$10 & Digital processing (DRA) & Yes \\
+OneWeb & Ku/Ka & 720 & 1200 & 87 & 40 & Bent-pipe (fixed beams) & No \\
+Starlink (Phase 1) & Ku/Ka & 1600 (→4425) & 550 & 53–81 & 50–75 & Phased-array (steerable) & Yes \\
+\hline
+\end{tabular}
+}
+\label{tab:summary}
+\end{center}
+
+Table \ref{tab:summary} highlights some of the key design strategies among existing LEO constellations. Starlink is unique with the largest constellation and lowest orbit among this group of constellations. This enables Starlink's low latency world-wide coverage. Telesat with fewer satellites but advances processing of payloads utilizes inter-satellite links for efficient data routing, while OneWeb using a bent pipe architecture without ISLs, making it much more dependant on ground gateways. Overall, satellites systems with ISLs and dynamic beam forming have greater flexibility and are superior for rural connectivity compared to OneWeb's traditional approach which is reliant on terrestrial infrastructure. 
 
 \section{Coverage and Latency Characteristics of LEO Systems}
 % Discusses global coverage potential and latency advantages
@@ -19,11 +97,17 @@
 % Reviews literature on bandwidth allocation, beam usage,
 % and throughput limitations in satellite systems.
 
-\section{Integration of LEO Satellites with Mobile carriers}
-% Examines hybrid satellite--terrestrial network models,
-% backhaul use cases, and coexistence with fibre and wireless systems.
-
 \section{Challenges and Limitations of LEO Systems}
+Despite the rapid growth of LEO constellations, there are technical and regulatory challenges. It is crucial that these issues are understood in light of this project, particularly in the context of Direct-to-Cell technology.
+\subsection{Orbital congestion and Space debris}
+The deployment of thousands of satellites introduces risk of orbital congestion and collisions. Congestion in low Earth orbit reached record highs in 2023, with over 2800 satellites entering LEO during the year. The majority of these satellites in LEO are commercial communications constellations. On top of this, there are over 35,000 objects in orbit that are tracked by space surveillance networks. 26,000 of these are larger than 10cm and a further one million pieces are larger than 1cm. These have the potential to cause serious issues for operating satellites and force operators to spend limited fuel resources to preform maneuvers. In 2023 the ESA created the Zero debris charter to encourage others to become debris neutral by 2030 \cite{payloadspace2024_debris}.
+
+\subsection{Spectrum and Regulations}
+Spectrum allocation and regulations are some of the most significant challenges for LEO broadband systems. Unlike terrestrial networks which operation within defined know frequency bands, LEO constellations require global coverage to avoid interference with existing services. While most LEO systems operate within the KU and KA band (12-18Ghz and 18-26Ghz) \cite{esa_satellite_frequency_bands}, these frequencies are shared with other satellite and terrestrial services. This creates conflicts which have to managed through international agreements and licensing. 
+
+The International Telecommunication Union (ITU) governs the global spectrum allocation while national regulatory services such as ComReg in Ireland enforce local compliance. Any operator must have a license for uplink and downlink frequencies, ensuring compatibility with existing networks. Due to the growing number of LEO constellations, complexity in frequency coordination has increased, and this requires interference mitigation techniques such as dynamic beam forming and adaptive power control\cite{ituWRS22SatelliteRegulation2023}.
+
+Regulation frameworks are changing alongside this technology, 3GPP standards now enable the integration of satellite and terrestrial networks \cite{chalmers546711}. However challenges still remain in areas such as managing congestion of busy frequency bands. Should these issues not be addressed issues with service degradation, legal disputes, and delays in deployment could begin to take place. 
 % Covers orbital congestion, spectrum regulation,
 % system complexity, and sustainability issues.
 
@@ -88,16 +172,15 @@ This provides solid evidence of a real world example of how LEO satellite broadb
 These international examples demonstrate that LEO constellations are increasingly becoming a viable option for providing broadband in rural areas. Common across all cases are low population density, and challenging geography with high costs for terrestrial network deployment. These conditions align closely with what can be found in regions in Ireland.  
 
 
+\section{LEO Satellites and Direct-to-Device}
+Direct to Device (D2D) satellite communication is a new approach to global connectivity by enabling LEO satellites to communicate directly with user's devices such as smartphones without relying on intermediate ground stations or gateways. This addresses one of the main challenges in telecommunication networks, the cost of terrestrial infrastructure in rural areas. 
+Rural areas can suffer from poor broadband connectivity due to the high cost of fibre optic and cellular towers. Traditional infrastructure requires significant investment, which is rarely justified by the low subscriber density in these areas. D2D is not held back by these limitations by not needing anything other than existing consumer devices. This completely eliminates the need for specialized terminals and cell towers. This is a viable solution for rural Irish communities where people remain under-served. 
 
+D2D communication enables satellites to communicate directly with an end user device without needing any sort of intermediate infrastructure. There are three main approaches, the Mobile satellite service spectrum (MSS), which is traditionally reserved for satellite services, and the LMS (Location and monitoring service) and IMT (international mobile telecommunications) \cite{digitalregulation_d2d_services} Recent developments in 3GPP have formalized the NTN specifications, making it possible to integrate satellite connectivity into terrestrial mobile networks seamlessly. 
 
-\section{LEO Satellite Upgrading}
-% Discusses satellite replacement cycles and constellation evolution.
+However, despite these limitations in recent years some companies have began pursuing D2D solution. In particular starlink and T-Mobile have partnered to provide coverage in dead zones where no coverage previously existed. Their focus is largely on rural and remote areas. As satellite constellations expand D2D is set to become a major part of broadband. It has the ability to complement terrestrial networks and provide a reliable connection during even natural disasters. \cite{MSSA_D2D_2024}
 
-\section{Future Trends in LEO Satellite Communications}
-% Explores emerging trends such as NTN integration,
-% 6G compatibility, and next-generation LEO systems.
+\subsection{Upgrading Existing Satellites for D2D Capability}
+While there are some D2D satellite services being developed in new launces of satellites, there is also an interest in enabling D2D functionality on existing LEO constellations which were previously not capable of this. Retrofitting or incrementally upgrading satellites could represent a cost effective path to accelerate D2D deployment.
 
-\section{Summary and Research Gap}
-% Synthesises the literature and identifies the gap
-% addressed by this thesis.
-
+One method of upgrading for D2D is software-defined payload architectures. Many modern LEO satellites are already contain flexible, reprogrammable radio hardware that allows waveform and protocol updates through software. This enables satellites which were originally designed for fixed broadband to support new bandwidths compatible with territorial mobile networks such as LTE or 5g NTN, without any hardware replacement. 
