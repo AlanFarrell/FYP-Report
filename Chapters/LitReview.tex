@@ -1,186 +1,145 @@
 \chapter{Literature Review}\label{chapter:2}
 
-\section{LEO Satellite Constellation Architectures}
-Compared to geostationary satellites, LEO constellations offer significantly lower propagation delay and reduced path loss, enabling a high quality broadband service \cite{2019AcAau.159..123D} \cite{10.1145/3286062.3286075}. With LEO continuous service is achieved through coordinated constellation geometry and handover logic between satellites as opposed to fixed satellite positioning.
+The growing deployment of LEO constellations has led to a substantial volume of research focused on their coverage characteristics, performance, and sustainability for broadband delivery. Much of the existing literature focuses on modelling a simulation techniques for evaluating satellite visibility, coverage availability, and achievable link capacity. 
 
-LEO constellations are generally organized into multiple orbital planes, with satellites even spaced within each plane to ensure consistent regional coverage. Key architectural parameter include orbital altitude, inclination, number of orbital planes, and the number of satellites per plane. As the orbital altitude decreases, the latency reduces, however a larger total satellite count is then required to account for coverage gaps \cite{2019AcAau.159..123D} . These design trade-offs include system cost, performance and scalability. 
 
-LEO satellite constellation architecture is a complex trade-off between coverage, latency, and system complexity. Understanding the cost and result of key design features is crucial for successful LEO constellation deployment.  
-\section{Existing LEO Constellations}
+\section{Orbit Modelling and Regional LEO Coverage}
+Studies such as Morgan-Jones and Loskot's show a detailed Kepler-based model to evaluate satellite visibility and mean time of access for fixed ground locations, showing how constellation geometry can influence regional coverage availability \cite{MorganJones2019LEO}. This work helps to establish a methodology for regional LEO coverage analysis. It also shows how LEO satellite movements can be modelled assuming Kelper's two-body mechanics. This will produce a time-depended satellite trajectory which can be defined by two vectors; initial speed $\vec{\boldsymbol{v}}(0)$ and initial position $\vec{\boldsymbol{r}}(0)$ at time $t = 0$. The use of these vectors can help to create a simple model of a satellite in orbit, where the position and speed vectors $\vec{\boldsymbol{r}}(t)$ and $\vec{\boldsymbol{v}}(t)$, respect can be expressed in Earth-fixed coordinates. The vectors $\vec{\boldsymbol{v}}(0)$ and $\vec{\boldsymbol{r}}(0)$ can also be used to calculate the elements of Kelper orbit, where each element describes a specific geometric or positional property of the orbit, as summarized below:
+\begin{itemize}
+  \item The \textbf{semi-major axis} defines the overall size of the orbit.
+  \item The \textbf{eccentricity} describes the shape of the orbit, indicating how circular or elongated it is.
+  \item The \textbf{inclination} specifies the tilt of the orbital plane relative to the Earth's equatorial plane.
+  \item The \textbf{right ascension of the ascending node (RAAN)} determines the orientation of the orbital plane around the Earth's rotation axis.
+  \item The \textbf{argument of perigee} defines the orientation of the orbit within its own plane.
+  \item The \textbf{true anomaly} indicates the satellite's instantaneous position along the orbit.
+\end{itemize}
+Together, these six parameters provide a complete of the satellite's orbit in space. This means that all LEO satellites can be fully modelled using either polar coordinates with vectors $\vec{\boldsymbol{v}}$ and $\vec{\boldsymbol{r}}$ or with the six orbital elements.
+
+Another key contribution of this work is the link between orbital geometry and regional service availability. using Earth-centered inertial (ECI) and Earth-centered Earth-fixed (ECEF)coordinate transformations, the paper shows satellite orbital paths projected onto the Earth's surface and how coverage footprints change over time as satellites move through their orbit, this can be seen in Figure \ref{fig:SatelliteOrbitalPath}. 
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[height=0.35\textheight]{figures/satelliteOrbitPath.png}
+  \caption{Satellite Orbital Path \cite{MorganJones2019LEO}}
+  \label{fig:SatelliteOrbitalPath}
+\end{figure}
 \FloatBarrier
-\begin{table}[h!]
-\caption{Common frequency ranges for Ku- and Ka-band satellite communications\cite{esa_satellite_frequency_bands}.}
+In order to quantify coverage performance, Morgan-Jones and Loskot discuss the Mean Time Satellite Visibility (MTSV) metric, which measures the long term average that a satellite remains visible from a fixed ground station. As seen in Figure \ref{fig:MSTV}, increasing the minimum elevation angle required for a satellite to be considered visible reduces both the average time the satellite can be accessed and the likelihood of long visibility periods. The upper plot illustrates that as the elevation constraint becomes more strict, the mean satellite visibility time decreases because the satellite spends less time high enough above the horizon. The lower plot further shows that when a higher elevation requirement is applied, long visibility durations become increasingly unlikely. Overall, the figure demonstrates that stricter elevation constraints lead to reduced and less reliable satellite access over a given region.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[height=0.35\textheight]{figures/MSTV.png}
+  \caption{Maximum, minimum, and average MTSV versus orbit inclination. 
+The top plot uses a minimum elevation angle of $20^\circ$, and the bottom plot uses $0^\circ$. \cite{MorganJones2019LEO}}
+  \label{fig:MSTV}
+\end{figure}
+\FloatBarrier
+This study also highlights that increasing constellation size does not linearly improve visibility as overlap between satellites leads to diminishing returns beyond a certain deployment density. 
+
+While the framework presented by Morgan-Jones and Loskot focuses primarily on satellite visibility rather than throughput or link capacity,this study provides a solid foundation for further methodology and testing. In the context of this project, the modelling approach are directly applicable to evaluating LEO constellation coverage over Ireland. By extending this visibility framework to include coverage time and link budget, it becomes possible to move beyond service availability and quantitatively assess whether LEO satellite systems can deliver broadband performance comparable to rural 5G networks \cite{MorganJones2019LEO}.
+\FloatBarrier
+
+
+\section{LEO Satellite Systems for Rural Connectivity}
+En Salem \textit{et al.} \cite{EnSalemXXXX} extend geometric coverage analysis by including communication performance into their simulation. Instead of assuming that satellites and base stations are at fixed, exact locations, their model treats these nodes as being randomly spread out in space. This makes the simulation more realistic and helps capture how real satellite and ground networks behave on average rather than in one specific layout. Monte-Carlo simulations were ran to see how well the network performs. These simulations measured performance metrics such as coverage probability, SINR, and achievable data rate, under varying satellite and terrestrial deployment densities.
+
+A key point of this study is the evaluation of hybrid terrestrial-LEO networks, in which satellite links operate as a complementary access layer in areas with sparse terrestrial infrastructure. The study shows that, in low-density rural areas, the addition of LEO satellites leads to an increase in coverage probability and average user throughput compared to terrestrial only deployments \cite{EnSalemXXXX}. The trends from the simulated results that compare coverage provability and rate distributions across different networks show that LEO constellations are most effective when terrestrial base station density falls below a critical threshold. Figure \ref{fig:ContinuouslyConnectedUsers} demonstrates how as As the number of simultaneous users increases, coverage probability drops, because users start to interfere with each other and network resources are shared. Systems with more base-station antennas maintain higher coverage, since they can serve multiple users more effectively. The hybrid terrestrial-satellite system consistently performs better than the terrestrial-only system, especially when the network becomes congested.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[height=0.35\textheight]{figures/paper2ContinuouslyConnectedUsers.pdf}
+  \caption{Coverage probability versus the number of users $M$ for different values of the number of base station antennas $N_T$ \cite{EnSalemXXXX}}
+  \label{fig:ContinuouslyConnectedUsers}
+\end{figure}
+
+\FloatBarrier
+Figure \ref{fig:hybridCoverageAndDataRate} shows the impact of LEO satellite density on the performance of a hybrid terrestrial--LEO network under different terrestrial base-station densities.
+
+Figure \ref{fig:hybridCoverage} shows that the coverage probability initially increases rapidly as the number of satellites increases, reaching a maximum at a moderate satellite count, after which coverage begins to degrade due to increased interference and overlapping satellite footprints. This effect is more pronounced in areas with low terrestrial base-station density, where satellite coverage provides the largest gains.
+
+Figure \ref{fig:dataRate} shows that the average achievable data rate follows a similar trend. Together, these figures show that LEO satellites can substantially enhance both coverage probability and data rate in areas with few terrestrial base stations, while also highlighting that performance gains are not linear~\cite{EnSalemXXXX}.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/paper2HybridCoverageProbabilility.pdf}
+    \caption{Hybrid coverage probability \cite{EnSalemXXXX}}
+    \label{fig:hybridCoverage}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/paper2DataRate.pdf}
+    \caption{Data rate performance}
+    \label{fig:dataRate}
+  \end{subfigure}
+  \caption{Hybrid network coverage probability and data rate performance \cite{EnSalemXXXX}}
+  \label{fig:hybridCoverageAndDataRate}
+\end{figure}
+
+Rather than trying to map exact coverage over an entire country, this work looks at an overall performance trends using probability based analysis. However, the methods used here provide a solid basis for testing how LEO satellites can support broadband services, can be applied in this project too.  
+
+
+\FloatBarrier
+\section{Starlink Performance}
+Mohan \textit{et al.} presents a comprehensive evaluation of LEO satellite broadband \cite{Mohan2023Starlink}. It analyses over 19 million crowd-sourced speed-test measurements from starlink suers across more than 30 countries. Their study examines key performance indicators include round-trip latency, downlink and uplink throughput, and temporal variation. This allows comparison of LEO satellite broadband and terrestrial technologies such as 5G. The results show that Starlink consistently achieves median latencies below 100ms, which places Starlink LEO performance within the range of terrestrial broadband for many regions. Figure \ref{fig:ISPvsStarlinkMap} demonstrates this. 
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\linewidth]{figures/paper3_MedianSpeedsMap.png}
+  \caption{Typical minimum round-trip latency: Starlink vs. top terrestrial ISPs \cite{Mohan2023Starlink}}
+  \label{fig:ISPvsStarlinkMap}
+\end{figure}
+
+In terms of throughput, Mohan \textit{et al.} reports a median downlink comparable to mid-band 5G, as seen in Figure \ref{fig:StarLinkUpDown} reporting that most Starlink Clients achieve$\approx$ 50--100Mbps download and $\approx$ 4--12Mbps upload rates at the 75th percentile. However, in this paper it is noted that there is significant variability in both latency and throughput which they attribute to handovers, dynamic beam allocation, and changing network conditions as opposed to limitation of the user's equipment. This shows that user-experienced data rates are strongly influenced by constellation geometry and network dynamics. 
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\linewidth]{figures/paper3MedianUpDown.png}
+  \caption{Distribution of median (a)download and (b) upload Starlink Speeds in Selected Cities \cite{Mohan2023Starlink}}
+  \label{fig:StarLinkUpDown}
+\end{figure}
+
+Mohan \textit{et al.} further distinguishes between broadband capability and performance stability by studying application performance under real world realistic usage scenarios. In addition to large-scale throughput distributions, the study includes a controlled gaming experiment comparing terrestrial , cellular, and Starlink connections, showing how Starlink can sustain data rates that work well for real-time applications like video calls and online streaming. These results can be found in Table \ref{tab:luna_gaming}. While terrestrial broadband does achieve a higher peak throughput, the Starlink results show that LEO systems can deliver stable , broadband-grade performance comparable to cellular networks in practice. 
+
+\FloatBarrier
+\begin{table}[htbp]
 \centering
-\begin{tabular}{lcc}
-\hline
-\textbf{Band} & \textbf{ Frequency (GHz)} \\
-\hline
-Ku-band & 12 – 18\\
-Ka-band & 18 – 26  \\
-\hline
+\small
+\caption{Luna gaming results over 150 minutes of playtime. Values denote median $\pm$ standard deviation, and the worst performer is highlighted.}
+\label{tab:luna_gaming}
+\begin{tabular}{lccc}
+\toprule
+ & \textbf{Terrestrial} & \textbf{Cellular} & \textbf{Starlink} \\
+\midrule
+Idle RTT (ms)          & \cellcolor{gray!25}9            & 46              & 40              \\
+Throughput (Mbps)     & \cellcolor{gray!25}1000         & 150             & 220             \\
+Frames-per-second     & 59$\pm$1.51                     & 59$\pm$1.68     & \cellcolor{gray!25}59$\pm$1.63 \\
+Bitrate (Mbps)        & 23.08$\pm$0.38                  & \cellcolor{gray!25}22.82$\pm$4.24 & 22.81$\pm$2.16 \\
+Time at 1080p (\%)    & 100                             & \cellcolor{gray!25}94.11          & 99.45          \\
+Freezes (ms/min)      & 0$\pm$0                         & \cellcolor{gray!25}0$\pm$22.34    & 0$\pm$19.74    \\
+Inter-frame (ms)      & 17$\pm$3.65                     & 18$\pm$1.11     & \cellcolor{gray!25}16$\pm$6.76  \\
+Game delay (ms)       & 133.53$\pm$19.79                & \cellcolor{gray!25}165.82$\pm$23.55 & 167.13$\pm$23.12 \\
+RTT (ms)              & 11$\pm$13.41                    & \cellcolor{gray!25}39$\pm$17.06  & 50$\pm$16.28  \\
+Jitter buffer (ms)    & 15$\pm$3.27                     & 12$\pm$1.33     & \cellcolor{gray!25}15$\pm$3.35 \\
+\bottomrule
 \end{tabular}
 \end{table}
-
-In recent years, several companies have begun deploying extensive constellation in order to achieve global broadband services. The following section will give an overview of some of these companies. 
-\subsubsection{Telesat}
-Telesat's LEO constellation operates in the KA-band and is designed to provide global broadband coverage, with high throughput and low latency. Telesat's constellation uses 1.8GHz of the KA-band with a downlink (17.8-20.2GHz) and an uplink (27.7-30.0GHz) stream, and is made up of two sets of orbits. This consists of, six polar orbits at an altitude of \~ 1000Km and 5 inclined orbits at \~ 1200km. These orbits contain at least 12 and 5 satellites, respectively. The polar orbits are focuses on providing full global coverage while the inclined orbits mainly focus on the middle latitudes where most of Telesat's customers are.
-
-In both of these sets of orbits, optical inter-satellite links are employed to ensure that continuous connectivity is secured. Each satellite in the constellation can functions as an IP node and has an on board digital signal processing module supporting demodulation, routing and remodulation. 
-
-Each satellite uses a direct radiation array which means it can create multiple narrow communication beans instead of a singular broad signal. These beams can be steers ensuring that the satellite can ensure coverage to various locations on the ground when user location or demand changes. This ensures the system is power efficient, not wasting bandwidth and energy in areas where there are no users. \cite{TelesatSpacexOnewebComparison}
-\FloatBarrier
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/TelesatMap.png}
-        \caption{Telesat Constellation \cite{TelesatSpacexOnewebComparison}}
-        \label{fig:telesatmap}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/OneWebOrbits.png}
-        \caption{OneWeb Constellation \cite{TelesatSpacexOnewebComparison}}
-        \label{fig:onewebmap}
-    \end{subfigure}
-    \caption{Map of Telesat and OneWeb Constellations}
-    \label{fig:ConstellationComparison}
-\end{figure}
 \FloatBarrier
 
 
-\subsection{OneWeb}
-Unlike Telesat, OneWeb operates in the Ku and Ka bands and contains 720 satellites in 18 circular orbits orbitting at \~1200Km. Each satellite operates on a 'bent pipe payload' system, meaning signals received from users on the ground are amplified and forwarded to a gateway instead of being routed on board the satellite itself. Each satellite generates 16 fixed beams to ensure that users are always in view of at least one satellite. 
+\section{Starlink Capacity Analysis}
+Meinrath \textit{et al.} \cite{XLabStarlink2025} reviews the scaling and capacity limits of LEO satellite broadband through analytic and heuristic modelling od Starlink. Rather than measuring user experienced throughput, their work is based on the theoretical capacity limited imposed by satellite beam width, spatial reuse, and user density within a beam footprint. By modelling how a total beam capacity is shared among active users, the authors show that achievable per-user data rate decreases rapidly as the number of simultaneous users increases. 
 
-While the Ku-band is dedicated to users, the Ka-band is dedicated to gateway links. Each satellite has two steerable antennas, one in operation and a backup antenna. Unlike many other constellations, no satellites in OneWeb's constellation uses inter-satellite links, meaning connectivity is solely reliant on whether the user and gateway are in line of sight with a satellite.\cite{TelesatSpacexOnewebComparison}
+One key finding discussed by this report is that LEO satellite performance is greatly limited by the number of users sharing the same satellite beam at one time. Using Starlink V2 capacity assumptions, the study estimates a per-beam downlink capacity of approximately 5Gbps and an uplink capacity of approximately 0.4Gbps, which must be shared among all active users within the beam foot print. Under what Meinrath \textit{et al.} states to be a typical 20:1 contention ratio, which is approximately 400-420 users per beam, this translates to a maximum user density of 2.3-2.7 households per $km^2$ for a beam which covers approximately 100 $km^2$. Beyond this threshold, per-user throughput falls rapidly. 
 
-\subsection{Starlink}
-SpaceX's Starlink also operates in the Ku and Ka bands and is planned to contain several thousand satellites in multiple types of orbits. Initial deployment consisted of 1600 satellites orbiting at 550Km. Each satellite has a phased array communications payload allowing it to generate multiple steerable beams which can be adjusted depending on the location of user demand and can deliver a latency of only 25ms.\cite{starlink_technology}.\cite{TelesatSpacexOnewebComparison}
-
-Starlink also deploys optical inter-satellite links.This allows satellites to communicate with one another, meaning data can be routed across the constellation without relying on ground base stations or gateways which improves coverage in remote locations. Much like OneWeb, the Ku band services the user links while the ka band services the gateway links.\cite{TelesatSpacexOnewebComparison}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.5\linewidth]{figures/StarlinkOrbits.png}
-    \caption{Starlink constellation \cite{TelesatSpacexOnewebComparison}}
-    \label{fig:starlinkmap}
-\end{figure}
+Meinrath \textit{et al.} distinguishes between instantaneous peak performance and long term capacity. While individual users may experience short term peak performance and speeds exceeding 100Mbps while beam contention is low, the report states that maintaining these rates at scale is not feasible unless constellation density also increases. 
 
 \FloatBarrier
-\subsection{Summary}
-\FloatBarrier
-\begin{center}
-\captionof{table}{Comparison of LEO broadband satellite constellations.}
-\label{tab:leo-constellations}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lccccccc}
-\hline
-\textbf{System} & \textbf{Bands} & \textbf{Satellites} & \textbf{Altitude (km)} & \textbf{Inclination (°)} & \textbf{Sat./Plane} & \textbf{Payload} & \textbf{ISL} \\
-\hline
-Telesat & Ka & $\geq$117 & 1000 / 1200 & 99.5 / 37.4 & $\geq$12 / $\geq$10 & Digital processing (DRA) & Yes \\
-OneWeb & Ku/Ka & 720 & 1200 & 87 & 40 & Bent-pipe (fixed beams) & No \\
-Starlink (Phase 1) & Ku/Ka & 1600 (→4425) & 550 & 53–81 & 50–75 & Phased-array (steerable) & Yes \\
-\hline
-\end{tabular}
-}
-\label{tab:summary}
-\end{center}
+\section{Gap in Literature}
+Existing literature demonstrates that LEO constellations are capable of delivering broad-band grade performance in practice and provide valuable insight into both real-world performance and theoretical capacity limits. Some studies evaluate that operational systems like Starlink can achieve low latency and competitive data rates under real usage conditions, while analytical works like Meinrath \textit{et al.} establish upper bounds on per-user capacity based on beam resource constraints. However these studies are measurement driven and do not directly evaluate performance at a national scale using orbit modelling.  Prior simulation based research on LEO systems has largely focus on global coverage without integrating country specific contexts. In particular there is limited work that combines Kelper-based orbital simulation, visibility analysis, and theoretical link budget estimations to assess whether LEO constellations can provide broadband comparable with rural 5G within a specific country. 
 
-Table \ref{tab:summary} highlights some of the key design strategies among existing LEO constellations. Starlink is unique with the largest constellation and lowest orbit among this group of constellations. This enables Starlink's low latency world-wide coverage. Telesat with fewer satellites but advances processing of payloads utilizes inter-satellite links for efficient data routing, while OneWeb using a bent pipe architecture without ISLs, making it much more dependant on ground gateways. Overall, satellites systems with ISLs and dynamic beam forming have greater flexibility and are superior for rural connectivity compared to OneWeb's traditional approach which is reliant on terrestrial infrastructure. 
+As a result of this, a gap exists in the literature for an Ireland-specific, simulation driven evaluation of LEO satellite broadband that quantifies both coverage availability and achievable link budget using real orbital data. THis project addresses this gap by developing a reproducible simulation framework which models LEO satellite visibility and theoretical capacity over Ireland, enabling a direct comparison with terrestrial 5G performance and assessment of LEO systems as both a standalone system and a complementary broadband solution. 
 
-\section{Coverage and Latency Characteristics of LEO Systems}
-% Discusses global coverage potential and latency advantages
-% of LEO satellites relative to other orbit classes.
-
-\section{Capacity and Throughput Modelling in Satellite Networks}
-% Reviews literature on bandwidth allocation, beam usage,
-% and throughput limitations in satellite systems.
-
-\section{Challenges and Limitations of LEO Systems}
-Despite the rapid growth of LEO constellations, there are technical and regulatory challenges. It is crucial that these issues are understood in light of this project, particularly in the context of Direct-to-Cell technology.
-\subsection{Orbital congestion and Space debris}
-The deployment of thousands of satellites introduces risk of orbital congestion and collisions. Congestion in low Earth orbit reached record highs in 2023, with over 2800 satellites entering LEO during the year. The majority of these satellites in LEO are commercial communications constellations. On top of this, there are over 35,000 objects in orbit that are tracked by space surveillance networks. 26,000 of these are larger than 10cm and a further one million pieces are larger than 1cm. These have the potential to cause serious issues for operating satellites and force operators to spend limited fuel resources to preform maneuvers. In 2023 the ESA created the Zero debris charter to encourage others to become debris neutral by 2030 \cite{payloadspace2024_debris}.
-
-\subsection{Spectrum and Regulations}
-Spectrum allocation and regulations are some of the most significant challenges for LEO broadband systems. Unlike terrestrial networks which operation within defined know frequency bands, LEO constellations require global coverage to avoid interference with existing services. While most LEO systems operate within the KU and KA band (12-18Ghz and 18-26Ghz) \cite{esa_satellite_frequency_bands}, these frequencies are shared with other satellite and terrestrial services. This creates conflicts which have to managed through international agreements and licensing. 
-
-The International Telecommunication Union (ITU) governs the global spectrum allocation while national regulatory services such as ComReg in Ireland enforce local compliance. Any operator must have a license for uplink and downlink frequencies, ensuring compatibility with existing networks. Due to the growing number of LEO constellations, complexity in frequency coordination has increased, and this requires interference mitigation techniques such as dynamic beam forming and adaptive power control\cite{ituWRS22SatelliteRegulation2023}.
-
-Regulation frameworks are changing alongside this technology, 3GPP standards now enable the integration of satellite and terrestrial networks \cite{chalmers546711}. However challenges still remain in areas such as managing congestion of busy frequency bands. Should these issues not be addressed issues with service degradation, legal disputes, and delays in deployment could begin to take place. 
-% Covers orbital congestion, spectrum regulation,
-% system complexity, and sustainability issues.
-
-
-
-
-\section{LEO Satellite Coverage Analysis in Other Countries}
-Several countries with with large rural or remote populations have adopted LEO satellite communications to provide broadband access where terrestrial networks are economically feasible. 
-
-
-
-\subsection{Canada}
-In Canada, LEO satellites have been used to address broadband deficiencies, in northern and remote regions. Both Starlink and OneWeb have been deployed to provide last-mile connectivity or satellite back-haul to local wireless networks. Government-backed initiatives have supported the integration of LEO services to complement terrestrial infrastructures, recognizing how they can lower latency and higher capacity over traditional satellite and terrestrial links. Canadian studies show that LEO systems offer a cost effective alternative \cite{telesat_canada_leo_2026}. 
-
-\subsection{Australia}
-Australia has formally integrated LEO broadband into its national broadband strategy. In 2025, the government owned National Broadband Network (NBN) annoyed a transition from geostationary satellites to LEO satellites for regional and remote users in partnership with Amazons Kuiper. The goal of this is to provide a lower latency and higher quality broadband to rural and remote premises number over 300,000. This use case shows LEO satellites can provide broadband performance close to terrestrial services, particularly in rural areas \cite{nbn_kuiper_2025}. 
-
-\subsection{United States of America - Alaska}
-
-
-
-Alaska has one of the most well developed deployments of LEO satellite broadband. Due to the rugged geography, low population density and permafrost conditions, fibre deployment is exceptionally expensive and challenging in many regions. As a result, large areas of rural Alaska have historically relied on geostationary satellite systems or low-capacity legacy connections, which offer limited performance and high latency.
-
-In recent years, LEo satellite systems - primarily Starlink - have been adopted across rural Alaskan communities. These services are being used by households as well as public institutes such as schools, healthcare facilities, and emergency services. Deployment reports show that LEO broadband has enabled reliable internet, with government funded programmes which incorporate LEO services for undeserved regions\cite{aasb_starlink_alaska}.
-
-Independent performance measurement analyses further shows the benefits of LEO systems in Alaska. COmpared to traditional Geostationary services, LEO connectivity has been shown to significantly reduce latency and improve overall service reliability. LEO broadband now form a core component of Alaska's broadband strategies, with government funded programmes incorporating LEO services. \cite{ookla_alaska_connectivity_2026}
-
-Alaska is set to receive \$1.2 billion in funding from the federal government's Broadband Equity Access and Deployment (BEAD) program, of which \$629 million has been set aside for broadband projects. This will be used to connect 44,734 under-served or unserved locations across Alaska. Due to the previously discussed geography issues, this initiative will use a mix of technologies. 14,400 of these locations will be served with Starlink. A breakdown of how this broadband will be rolled out can be seen in Figure \ref{fig:AlaskaBEAD}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.6\textwidth]{figures/Alaska_broadband_budget.png}
-    \caption{Alaska's BEAD Funding and Distribution Based on Technology Type \cite{ookla_alaska_connectivity_2026}}
-    \label{fig:AlaskaBEAD}
-\end{figure}
-\FloatBarrier
-
-Starlink in 2025 was able to bring up the percentage of Ookla speedtest users in Alaska with broadband speeds of 100/20  Mbps from $4.35\%$ in the first half of 2025 to $15.9\%$ in the second half of 2025. In fact a greater number of rural Starlink users in Alaska are receiving broadband speeds of 100/20 Mbps than it's urban users. By the end of 2025 $16.8\%$ of Starlink users in rural areas were able to get broadband speeds of 100/20 Mbps compared to just $12.3\%$ of urban users \cite{ookla_alaska_connectivity_2026}.
-
-According to Ookla, Starlink's median download speeds rose from 73.5 Mbps in March 2025 to 108.5 Mbps in March 2026, and it's median upload speeds go from 10.7 Mbps in March 2025 to 17.1 Mbps in March 2026. This increase in speed can be seen in Figures \ref{fig:alaska_downspeed} and \ref{fig:alaska_upspeed}.
-
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[height=0.4\textheight]{figures/alaska-broadband-provide.png}
-  \caption{Alaska broadband plot of downlink speeds.}
-  \label{fig:alaska_downspeed}
-\end{figure}
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[height=0.4\textheight]{figures/alaska-broadband-provide (1).png}
-  \caption{Alaska broadband plot of uplink speeds.}
-  \label{fig:alaska_upspeed}
-\end{figure}
-
-\FloatBarrier
-
-This provides solid evidence of a real world example of how LEO satellite broadband can function as along term connectivity solution. While there are differences in Ireland such as environmental differences, the underlying challenges are the same - low population density, high infrastructure costs, and limited commercial incentives for fibre deployment. Alaska is a compelling case to further investigate the potential for LEO broadband in Ireland. 
-
-\subsection{Relevance to Ireland}
-These international examples demonstrate that LEO constellations are increasingly becoming a viable option for providing broadband in rural areas. Common across all cases are low population density, and challenging geography with high costs for terrestrial network deployment. These conditions align closely with what can be found in regions in Ireland.  
-
-
-\section{LEO Satellites and Direct-to-Device}
-Direct to Device (D2D) satellite communication is a new approach to global connectivity by enabling LEO satellites to communicate directly with user's devices such as smartphones without relying on intermediate ground stations or gateways. This addresses one of the main challenges in telecommunication networks, the cost of terrestrial infrastructure in rural areas. 
-Rural areas can suffer from poor broadband connectivity due to the high cost of fibre optic and cellular towers. Traditional infrastructure requires significant investment, which is rarely justified by the low subscriber density in these areas. D2D is not held back by these limitations by not needing anything other than existing consumer devices. This completely eliminates the need for specialized terminals and cell towers. This is a viable solution for rural Irish communities where people remain under-served. 
-
-D2D communication enables satellites to communicate directly with an end user device without needing any sort of intermediate infrastructure. There are three main approaches, the Mobile satellite service spectrum (MSS), which is traditionally reserved for satellite services, and the LMS (Location and monitoring service) and IMT (international mobile telecommunications) \cite{digitalregulation_d2d_services} Recent developments in 3GPP have formalized the NTN specifications, making it possible to integrate satellite connectivity into terrestrial mobile networks seamlessly. 
-
-However, despite these limitations in recent years some companies have began pursuing D2D solution. In particular starlink and T-Mobile have partnered to provide coverage in dead zones where no coverage previously existed. Their focus is largely on rural and remote areas. As satellite constellations expand D2D is set to become a major part of broadband. It has the ability to complement terrestrial networks and provide a reliable connection during even natural disasters. \cite{MSSA_D2D_2024}
-
-\subsection{Upgrading Existing Satellites for D2D Capability}
-While there are some D2D satellite services being developed in new launces of satellites, there is also an interest in enabling D2D functionality on existing LEO constellations which were previously not capable of this. Retrofitting or incrementally upgrading satellites could represent a cost effective path to accelerate D2D deployment.
-
-One method of upgrading for D2D is software-defined payload architectures. Many modern LEO satellites are already contain flexible, reprogrammable radio hardware that allows waveform and protocol updates through software. This enables satellites which were originally designed for fixed broadband to support new bandwidths compatible with territorial mobile networks such as LTE or 5g NTN, without any hardware replacement. 

@@ -16,45 +16,45 @@ Warning--missing institution in chalmers546711
 Warning--empty journal in ookla_alaska_connectivity_2026
 
 Done.
-You've used 38 entries,
+You've used 47 entries,
             4087 wiz_defined-function locations,
-            1046 strings with 15831 characters,
-and the built_in function-call counts, 18576 in all, are:
-= -- 1556
-> -- 357
-< -- 42
-+ -- 182
-- -- 80
-* -- 787
-:= -- 3282
-add.period$ -- 77
-call.type$ -- 38
-change.case$ -- 61
-chr.to.int$ -- 75
-cite$ -- 41
-duplicate$ -- 1494
-empty$ -- 1576
-format.name$ -- 90
-if$ -- 4139
+            1103 strings with 17885 characters,
+and the built_in function-call counts, 23244 in all, are:
+= -- 1966
+> -- 458
+< -- 55
++ -- 226
+- -- 102
+* -- 992
+:= -- 4119
+add.period$ -- 95
+call.type$ -- 47
+change.case$ -- 75
+chr.to.int$ -- 99
+cite$ -- 50
+duplicate$ -- 1867
+empty$ -- 1949
+format.name$ -- 117
+if$ -- 5184
 int.to.chr$ -- 0
-int.to.str$ -- 38
-missing$ -- 351
-newline$ -- 165
-num.names$ -- 36
-pop$ -- 840
+int.to.str$ -- 47
+missing$ -- 433
+newline$ -- 196
+num.names$ -- 45
+pop$ -- 1031
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1434
+skip$ -- 1793
 stack$ -- 0
-substring$ -- 265
-swap$ -- 1016
-text.length$ -- 17
+substring$ -- 340
+swap$ -- 1277
+text.length$ -- 22
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 38
+type$ -- 47
 warning$ -- 3
-while$ -- 50
-width$ -- 40
-write$ -- 398
+while$ -- 63
+width$ -- 49
+write$ -- 489
 (There were 3 warnings)

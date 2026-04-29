@@ -21,27 +21,26 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{NBPMap}
+\bibitem{NBPPolicy}
 {Department of the Environment, Climate and Communications}, ``{National
-  Broadband Plan Map},''
+  Broadband Plan},''
+  \url{https://www.gov.ie/en/publication/5fb54-national-broadband-plan/}, 2024,
+  accessed: 25 April 2026.
+
+\bibitem{NBPMap}
+------, ``{National Broadband Plan Map},''
   \url{https://www.gov.ie/en/publication/5634d-national-broadband-plan-map/},
   2024, accessed: 25 April 2026.
-
-\bibitem{esaLEOImage2020}
-E.~S. Agency, ``Low earth orbit (leo) - esa multimedia image,''
-  \url{https://www.esa.int/ESA_Multimedia/Images/2020/03/Low_Earth_orbit},
-  2020, accessed: 2025-11-18.
 
 \bibitem{esaOrbits}
 {European Space Agency}, ``Medium earth orbit {(MEO)},''
   \url{https://www.esa.int/Enabling_Support/Space_Transportation/Types_of_orbits},
   accessed: 2025-10-20.
 
-\bibitem{NBPPolicy}
-{Department of the Environment, Climate and Communications}, ``{National
-  Broadband Plan},''
-  \url{https://www.gov.ie/en/publication/5fb54-national-broadband-plan/}, 2024,
-  accessed: 25 April 2026.
+\bibitem{esaLEOImage2020}
+E.~S. Agency, ``Low earth orbit (leo) - esa multimedia image,''
+  \url{https://www.esa.int/ESA_Multimedia/Images/2020/03/Low_Earth_orbit},
+  2020, accessed: 2025-11-18.
 
 \bibitem{2019AcAau.159..123D}
 I.~{del Portillo}, B.~G. {Cameron}, and E.~F. {Crawley}, ``{A technical
@@ -126,13 +125,64 @@ PayloadSpace, ``Esa report shows unsustainable levels of orbital debris,''
 M.~S.~S. Association, ``Considerations for direct-to-device satellite
   technology,'' MSSA, Tech. Rep., Sep. 2024, 4 September 2024.
 
-\bibitem{spacetrack}
-{U.S. Space Force}, ``{Space-Track.org Login},''
-  \url{https://www.space-track.org/auth/login}, 2026, accessed: 2026-02-24.
-
 \bibitem{celestrakTLE}
 {CelesTrak}, ``{CelesTrak: NORAD Two-Line Element Sets},''
   \url{https://celestrak.org/NORAD/elements/}, 2026, accessed: 2026-02-24.
+
+\bibitem{ESA_SpaceDebris}
+{European Space Agency}, ``Space debris,''
+  \url{https://www.esa.int/Space_Safety/Space_Debris}, 2026, european Space
+  Agency. Accessed: 28 April 2026.
+
+\bibitem{ITU_R_Space}
+{International Telecommunication Union}, ``{ITU-R} space services,''
+  \url{https://www.itu.int/en/ITU-R/space}, 2026, radiocommunication Sector
+  (ITU-R). Accessed: 28 April 2026.
+
+\bibitem{AnalysysMasonLEO2024}
+{Analysys Mason}, ``Leo satellite broadband: A cost-effective option for rural
+  areas of europe,''
+  \url{https://assets.aboutamazon.com/9b/2f/553d7e4749d491f1c7d8502b770e/analysys-mason-leo-satellite-broadband-a-cost-effective-option-for-rural-areas-of-europe.pdf},
+  Analysys Mason, Tech. Rep., 2024, commissioned by Amazon. Accessed: 28 April
+  2026.
+
+\bibitem{IAU_SatelliteConstellations}
+{International Astronomical Union}, ``Satellite constellations,''
+  \url{https://www.iau.org/public/themes/satellite_constellations/}, 2026,
+  international Astronomical Union. Accessed: 28 April 2026.
+
+\bibitem{RawlsMcDowell2020SatelliteMegaconstellations}
+\BIBentryALTinterwordspacing
+M.~A. Rawls and J.~C. McDowell, ``The growing and disruptive impact of
+  satellite megaconstellations on astronomy,'' \emph{Earth's Future}, vol.~8,
+  no.~11, 2020. [Online]. Available:
+  \url{https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020EF001753}
+\BIBentrySTDinterwordspacing
+
+\bibitem{MorganJones2019LEO}
+I.~Morgan-Jones and P.~Loskot, ``Regional coverage analysis of leo satellites
+  with kepler orbits,'' \emph{arXiv preprint arXiv:1910.10704}, 2019.
+
+\bibitem{EnSalemXXXX}
+A.~E. Salem, B.~Author, and C.~Author, ``Title of the paper,'' \emph{IEEE
+  Transactions on Wireless Communications}, vol.~XX, no.~X, pp. XXX--XXX, 20XX.
+
+\bibitem{Mohan2023Starlink}
+N.~Mohan, A.~E. Ferguson, H.~Cech, R.~Bose, P.~R. Renatin, M.~K. Marina, and
+  J.~Ott, ``A multifaceted look at {Starlink} performance,'' \emph{arXiv
+  preprint arXiv:2310.09242}, 2023.
+
+\bibitem{XLabStarlink2025}
+\BIBentryALTinterwordspacing
+S.~Meinrath, K.~Grindal, G.~Fishbein, and N.~DeGidio, ``Starlink capacity
+  analysis: Working paper v0.2,'' X-Lab, Pennsylvania State University, Tech.
+  Rep., Jul. 2025, accessed: April 28, 2026. [Online]. Available:
+  \url{https://thexlab.org/wp-content/uploads/2025/07/Starlink_Analysis_Working_Paper_v0.2.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{spacetrack}
+{U.S. Space Force}, ``{Space-Track.org Login},''
+  \url{https://www.space-track.org/auth/login}, 2026, accessed: 2026-02-24.
 
 \bibitem{usradioguyNewTLE}
 {USRadioGuy}, ``{Using the New TLE Format},''

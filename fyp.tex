@@ -1,25 +1,31 @@
-\documentclass{report} 
+\documentclass{report}
+
 \usepackage[english]{babel}
-\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{subcaption}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage[toc,page]{appendix}
 \usepackage{url}
 \usepackage{hyperref}
-\usepackage{cite}
+\usepackage{bookmark}
 \usepackage{titletoc}
 \usepackage{placeins}
 \usepackage{listings}
-\usepackage{svg}
 \usepackage{xcolor}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}      
-\usepackage{microtype} 
+\usepackage{microtype}
 \usepackage{titlesec}
-\usepackage{caption}
+\usepackage{svg}
+\usepackage{booktabs}
+\usepackage{colortbl}
 \usepackage{xcolor}
+\usepackage{siunitx}
+
 \usepackage[
   a4paper,
   left=1.2cm,
@@ -35,7 +41,7 @@
 \setlength{\parindent}{0pt}
 \linespread{1.05}
 
-\titlespacing*{\chapter}{0pt}{-10pt}{10pt}
+\titlespacing*{\chapter}{0pt}{0pt}{10pt}
 \titlespacing*{\section}{0pt}{8pt}{4pt}
 \titlespacing*{\subsection}{0pt}{6pt}{3pt}
 
@@ -45,114 +51,86 @@
   {0.5em}
   {}
 
-  \captionsetup{
+\captionsetup{
   font=small,
   labelfont=bf
 }
 
-
 \lstset{
-    language=Python,
-    basicstyle=\ttfamily,
-    keywordstyle=\color{blue},
-    stringstyle=\color{red},
-    commentstyle=\color{green!50!black},
-    showstringspaces=false
-}
-
-\lstset{
-  breaklines=true,
-  breakatwhitespace=false
+  language=Python,
+  basicstyle=\ttfamily,
+  keywordstyle=\color{blue},
+  stringstyle=\color{red},
+  commentstyle=\color{green!50!black},
+  showstringspaces=false,
+  breaklines=true
 }
 
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=black,
-    urlcolor=cyan,
-    citecolor=black, 
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=cyan,
+  citecolor=black
 }
 
 \date{March 2024}
 \setlength{\marginparwidth}{2cm}
+
 \begin{document}
 
 \begin{titlepage}
+\centering
 
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
-\setlength{\topmargin}{0in}
-\center % Center everything on the page
-
-\center
 \textsc{\LARGE Maynooth University}\\[5mm]
 \textsc{\Large Dept. Electronic Engineering}
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.5\linewidth]{figures/_NUIM.png}
-\end{figure}
+\vspace{5mm}
+\includegraphics[width=0.5\linewidth]{figures/_NUIM.png}
 
-~
+\vspace{1cm}
 
-%----------------------------------------------------------------------------------------
-%	HEADING SECTIONS
-%----------------------------------------------------------------------------------------
+\textsc{\large EE695}\\[0.5cm]
+\textsc{\large SIMULATION OF LOW EARTH ORBIT CONSTELLATIONS IN RESPECT TO RURAL BROADBAND COVERAGE IN IRELAND}
 
-\textsc{\large EE695 }\\[0.5cm]
-\textsc{\large SIMULATION OF LOW EARTH ORBIT CONSTELLATIONS IN RESPECT TO RURAL BROADBAND COVERAGE IN IRELAND} \vspace{2cm}
+\vspace{2cm}
 
- \textsc{\large A Project Report submitted in partial fulfilment of the requirements of the Maynooth University for the degree of Masters of Engineering } \vspace{2cm}
-%----------------------------------------------------------------------------------------
-%	AUTHOR SECTION
-%----------------------------------------------------------------------------------------
+\textsc{\large A Project Report submitted in partial fulfilment of the requirements of the Maynooth University for the degree of Masters of Engineering}
 
-\begin{minipage}{0.2\textwidth}
-\begin{flushleft} \large
-\emph{Author:}\\
-Alan Farrell \\[0.3cm]
-\end{flushleft}
-\end{minipage}
-\begin{minipage}{0.2\textwidth}
-\begin{flushright} \large
-\emph{Student Number:}\\
-21329721 \\[0.3cm]
-\end{flushright}
-\end{minipage}
+\vspace{2cm}
 
-~
-\\[2cm]
-\begin{minipage}{0.4\textwidth}
+
 \begin{center}
- \emph{Facilitator}\\
-DR Mustafa Kishk\\   
-[0.5cm]
+{\Large
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}l l@{}}
+\textit{Author} & Alan Farrell \\
+\textit{Student Number} & 21329721
+\end{tabular}
+}
 \end{center}
-\end{minipage}\
-~
-\\[1cm]
 
+\vspace{2cm}
+
+\emph{Facilitator}\\
+Dr Mustafa Kishk
+
+\vspace{1cm}
 
 {\large \today}
-%----------------------------------------------------------------------------------------
-%	DATE SECTION
-%----------------------------------------------------------------------------------------
 
-\vfill % Fill the rest of the page with whitespace
-
-
-\pagenumbering{roman} 
+\vfill
+\pagenumbering{roman}
 \end{titlepage}
+
 \tableofcontents
 \clearpage
 \FloatBarrier
 \pagenumbering{arabic}
 
 \begin{abstract}
-    
 \end{abstract}
 
 \section*{Declaration}
-
 
 \input{Chapters/Introduction.tex}
 \input{Chapters/LitReview.tex}
@@ -161,15 +139,10 @@ DR Mustafa Kishk\\
 \input{Chapters/Results.tex}
 \input{Chapters/Conclusions.tex}
 
-
 \FloatBarrier
 \newpage
+
 \bibliographystyle{IEEEtran}
-
 \bibliography{references}
-
-
-
-
 
 \end{document}
