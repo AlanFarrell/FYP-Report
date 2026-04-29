@@ -13,7 +13,8 @@ It is important to have a baseline for performance, all future results will be c
 To help understand if LEO constellations as they stand can help deliver rural connectivity and or relieve some load from existing networks in more urban areas, it is import to know what areas have what population. 
 
 \section{Starlink Simulation - 08:00 to 20:00, 23 April 2026}
-Of the three systems modelled, Starlink has the strongest coverage available in Ireland. This result is somewhat predictable as there are significantly more satellites in Starlink's constellation with the data set used in this project containing 10,188 satellites for Starlink alone. 
+Of the three systems modelled, Starlink has the strongest coverage available in Ireland. This result is somewhat predictable as there are significantly more satellites in Starlink's constellation with the data set used in this project containing 10,188 satellites for Starlink alone., however Starlink does not provide continuous coverage over Ireland during the simulated window, but offers substantial availability in mid-latitude regions.
+
 
 In Figure \ref{fig:StarlinkCoverage-percentage}, the average coverage time as a percentage can be seen. The max coverage in Ireland was found to be $75.38\%$ time over the 12 hour period modelled here. The coverage is strongly skewed towards the midlands of the country with a strong band going form Dublin to Galway. 
 
@@ -25,22 +26,25 @@ In Figure \ref{fig:StarlinkCoverage-percentage}, the average coverage time as a 
 \end{figure}
 
 
-Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Shannon Capacity formula. With a mean value of 320.33 Mbps and some areas reaching 320.9 Mbps. This is a strong indication that these satellites are capable of 5g speeds. Going off the peal coverage of $375.38\%$ at a peak data rate of $321.30Mbps$, it is possible to expect a peak data rate when coverage is available of $425.84Mbps$.
+Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Shannon Capacity formula. With a mean value of 320.33 Mbps and some areas reaching 320.9 Mbps. This is a strong indication that these satellites are capable of 5g speeds. Going off the peal coverage of $75.38\%$ at a peak data rate of $321.30Mbps$. When coverage is available, the Starlink downlink capacity is consistently broadband-grade and comparable to rural 5G performance.
 
 
-(THIS FIGURE NEEDS TO BE REGENERATED)
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/Coverage_heatmaps/Starlink_all_8am-8pm_mbps.pdf}
     \caption{Average downlink capacity for Starlink over Ireland}
     \label{fig:StarlinkCoverage-mbps}
 \end{figure}
-
+While coverage is timeivarying, the achievable downlink capacity during coverage periods remains consistently broadband grade, exceeding 320 Mbps across most midland regions.
 
 
 
 \FloatBarrier
 \section{OneWeb Simulation - 08:00 to 20:00, 23 April 2026}
+Figure \ref{fig:OneWebCoverage_percentage} shows that coverage availability over Ireland is significantly lower than Starlink During the simulated window. The maximum coverage observed is $11.67\%$ with a mean coverage of $10.77\%$, showing that a OneWeb satellite is only visible during a small fraction of the simulation period. Coverage is higher towards the north of the country.     
+
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/Coverage_heatmaps/OneWeb_8am-8pm_coverage_percentage.pdf}
@@ -48,6 +52,8 @@ Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Sh
     \label{fig:OneWebCoverage_percentage}
 \end{figure}
 
+
+Figure \ref{fig:OneWebCoverage_mbps} shows the average downlink capacity when coverage is available. The mean capacity is 31.93 Mbps, with values ranging from 29.26 Mbps, to 34.60 mbps across Ireland. While these data rates are sufficient for baseline broadband services, they are significantly lower than Starlink's results, reflecting OneWeb's higher altitude. 
 
 \begin{figure}[h!]
     \centering
@@ -59,6 +65,8 @@ Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Sh
 
 \FloatBarrier
 \section{Kuiper Simulation - 08:00 to 20:00, 23 April 2026}
+Figure \ref{fig:KuiperCoverage_percentage} shows the coverage availability of the Kuiper constellation over Ireland during the simulation window. Overall, coverage is limited, with a maximum observed availability of $7.88\%$ abd a mean coverage if $1.67\%$, this indicates that Kuiper satellites are visible for only a very brief window above Ireland over the simulation time. Coverage is strongly concentrated in the southern areas of Ireland. The latitudinal bias could reflex the early stages of deployment of the Kuiper constellation compared to Starlink. However, as a result, Kuiper does not have any meaningful coverage over Ireland. 
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{figures/Coverage_heatmaps/Kuiper_8am-8pm_coverage_percentage.pdf}
@@ -70,7 +78,7 @@ Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Sh
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{figures/Coverage_heatmaps/Kuiper_8am-8pm_coverage_mbps.pdf}
-    \caption{Average downlink capacity for Kuiper over Ireland}
+    \caption{Average downlink capacity for Kuiper over Ireland THIS FIGURE NEEDS TO BE REMADE }
     \label{fig:KuiperCoverage_mbps}
 \end{figure}
 
@@ -78,7 +86,7 @@ Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Sh
 
 \FloatBarrier
 \section{Traditional 5G Coverage in Ireland}
-
+The figures in \ref{fig:5g_coverage} show how terrestrial 5G coverage is spread across Ireland.\cite{comreg_coverage_map}. As expected the strongest coverage is around cities like Dublin, Cork, Galway, and Limerick. By compariosn there are large rural and coastal regions, particularly in the West and the South , which have poor coverage. This reflects on the reliance of terrestrial networks and dens base station deployment. Overall these figures show that where there is 5G coverage you can expect excellence performance, however, it does not current provide consistent nationwide coverage, highlight a marketplace for a complementary solution such as LEO satellite broadband. 
 
 \begin{figure}[!ht]
   \centering

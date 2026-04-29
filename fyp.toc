@@ -20,6 +20,7 @@
 \contentsline {subsection}{\numberline {1.8.4}Relevance to Ireland}{9}{subsection.1.8.4}%
 \contentsline {section}{\numberline {1.9}LEO Satellites and Direct-to-Device}{9}{section.1.9}%
 \contentsline {subsection}{\numberline {1.9.1}Upgrading Existing Satellites for D2D Capability}{10}{subsection.1.9.1}%
+\contentsline {subsection}{\numberline {1.9.2}T-Mobile and Starlink}{10}{subsection.1.9.2}%
 \contentsline {section}{\numberline {1.10}Ethical Considerations}{10}{section.1.10}%
 \contentsline {subsection}{\numberline {1.10.1}Ethical Considerations of LEO technology}{10}{subsection.1.10.1}%
 \contentsline {section}{\numberline {1.11}Thesis Structure}{11}{section.1.11}%
@@ -57,5 +58,5 @@
 \contentsline {section}{\numberline {5.4}OneWeb Simulation - 08:00 to 20:00, 23 April 2026}{33}{section.5.4}%
 \contentsline {section}{\numberline {5.5}Kuiper Simulation - 08:00 to 20:00, 23 April 2026}{34}{section.5.5}%
 \contentsline {section}{\numberline {5.6}Traditional 5G Coverage in Ireland}{37}{section.5.6}%
-\contentsline {chapter}{\numberline {6}Conclusions}{38}{chapter.6}%
+\contentsline {chapter}{\numberline {6}Conclusions}{39}{chapter.6}%
 \contentsfinish 

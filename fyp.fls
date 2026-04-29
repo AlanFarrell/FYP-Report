@@ -1268,6 +1268,14 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 OUTPUT fyp.toc
+INPUT ./fyp.lof
+INPUT fyp.lof
+INPUT fyp.lof
+OUTPUT fyp.lof
+INPUT ./fyp.lot
+INPUT fyp.lot
+INPUT fyp.lot
+OUTPUT fyp.lot
 INPUT ./Chapters/Introduction.tex
 INPUT Chapters/Introduction.tex
 INPUT ./Chapters/Introduction.tex
@@ -1475,8 +1483,8 @@ INPUT fyp.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb

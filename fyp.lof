@@ -1,0 +1,32 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces High speed broadband in parts of Ireland \cite {NBPMap}\relax }}{3}{figure.caption.4}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Map of Telesat and OneWeb Constellations\relax }}{5}{figure.caption.6}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Starlink constellation \cite {TelesatSpacexOnewebComparison}\relax }}{6}{figure.caption.7}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Alaska's BEAD Funding and Distribution Based on Technology Type \cite {ookla_alaska_connectivity_2026}\relax }}{8}{figure.caption.8}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Alaska broadband plot of downlink speeds\cite {ookla_alaska_connectivity_2026}.\relax }}{8}{figure.caption.9}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Alaska broadband plot of uplink speeds\cite {ookla_alaska_connectivity_2026}.\relax }}{9}{figure.caption.10}%
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Cost comparison of FTTH and LEO networks\cite {AnalysysMasonLEO2024}\relax }}{11}{figure.caption.11}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Satellite Orbital Path \cite {MorganJones2019LEO}\relax }}{12}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Maximum, minimum, and average MTSV versus orbit inclination. The top plot uses a minimum elevation angle of $20^\circ $, and the bottom plot uses $0^\circ $. \cite {MorganJones2019LEO}\relax }}{13}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Coverage probability versus the number of users $M$ for different values of the number of base station antennas $N_T$ \cite {EnSalemXXXX}\relax }}{14}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Hybrid network coverage probability and data rate performance \cite {EnSalemXXXX}\relax }}{14}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Typical minimum round-trip latency: Starlink vs. top terrestrial ISPs \cite {Mohan2023Starlink}\relax }}{15}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Distribution of median (a)download and (b) upload Starlink Speeds in Selected Cities \cite {Mohan2023Starlink}\relax }}{15}{figure.caption.17}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Common satellite groupings provided by CelesTrak\relax }}{17}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Two-Line Element (TLE) for STARLINK-5694\relax }}{17}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces ECEF Coordinate System \cite {mathworks_radar_coordinates}\relax }}{19}{figure.caption.22}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Implementation Logic\relax }}{20}{figure.caption.23}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Coverage availability as a percentage of time for Starlink over Ireland\relax }}{31}{figure.caption.25}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Average downlink capacity for Starlink over Ireland\relax }}{32}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Coverage availability as a percentage of time for OneWeb over Ireland\relax }}{33}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Average downlink capacity for OneWeb over Ireland\relax }}{34}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Coverage availability as a percentage of time for Kuiper over Ireland\relax }}{35}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Average downlink capacity for Kuiper over Ireland THIS FIGURE NEEDS TO BE REMADE \relax }}{36}{figure.caption.30}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces 5G coverage in Ireland for different mobile network providers\cite {comreg_coverage_map}\relax }}{38}{figure.caption.31}%
+\addvspace {10\p@ }
+\contentsfinish 
