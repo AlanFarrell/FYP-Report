@@ -1,6 +1,6 @@
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces High speed broadband in parts of Ireland \cite {NBPMap}\relax }}{3}{figure.caption.4}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces High speed broadband in parts of Ireland \cite {NBPMap}\relax }}{2}{figure.caption.4}%
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Map of Telesat and OneWeb Constellations\relax }}{5}{figure.caption.6}%
 \contentsline {figure}{\numberline {1.3}{\ignorespaces Starlink constellation \cite {TelesatSpacexOnewebComparison}\relax }}{6}{figure.caption.7}%
 \contentsline {figure}{\numberline {1.4}{\ignorespaces Alaska's BEAD Funding and Distribution Based on Technology Type \cite {ookla_alaska_connectivity_2026}\relax }}{8}{figure.caption.8}%
@@ -21,12 +21,19 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Implementation Logic\relax }}{20}{figure.caption.23}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Coverage availability as a percentage of time for Starlink over Ireland\relax }}{31}{figure.caption.25}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Average downlink capacity for Starlink over Ireland\relax }}{32}{figure.caption.26}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Coverage availability as a percentage of time for OneWeb over Ireland\relax }}{33}{figure.caption.27}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Average downlink capacity for OneWeb over Ireland\relax }}{34}{figure.caption.28}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Coverage availability as a percentage of time for Kuiper over Ireland\relax }}{35}{figure.caption.29}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Average downlink capacity for Kuiper over Ireland THIS FIGURE NEEDS TO BE REMADE \relax }}{36}{figure.caption.30}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces 5G coverage in Ireland for different mobile network providers\cite {comreg_coverage_map}\relax }}{38}{figure.caption.31}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Ireland Population Density Map\relax }}{31}{figure.caption.25}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Coverage availability as a percentage of time for Starlink over Ireland\relax }}{32}{figure.caption.26}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Average downlink capacity for Starlink over Ireland\relax }}{32}{figure.caption.27}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Track Map of 100 Starlink Satellites\relax }}{33}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Track Map of 100 Starlink Satellites Over Ireland\relax }}{33}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Coverage availability as a percentage of time for OneWeb over Ireland\relax }}{34}{figure.caption.30}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Average downlink capacity for OneWeb over Ireland\relax }}{35}{figure.caption.31}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Track Map of OneWeb Satellites\relax }}{35}{figure.caption.32}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Track Map of OneWeb Over Ireland\relax }}{36}{figure.caption.33}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Coverage availability as a percentage of time for Kuiper over Ireland\relax }}{37}{figure.caption.34}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Average downlink capacity for Kuiper over Ireland\relax }}{38}{figure.caption.35}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Track Map of Kuiper\relax }}{38}{figure.caption.36}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Track Map of Kuiper Over Ireland\relax }}{39}{figure.caption.37}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces 5G coverage in Ireland for different mobile network providers\cite {comreg_coverage_map}\relax }}{41}{figure.caption.38}%
 \addvspace {10\p@ }
 \contentsfinish 

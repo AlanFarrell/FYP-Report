@@ -324,4 +324,42 @@ B.~Wang. (2025, Mar.) Fcc allows spacex starlink direct to cellphone power for
   \url{https://fcc.report/IBFS/SAT-MPL-20200526-00062/2379706.pdf}
 \BIBentrySTDinterwordspacing
 
+\bibitem{ITU-R-M2410-2017}
+\BIBentryALTinterwordspacing
+{International Telecommunication Union}, ``Minimum requirements related to
+  technical performance for imt-2020 radio interface(s),'' ITU-R, Geneva,
+  Switzerland, Tech. Rep. M.2410-0, 2017. [Online]. Available:
+  \url{https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-M.2410-2017-PDF-E.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{CSO_ED_2022_Boundaries}
+\BIBentryALTinterwordspacing
+{Central Statistics Office (Ireland)} and {Tailte Éireann}. (2023) Cso
+  electoral divisions – national statistical boundaries 2022 (generalised
+  50m). Published via data.gov.ie under Creative Commons Attribution 4.0.
+  [Online]. Available:
+  \url{https://data.gov.ie/dataset/cso-electoral-divisions-national-statistical-boundaries-2022-generalised-50m1}
+\BIBentrySTDinterwordspacing
+
+\bibitem{orbitalradar_starlink_tracker}
+\BIBentryALTinterwordspacing
+{Orbital Radar}. (2026) Starlink tracker — live satellite positions. Orbital
+  period of Starlink satellites reported as approximately 95 minutes. [Online].
+  Available: \url{https://orbitalradar.com/starlink-tracker}
+\BIBentrySTDinterwordspacing
+
+\bibitem{StarlinkV2MiniD2C}
+\BIBentryALTinterwordspacing
+{SpaceX}. (2023) Starlink v2 mini (direct-to-cell). Satellite details and
+  technical configuration. [Online]. Available:
+  \url{https://space.skyrocket.de/doc_sdat/starlink-v2-mini-d2c.htm}
+\BIBentrySTDinterwordspacing
+
+\bibitem{SpaceflightNow_Starlink51}
+\BIBentryALTinterwordspacing
+{Spaceflight Now}. (2022) Falcon 9 launches starlink 5-1 mission. Live coverage
+  and mission details for the Starlink Group 5-1 launch. [Online]. Available:
+  \url{https://spaceflightnow.com/2022/12/28/falcon-9-starlink-5-1-live-coverage/}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
