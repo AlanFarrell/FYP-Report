@@ -48,19 +48,19 @@ Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Sh
 While coverage is time varying, the achievable downlink capacity during coverage periods remains consistently broadband grade, exceeding 300 Mbps across most midland regions.
 
 
-The reason for this coverage pattern becomes more apparent when looking at Figure \ref{fig:StarlinkTrackGlobal} and \ref{fig:StarlinkTracksIreland}, Figure \ref{fig:StarlinkTrackGlobal} shows a sample of 100 Starlink satellites modelled at 30 second time stamps over 4 hours and \ref{fig:StarlinkTracksIreland} shows these ground tracks over Ireland. The simulation time here was chosen as each satellite orbits the Earth approximately every 90 minutes\cite{orbitalradar_starlink_tracker}, so 4 hours is more than adequate to show the path of the satellites. What these Figures show, is that the orbital paths of Starlink completely miss the northern parts of Ireland, which helps to explain why there is low coverage in these areas. 
+The reason for this coverage pattern becomes more apparent when looking at Figure \ref{fig:StarlinkTrackGlobal} and \ref{fig:StarlinkTracksIreland}, Figure \ref{fig:StarlinkTrackGlobal} shows a sample of 1000 Starlink satellites modelled at 30 second time stamps over 90 minutes and \ref{fig:StarlinkTracksIreland} shows these ground tracks over Ireland. The simulation time here was chosen as each satellite orbits the Earth approximately every 90 minutes\cite{orbitalradar_starlink_tracker}, so 90 minutes is adequate to show the path of the satellites. What these Figures show, is that the orbital paths of Starlink completely miss the northern parts of Ireland, which helps to explain why there is low coverage in these areas. 
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/Starlink/StarlinkTracksGlobal.png}
-    \caption{Track Map of 100 Starlink Satellites}
+    \caption{Track Map of 1000 Starlink Satellites}
     \label{fig:StarlinkTrackGlobal}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/Starlink/StarlinkTracksIreland}
-    \caption{Track Map of 100 Starlink Satellites Over Ireland}
+    \caption{Track Map of 1000 Starlink Satellites Over Ireland}
     \label{fig:StarlinkTracksIreland}
 \end{figure}
 
@@ -74,8 +74,40 @@ As DTC capable Starlink satellites are not publicly available, this project uses
   \item DTC capable satellites are clustered in specific launch batches, which can be closely matched with NORAD catalog ranges \cite{StarlinkV2MiniD2C}.
   \item Gen2 and DTC satellites operate in mid-inclination shells ($\approx 43^{\circ}$ and $\approx 53^{\circ}$) \cite{SpaceflightNow_Starlink51}
 \end{itemize}
-Using this information an approximate filter was applied to to the Starlink TLE data. 
+Using this information an approximate filter was applied to to the Starlink TLE data. If a satellite was found to be within certain NORAD batch ranges, and or between certain inclinatio shells, it was considered to be likely to be capable of DTC payloads. 
+Figures \ref{fig:StarlinkDTCpercerntage} and \ref{fig:StarlinkDTCMbps} start a trend which will become apparent in the next sections. While Figure \ref{fig:StarlinkDTCpercerntage} shows the coverage availability to be only a mean of $0.18\%$ of the time, Figure \ref{fig:StarlinkDTCMbps} shows that when there is coverage, the downlink capacity is quite strong, at a mean of 99.98 Mbps and a maximum theoretical throughput of 176.37 Mbps. 
 
+Looking at Figures \ref{fig:StarlinkDTCTrackGlobal} and \ref{fig:StarlinkDTCTracksIreland} show why this is the case, there simply is not enough satellites passing over the country to provide consistat coverage. This is entirely to do with satellite orbital geometry and has nothing to do with the satellites downlink capacities. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/StarlinkDTC/StarlinkDTC_8am-8pm_percerntage.png}
+    \caption{Coverage availability as a percentage of time for Starlink DTC capable satellites over Ireland}
+    \label{fig:StarlinkDTCpercerntage}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/StarlinkDTC/StarlinkDTC_8am-8pm_mbps.png}
+    \caption{Average downlink capacity for Starlink DTC over Ireland}
+    \label{fig:StarlinkDTCMbps}
+\end{figure}
+
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/StarlinkDTC/StarlinkDTCGlobalTracks.png}
+    \caption{Track Map Starlink DTC Satellites}
+    \label{fig:StarlinkDTCTrackGlobal}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/StarlinkDTC/StarlinkDTCIrelandTracks.png}
+    \caption{Track Map of Starlink DTC Satellites Over Ireland}
+    \label{fig:StarlinkDTCTracksIreland}
+\end{figure}
 
 \FloatBarrier
 \section{OneWeb Simulation - 08:00 to 20:00, 23 April 2026}

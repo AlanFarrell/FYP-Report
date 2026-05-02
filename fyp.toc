@@ -56,16 +56,19 @@
 \contentsline {section}{\numberline {5.2}Population Density of Ireland}{30}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Starlink Simulation - 08:00 to 20:00, 23 April 2026}{31}{section.5.3}%
 \contentsline {section}{\numberline {5.4}StarlinkDTC - 08:00 to 20:00, 23 April 2026}{33}{section.5.4}%
-\contentsline {section}{\numberline {5.5}OneWeb Simulation - 08:00 to 20:00, 23 April 2026}{33}{section.5.5}%
+\contentsline {section}{\numberline {5.5}OneWeb Simulation - 08:00 to 20:00, 23 April 2026}{35}{section.5.5}%
 \contentsline {section}{\numberline {5.6}Kuiper Simulation - 08:00 to 20:00, 23 April 2026}{37}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Traditional 5G Coverage in Ireland}{40}{section.5.7}%
-\contentsline {chapter}{\numberline {6}Conclusions}{42}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Key Findings}{42}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Comparison with Terrestrial 5G}{42}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Limitations of Study}{42}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Project Reflection}{42}{section.6.4}%
+\contentsline {section}{\numberline {5.7}Traditional 5G Coverage in Ireland}{39}{section.5.7}%
+\contentsline {chapter}{\numberline {6}Conclusions}{41}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Key Findings}{41}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Comparison with Terrestrial 5G}{41}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Limitations of Study}{41}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Project Reflection}{41}{section.6.4}%
 \contentsline {subsection}{\numberline {6.4.1}Technical Approach and Design Choices}{42}{subsection.6.4.1}%
 \contentsline {subsection}{\numberline {6.4.2}Challenges Encountered}{42}{subsection.6.4.2}%
 \contentsline {subsection}{\numberline {6.4.3}Evaluation of outcomes}{42}{subsection.6.4.3}%
 \contentsline {subsection}{\numberline {6.4.4}Lessons Learned and Future Improvements}{42}{subsection.6.4.4}%
+\contentsline {chapter}{\numberline {7}Appendix A}{46}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Example AI prompts used}{46}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Code Explanation and Refactoring support}{46}{section.7.2}%
 \contentsfinish 

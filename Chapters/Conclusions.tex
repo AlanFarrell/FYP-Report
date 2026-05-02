@@ -2,7 +2,7 @@
 This project investigated the feasibility and performance of LEO satellite constellations as a broadband connectivity solution for rural Ireland. Using orbital propagation and coverage modelling, the performance of various constellations were evaluated in terms of coverage availability and downlink capacity. These results were then compared to terrestrial 5G networks. 
 
 \section{Key Findings}
-The results demonstrate that constellation design has a major impact on coverage performance over Ireland. Starlink cosnsitently achieved the highest covereage availability, with almost continuous coverage in parts of the country. This performance can largely be attributed to Starlink's high satellite density, low orbital altitdues and otbital shells which reguarly pass over parts of Ireland.
+The results demonstrate that constellation design has a major impact on coverage performance over Ireland. Starlink cosnsitently achieved the highest covereage availability, with almost continuous coverage in parts of the country, exceeding $75\%$ in certain parts. This performance can largely be attributed to Starlink's high satellite density, low orbital altitdues and otbital shells which reguarly pass over parts of Ireland.
 
 OneWeb showed signifcantly lower coverage availability, with satellites passing infrequently and with short coverage windows. Coverage was slightly superior in Northern regions but still only reached a maximum coverage availability of $11.67\%$. However, when coverage was available a strong data rate was calculated with a peak of 240.89 Mbps, showing that it is capable of delivering 5G level broadband. 
 
@@ -13,20 +13,40 @@ While all three constellations are capable of providing 5G level coverage, the p
 \section{Comparison with Terrestrial 5G}
 The analysis of terrestrial 5G coverage shows a dependence on population density in terms of infrastructure investment. High levels of coverage were more likely to be seen in urban regions, while significant gaps could be seen in rural areas. Where 5G exists, it is often capable of a stronger connection than LEO satellites, however, coverage is not uniform nationwide. 
 
-LEO constellations however, provide broad coverage independent of local poplation density and infrastructure. This supports the conlcusion that LEO satellite broadband should be used as a complementary technology rather than a replacement for terrestrial netowrks. In urban areas, terreistral 5G remains optimal, while LEO systems offer a viable alternative for rural areas.  
+LEO constellations however, provide broad coverage independent of local poplation density and infrastructure. Maing them particuarly well suited to rural and remote areas. While terrestrial 5G generally provides more consistant performance where available, LEO satellites offer a realistic alternative for areas which are difficult to reach for traditional networks. 
+
+The results support the conclusion that LEO satellites broadband, at it's current capabilities, should be considered complementary technology to tradition network systems. In urban areas 5G remains optimal. However, high density constellations such as Starlink have a real potential to enhance connectivity in rural regions. 
 
 \section{Limitations of Study}
 This study employs a simplified model focused on coverage availability and downlink capacity. Layered network performance, uplink performance, latency variability, and effects of various levels of trafic are not modelled. On top of this, constellations paramaters were based on publically available informatin rather than operation performance data. These simplifications limit the accuracyt of the performance estimates, but they are appropiate for a comparative, system level comparison of coverage over a region. 
 
+Constellation paramaters and DTC capability were inferred from publicly available sources rather than operator given specifications. As a result, the findings in this thesis should be treated as indicative performance trends, and not peercise service garuntees. 
 
+Despite these limitations, the model is appropiate for compatative study. The assumptions were applied across all constellations for a fair evaluaiton of  coverage estimations. 
 
 \section{Project Reflection}
 This section reflects on the execution of the project, evaluating the planning decisions, technical approach, challenges encountered, and lessons learned throughout the development process. 
 
 \subsection{Technical Approach and Design Choices}
+One of the most valuable aspects of this project was the creation of a reproduceable simulation system which can work with any real TLE data. Using SGP4 for the base of analysis, allowed realsitic modelling of large constellations. Simplifying antenna beam patterns allowed for the study to scale to constellations which had thousands of satellites.
+
+Due to how the model was designed, it is modular and could allow for future extensions such as improved antenna models, beam scheduling and hight traffic situations. 
 
 \subsection{Challenges Encountered}
+The primary challenge encountered was simulation run time. The original model involved going to a grid point, propagating a satellite for a time period, if it was not capable of providing coverage, it was discared, this was then repeated at all time steps, for all satellites, at all grid points. This was incredibly slow as it required all satellites to be propagated and checked for coverage at all grid points. The model was then altered such that, all satellites were propagated for all time steps at the beginning of the simulaiton. While this was significantly quicker, it came at the cost of using significantly more memory, this limited simulations of certain constellations to 12 hours due to hardware constraints. This was particuarly prevelend for Starlink due to the nearly 10,000 satellites in orbit, propagated over 24 hours was simply too much for the system the simulation was being run on to handle. 
+
+Additionally, limited publicly available information regarding DTC capable satellites necessitated assumptions in order to achieve a viable simulation, this itroduces uncertaintly to the results. 
 
 \subsection{Evaluation of outcomes}
+The project has met it's primary objectives. A functional, versatile simulation model for LEO satellites capable of evaluating coverage metrics across multiple constellations and rural areas, not just in Ireland but globally was developed. Meaningful insights were gained, using this model, regarding the suitability of LEO constellations for rual broadband in Ireland. The results demosntrate how constellation architecture influence coverage availability and show how LEO systems can be compared to terrestrial networks, and or used in conjunction with terrestrial networks. 
 
 \subsection{Lessons Learned and Future Improvements}
+While this project focused on a high level evaluation and delivered relevant results, system level modelliing such as user traffic, should be considered for any future work using this framework. Peak performance metrics are useful for evaluating feasability but a more in depth analyis would be useful for a more refined study. Future work could extent this model by including demand distribution, beam dynamics, uplink analysis, and latency modelling. As LEO constellations evolve and more operation data becomes available this project could refine certain aspects such as DTC analysis. 
+
+This project also had a significant personal learning experience as the majority of technnical knowledge required was developed during the course of the project itself. While certain foundational skills were obtained throughout the degree, the specific details of LEO satellite communication, orbit modelling, and constellation level performance, and even programming in python were largely unkown at the offset. 
+
+Through independent research and iterative implementation, a new, strong understanding of LEO constellations was developed. This included learning about the use of TLE data, and orbit propagation for constellation modelling. Another key learning aspect was how high level practical simulatins are developed. Developing coverage and capacity models required understanding of the assumption, trrade-offs, and simplifications required to model a system such as the one in this project, espeically when not all data is available for use. 
+
+This prject improved proficiency in Python for computing and data anlysis, through working wiht large data sets and by devloping a modular structure for the model. 
+
+Beyond technical skills, this project strengthed problem solving and self-learning abilities. Challenges such as limited publicly available data, computational constraints, and unknown real world paramters required justified assumptions. Overall this project served as a learning tool thorugh research, implementation, and evaluation of results. 
