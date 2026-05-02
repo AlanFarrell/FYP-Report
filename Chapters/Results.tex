@@ -9,7 +9,7 @@ Again it should be noted that these capacity values represent theoretical upper 
 
 
 \section{5G performance metrics}
-In order to evaluate LEO satellite metrics, it is important to have a baseline performance metric, this will be in the form of known 5G standards. According to the International Telecommunication Union's global standard or International Mobile Telecommunications (ITU IMT-2020) \cite{ITU-R-M2410-2017},peak performance assumes ideal conditions and states up to 20 Gbps downlink and 10 Gbps uplink for a single user. However, in realistic network conditions with active users and scheduling constraints, the average user experienced is expected to be at least 100 Mbps on the downlink and 50 Mbps on the uplink\cite{ITU-R-M2410-2017}.
+In order to evaluate LEO satellite metrics, it is important to have a baseline performance metric, this will be in the form of known 5G standards. According to the International Telecommunication Union's global standard or International Mobile Telecommunications (ITU IMT-2020) \cite{ITU-R-M2410-2017},peak performance assumes ideal conditions and states up to 20 Gbps down-link and 10 Gbps up-link for a single user. However, in realistic network conditions with active users and scheduling constraints, the average user experienced is expected to be at least 100 Mbps on the down-link and 50 Mbps on the up-link\cite{ITU-R-M2410-2017}.
 
 \section{Population Density of Ireland}
 To help understand if LEO constellations as they stand can help deliver rural connectivity and or relieve some load from existing networks in more urban areas, it is import to know what areas have what population. Figure \ref{fig:popDensity} shows the population of Ireland from the 2022 Census\cite{CSO_ED_2022_Boundaries}. Unsurprisingly, the majority of people are within a small amount of urban centres such as Dublin with an exceptionally sparse population in rural regions. This population density map provides import context for interpreting the satellite coverage results. This context is important to keep in mind when discussing whether or not LEO satellites can, as they stand, provide coverage to rural areas in Ireland. 
@@ -23,7 +23,7 @@ To help understand if LEO constellations as they stand can help deliver rural co
 
 \FloatBarrier
 \section{Starlink Simulation - 08:00 to 20:00, 23 April 2026}
-Of the three systems modelled, Starlink has the strongest coverage available in Ireland. This result is somewhat predictable as there are significantly more satellites in Starlink's constellation with the data set used in this project containing 10,188 satellites for Starlink alone., however Starlink does not provide continuous coverage over Ireland during the simulated window, but offers substantial availability in mid-latitude regions.
+Of the three systems modeled, Starlink has the strongest coverage available in Ireland. This result is somewhat predictable as there are significantly more satellites in Starlink's constellation with the data set used in this project containing 10,188 satellites for Starlink alone., however Starlink does not provide continuous coverage over Ireland during the simulated window, but offers substantial availability in mid-latitude regions.
 
 When looking at these results it is critical that care is taken to look at both Figure \ref{fig:StarlinkCoverage-percentage} and \ref{fig:StarlinkCoverage-mbps}. Figure \ref{fig:StarlinkCoverage-percentage} shows how often an area will receive coverage from a Starlink Satellite a percentage of time, while Figure \ref{fig:StarlinkCoverage-mbps} shows, when available, how strong the coverage is according to the shannon capacity formula. It is important to look at both these figures together, as this will show the complete coverage story. This is consistent with all following sections.   
 
@@ -74,10 +74,10 @@ As DTC capable Starlink satellites are not publicly available, this project uses
   \item DTC capable satellites are clustered in specific launch batches, which can be closely matched with NORAD catalog ranges \cite{StarlinkV2MiniD2C}.
   \item Gen2 and DTC satellites operate in mid-inclination shells ($\approx 43^{\circ}$ and $\approx 53^{\circ}$) \cite{SpaceflightNow_Starlink51}
 \end{itemize}
-Using this information an approximate filter was applied to to the Starlink TLE data. If a satellite was found to be within certain NORAD batch ranges, and or between certain inclinatio shells, it was considered to be likely to be capable of DTC payloads. 
+Using this information an approximate filter was applied to to the Starlink TLE data. If a satellite was found to be within certain NORAD batch ranges, and or between certain inclination shells, it was considered to be likely to be capable of DTC payloads. 
 Figures \ref{fig:StarlinkDTCpercerntage} and \ref{fig:StarlinkDTCMbps} start a trend which will become apparent in the next sections. While Figure \ref{fig:StarlinkDTCpercerntage} shows the coverage availability to be only a mean of $0.18\%$ of the time, Figure \ref{fig:StarlinkDTCMbps} shows that when there is coverage, the downlink capacity is quite strong, at a mean of 99.98 Mbps and a maximum theoretical throughput of 176.37 Mbps. 
 
-Looking at Figures \ref{fig:StarlinkDTCTrackGlobal} and \ref{fig:StarlinkDTCTracksIreland} show why this is the case, there simply is not enough satellites passing over the country to provide consistat coverage. This is entirely to do with satellite orbital geometry and has nothing to do with the satellites downlink capacities. 
+Looking at Figures \ref{fig:StarlinkDTCTrackGlobal} and \ref{fig:StarlinkDTCTracksIreland} show why this is the case, there simply is not enough satellites passing over the country to provide consistent coverage. This is entirely to do with satellite orbital geometry and has nothing to do with the satellites down-link capacities. 
 
 \begin{figure}[h!]
     \centering
@@ -200,7 +200,7 @@ The downlink capacity seen in Figure \ref{fig:KuiperCoverage_mbps} are sufficien
 
 \FloatBarrier
 \section{Traditional 5G Coverage in Ireland}
-The figures in \ref{fig:5g_coverage} show how terrestrial 5G coverage is spread across Ireland.\cite{comreg_coverage_map}. As expected the strongest coverage is around cities like Dublin, Cork, Galway, and Limerick. By compariosn there are large rural and coastal regions, particularly in the West and the South , which have poor coverage. This reflects on the reliance of terrestrial networks and dens base station deployment. Overall these figures show that where there is 5G coverage you can expect excellence performance, however, it does not current provide consistent nationwide coverage, highlight a marketplace for a complementary solution such as LEO satellite broadband. 
+The figures in \ref{fig:5g_coverage} show how terrestrial 5G coverage is spread across Ireland.\cite{comreg_coverage_map}. As expected the strongest coverage is around cities like Dublin, Cork, Galway, and Limerick. By comparison there are large rural and coastal regions, particularly in the West and the South , which have poor coverage. This reflects on the reliance of terrestrial networks and dens base station deployment. Overall these figures show that where there is 5G coverage you can expect excellence performance, however, it does not current provide consistent nationwide coverage, highlight a marketplace for a complementary solution such as LEO satellite broadband. 
 
 The coverage patterns match the population density map in Figure \ref{fig:popDensity}, where high density areas receive the strongest terrestrial service. Figures \ref{fig:5g_coverage} highlight a limitation of solely relying on terrestrial networks for rural broadband. This serves to highlight the potential of LEO constellations for broadband as a complementary solution in Ireland. 
 \begin{figure}[!ht]

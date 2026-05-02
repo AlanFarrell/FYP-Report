@@ -16,7 +16,7 @@ The core execution of this system is based in a loop which iterates over a grid 
 The first stage of implementation involves defining a set of simulation parameters which will be utilized in the later stages of implementation. The core parameters for the simulation are as follows:
 \begin{itemize}
     \item \textbf{Simulation Duration}: The total time span for which the simulation will run, in hours.
-    \item \textbf{Simulation Start Time}: The UTC timestamp marking the beginning of the simulation period.
+    \item \textbf{Simulation Start Time}: The UTC time-stamp marking the beginning of the simulation period.
     \item \textbf{Time Step}: The interval at which satellite positions are propagated and visibility checks are performed, in seconds.
     \item \textbf{Grid Resolution}: The spacing between latitude and longitude points in the coverage grid, in degrees.
     \item \textbf{Area of Interest}: The latitude and longitude ranges of the area over which coverage will be evaluated.
@@ -27,7 +27,7 @@ The first stage of implementation involves defining a set of simulation paramete
     \item \textbf{Transmit Power}: The power at which the satellite transmits signals, in dBW.
     \item \textbf{Receiver Gain}: The gain of the receiver's antenna, in dBi, which quantifies its ability to capture incoming signals.
     \item \textbf{Frequency}: The frequency at which the satellite operates, in GHz, which affects the path loss and atmospheric attenuation.
-    \item \textbf{TLE Data Source}: The source from which TLE data will be acquired, such as CelesTrak, and any fallback options for offline data.
+    \item \textbf{TLE Data Source}: The source from which TLE data will be acquired, such as CelesTrak, and any fall-back options for offline data.
 \end{itemize}
 
 \section{Data acquisition}
@@ -132,7 +132,7 @@ The outputs of the \ref{code:sgp4} are as follows:
     \item \textbf{e}: An error flag returned by the propagator, where a value of zero indicates successful propagation and non-zero values correspond to specific SGP4 error conditions.
 \end{itemize}
 
-The Julian Date (jd, fr) is computed using the current UTC timestamp to ensure a precise propagation epoch. Any satellite with a non zero error flags are discarded to avoid propagating any invalid orbital data. As seen in code \ref{code:propagation}, this is repeated over a set period of time, with a configured time step, to generate a time series of satellite positions and velocities for later use in calculations.
+The Julian Date (jd, fr) is computed using the current UTC time-stamp to ensure a precise propagation epoch. Any satellite with a non zero error flags are discarded to avoid propagating any invalid orbital data. As seen in code \ref{code:propagation}, this is repeated over a set period of time, with a configured time step, to generate a time series of satellite positions and velocities for later use in calculations.
 
 \begin{lstlisting}[language=Python, caption={SGP4 propagation}, label={code:propagation}]
         while currentTime < endTime:
@@ -230,7 +230,7 @@ z_{\text{TEME}}
 This aligns the satellite position with a Earth fixed rotating frame.
 
 \subsection{Geodetic ECEF}
-To compare a satellite with an observer on Earth, the observer's latitude, longitude and altitude must be expressed as cartesian X, Y, Z coordinates in the ECEF frame. As the Earth is not a perfect sphere it is approximated as a WSG-84 ellipsoid. This is defined by it's semi major axis(the equatorial size), the flattening(how much the poles are compressed) and the first eccentricity (a measure of how non spherical the ellipsoid is). This can be seen in (\ref{eq:WGS-84}) \cite{WGS84_ECEF_Conversion}.
+To compare a satellite with an observer on Earth, the observer's latitude, longitude and altitude must be expressed as Cartesian X, Y, Z coordinates in the ECEF frame. As the Earth is not a perfect sphere it is approximated as a WSG-84 ellipsoid. This is defined by it's semi major axis(the equatorial size), the flattening(how much the poles are compressed) and the first eccentricity (a measure of how non spherical the ellipsoid is). This can be seen in (\ref{eq:WGS-84}) \cite{WGS84_ECEF_Conversion}.
 
 \begin{equation}\label{eq:WGS-84}
 f = \frac{a - b}{a},
@@ -578,7 +578,7 @@ This sections aims to provide and overview of the dominant computational cost, s
 
 We can let $N_s$ be the number of satellites, $N_t$ be the number of time steps, and $N_g$ be the number of grid points. Orbit propagation using SGP4 has a computational complexity of  $\mathcal{O}(1)$ per satellite per time step. This means, the total cost of orbit propagation is $\mathcal{O}(N_s \cdot N_t)$, as each satellite's position must be computed at each time step. For a large LEO constellation such as Starlink, with thousands of satellites and a simulation which spans multiple hours with a fine time step, this can lead to a significant computational load.
 
-Coverage analysis adds another layer to this, at each time step, visibility and beam-width checks are preformed for every satellite-grid point combination. This can result in a complexity of  $\mathcal{O}(N_s \cdot N_t \cdot N_g)$. Even though each indivudual operation, such as the coordinate transformations, angle calculations and coverage check are relatively simple and inexpensive, the sheer number of operations can lead to long run times, especially as the grid resolution increases. For example, if we have 1000 satellites, a simulation duration of 24 hours with a time step of 10 seconds (which means 8640 time steps), and a grid of 1000 points, the number of operations would be $1000 \cdot 8640 \cdot 1000 = 8.64 \times 10^9$ operations, which take hours to compute.
+Coverage analysis adds another layer to this, at each time step, visibility and beam-width checks are preformed for every satellite-grid point combination. This can result in a complexity of  $\mathcal{O}(N_s \cdot N_t \cdot N_g)$. Even though each individual operation, such as the coordinate transformations, angle calculations and coverage check are relatively simple and inexpensive, the sheer number of operations can lead to long run times, especially as the grid resolution increases. For example, if we have 1000 satellites, a simulation duration of 24 hours with a time step of 10 seconds (which means 8640 time steps), and a grid of 1000 points, the number of operations would be $1000 \cdot 8640 \cdot 1000 = 8.64 \times 10^9$ operations, which take hours to compute.
 
 To reduce the excessive computational costs, some design choices were implemented. FIrst, TLE data is loaded and parsed once at the beginning of the simulation and stored in memory, this avoids repeat network access or file reads which can take time. Secondly, the satellite propagation results are stored as time-indexed state vectors, allowed easy and repeated use during coverage checks without needing to re-propagate. The satellites which produce error codes at a given time step are also discarded to avoid unnecessary calculations. Finally, at any given time step at a grid point, if no satellites are visible, coverage checked are skipped entirely, and automatically marked as no coverage, this avoids the need to preform beam width checks for any satellites which are not even visible.   
 
