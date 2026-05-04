@@ -7,6 +7,133 @@ Due to computational limitations of the system on which the simulations were exe
 All TLE data used in these simulations were obtained and stored on the morning of 23 April 2026. Each simulation was subsequently run using this same TLE dataset and over the same UTC time window, regardless of the actual execution date of the simulation. The selection of this date was arbitrary.
 Again it should be noted that these capacity values represent theoretical upper bounds derived using the Shannon capacity formula and do not account for contention between users, dynamic beam scheduling, or atmospheric attenuation, meaning real-world user throughput would likely be lower under peak load conditions.
 
+\section{Limitations of Results}
+It should be noted that the interpretation of the data rate results in this chapter are all derived using the Shannon Capacity formula discussed in Section \ref{section:coverageCapabilit}. Therefore, all results represent an ideal upper bound under the assumed SINR conditions. These values are a theoretical maximum data rate for an individual user under set conditions. These parameters can be seen in \ref{tab:link_budget_summary}.
+
+\begin{table}[h]
+\centering
+\caption{Summary of Link Budget and Capacity Calculation Parameters}
+\label{tab:link_budget_summary}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Implementation / Assumption} \\
+\hline
+Transmit Power ($P_\mathrm{transmitted}$) & Satellite transmit power & Values seen in Table \ref{tab:leo_link_budget_paramaters} \\
+\hline
+Receiver Gain ($G_\mathrm{received}$) & User terminal antenna gain & Values seen in Table \ref{tab:leo_link_budget_paramaters}\\
+\hline
+Carrier Frequency ($f$) & Downlink carrier frequency & Values seen in Table \ref{tab:leo_link_budget_paramaters} \\
+\hline
+Slant Range ($d$) & Satellite-user distance & Euclidean distance in ECEF frame \\
+\hline
+Free-Space Path Loss & Propagation loss over $d$ & Computed using Friis equation \\
+\hline
+Received Signal Power ($S$) & Power at receiver & Function of $P_\mathrm{transmitted}$, $G_\mathrm{received}$, $d$, $f$ \\
+\hline
+Interference Power ($I$) & Sum of co-channel interferers & Aggregated from nearby satellites \\
+\hline
+Noise Power ($N$) & Thermal noise & Included internally in SINR computation \\
+\hline
+SINR & Signal-to-interference-plus-noise ratio & $S / (I + N)$ \\
+\hline
+Capacity ($C$) & Shannon capacity upper bound & $C = B \log_2(1 + \mathrm{SINR})$ \\
+\hline
+\end{tabular}
+\end{table}
+
+It should also be noted that the following capacity values do not take into consideration beam sharing and scheduling or the presence of multiple users per satellite. These results are not user-experiences throughput but rather per-link feasible estimates under the conditions in Table \ref{tab:link_budget_summary}.
+
+\section{Single Link capacity check}
+To help verify future results, a single numerical check on the link budget model was performed for a representative LEO satellite. The objective is to confirm that the results are physically plausible. 
+
+\subsection{Slant Range and Geometry}
+A satellite at an altitude of 550km was chosen directly overhead to represent a LEO constellation satellite. Under this geometry, which is favorable, the slant range is 
+\[
+d \approx 5.5 \times 10^5 \, \mathrm{m}.
+\]
+
+\subsection{Free-Space Path Loss}
+Assuming a downlink frequency of 19 Ghz, the FSPL is computed using Friis equation expressed in terms of distance and carrier frequency:
+
+\begin{equation}
+\label{eq:fspl}
+\mathrm{FSPL(dB)} = 20 \log_{10}(d) + 20 \log_{10}(f) - 147.55,    
+\end{equation}
+
+where \(d\) is the satellite-user slant range in metres and \(f\) is the carrier frequency in hertz.
+
+Solving (\ref{eq:fspl}) gives:
+
+\begin{equation}
+\label{eq:fspl-solved}
+\mathrm{FSPL(dB)} = 20 \log_{10}(5.5 \times 10^5) + 20 \log_{10}(1.9 \times 10^{10}) - 147.55 = 172.83 dB.    
+\end{equation}
+
+\subsection{Received Signal Power}
+Using the transmit power and receiver gain discussed in \ref{tab:leo_link_budget_paramaters} received power is computed in (\ref{eq:receivedpower}).
+
+\begin{equation}
+\label{eq:receivedpower}
+P_{received} = P_\mathrm{transmitted} + G_\mathrm{received} - \mathrm{FSPL}.
+\end{equation}
+
+(\ref{eq:receivedPower}) can be seen solved in (\ref{eq:receivedpower-solved}).
+\begin{equation}
+\label{eq:receivedpower-solved}
+P_{received} = 46 + 33 - 173 = -94 dBW.
+\end{equation}
+
+\subsection{SINR and Capcity Estimate}
+The SINR is computed as (\ref{eq:snr}).
+
+\begin{equation}
+\label{eq:snr}
+    SINR = \frac{Power_{received}}{Noise + Interference}
+\end{equation}
+
+where background thermal noise by 
+
+\begin{equation}
+\label{eq:noise}
+    N = kTB \cdot NF
+\end{equation}
+
+where 
+\begin{itemize}
+  \item $N$ : Thermal noise power (W)
+  \item $k$ : Boltzmann constant ($1.38 \times 10^{-23}\,\text{J/K}$)
+  \item $T$ : Absolute temperature (K)
+  \item $B$ : Bandwidth (Hz)
+  \item $\mathrm{NF}$ : Noise figure (linear, unitless)
+\end{itemize}
+
+Using a noise figure of 3dB, a bandwidth of 100Mhz, and noise parameters of $k = 1.38 \times 10^{-23}\,\mathrm{J/K}$ \quad and \quad $T = 290\,\mathrm{K}$ the noise power is 
+
+\begin{equation}
+N \approx 8.0 \times 10^{-13}\,\mathrm{W}
+\end{equation}
+
+Then expressing $P_{received}= -94 dBW$ in Watts,
+
+\begin{equation}
+    P_{received}(dBW) = 10log_{10}(P(W)) \rightarrow P_{received}(W) = 10^{\frac{-94}{10}} = 4 \times 10^ {-10} W
+\end{equation}
+
+The SINR can then be computed as seen in (\ref{eq:sinrSolved}) where no interfering satellites are assumed, so $Interferance = 0$.
+
+\begin{equation}
+\label{eq:sinrSolved}
+    SINR = \frac{P_{received}}{Interference + Noise} = \frac{4 \times 10 ^{-10}}{0 + 8.0 \times 10^{-13}} = 500
+\end{equation}
+
+
+Using the value gained in (\ref{eq:sinrSolved}), (\ref{eq:shannonCapac}) can now be solved.  
+\begin{equation}
+\label{eq:shannonCapac}
+C = B \log_2 (1 + \mathrm{SINR}) = 100 \times 10^6log_2(1+500) \approx 897 Mbps. 
+\end{equation}
+
+The value obtained form (\ref{eq:shannonCapac}) is a best-case, noise-limited, directly overhead scenario, whereas any simulation in the following sections will involve more realistic geometry and interference. This is an absolute limit of what a sample satellite may achieve under the given simulation parameters. However, this defines an upper ceilings of what can be achieved in the following simulations. 
 
 \section{5G performance metrics}
 In order to evaluate LEO satellite metrics, it is important to have a baseline performance metric, this will be in the form of known 5G standards. According to the International Telecommunication Union's global standard or International Mobile Telecommunications (ITU IMT-2020) \cite{ITU-R-M2410-2017},peak performance assumes ideal conditions and states up to 20 Gbps down-link and 10 Gbps up-link for a single user. However, in realistic network conditions with active users and scheduling constraints, the average user experienced is expected to be at least 100 Mbps on the down-link and 50 Mbps on the up-link\cite{ITU-R-M2410-2017}.
@@ -81,14 +208,14 @@ Looking at Figures \ref{fig:StarlinkDTCTrackGlobal} and \ref{fig:StarlinkDTCTrac
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/StarlinkDTC/StarlinkDTC_8am-8pm_percerntage.png}
+    \includegraphics[width=0.7\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/StarlinkDTC/StarlinkDTC_8am-8pm_percerntage.png}
     \caption{Coverage availability as a percentage of time for Starlink DTC capable satellites over Ireland}
     \label{fig:StarlinkDTCpercerntage}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/StarlinkDTC/StarlinkDTC_8am-8pm_mbps.png}
+    \includegraphics[width=0.7\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/StarlinkDTC/StarlinkDTC_8am-8pm_mbps.png}
     \caption{Average downlink capacity for Starlink DTC over Ireland}
     \label{fig:StarlinkDTCMbps}
 \end{figure}

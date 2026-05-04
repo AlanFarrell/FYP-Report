@@ -369,7 +369,7 @@ To determine coverage for a given area, the system iterates over a grid of latit
 
 \end{lstlisting}
 
-\section{Coverage Capability}
+\section{Coverage Capability}\label{section:coverageCapabilit}
 Coverage capability is measured in the theoretical maximum throughput that a satellite can provide to a given location using Shannon's capacity formula. This is calculated for each satellite that satisfies the visibility and beam width checks at each time step. The system assumes a fixed bandwidth and signal-to-noise ratio (SNR). This allows for an analysis of how much data throughput can be expected during those coverage windows.
 
 \begin{equation}
@@ -436,7 +436,7 @@ Capacity = Bandwidth \cdot \log_2 \left( 1 + \text{SINR}_{\text{linear}} \right)
 
 These equations were implemented in the system to calculate the theoretical maximum throughput for each satellite providing coverage at each time step. This allows for an analysis of coverage in Ireland. 
 
-Parameters for the constellations were taken from publicly available sources, and are summarized in Table \ref{tab:leo_compact}. These parameters were used to calculate the received power, interference, noise, and ultimately the Shannon capacity for each satellite providing coverage at each time step.
+Parameters for the constellations were taken from publicly available sources, and are summarized in Table \ref{tab:leo_link_budget_paramaters}. These parameters were used to calculate the received power, interference, noise, and ultimately the Shannon capacity for each satellite providing coverage at each time step.
 
 To calculate the EIRP for Starlink, the following calculations were preformed. 
 \[

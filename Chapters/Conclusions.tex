@@ -1,6 +1,8 @@
 \chapter{Conclusions} \label{chapter:6}
 This project investigated the feasibility and performance of LEO satellite constellations as a broadband connectivity solution for rural Ireland. Using orbital propagation and coverage modelling, the performance of various constellations were evaluated in terms of coverage availability and down-link capacity. These results were then compared to terrestrial 5G networks. 
 
+\section{Engineering Contributions}
+This project contributes in a number of ways, the first being a modular, reusable, national scale LEO coverage simulation capable of using any TLE data, which allows the comparison of various constellations networks at a national level. On top of this, it adds an Ireland specific, quantitative comparison of LEO vs rural 5G.
 \section{Key Findings}
 The results demonstrate that constellation design has a major impact on coverage performance over Ireland. Starlink consistently achieved the highest coverages availability, with almost continuous coverage in parts of the country, exceeding $75\%$ in certain parts. This performance can largely be attributed to Starlink's high satellite density, low orbital altitudes and orbital shells which regularly pass over parts of Ireland.
 
@@ -27,6 +29,7 @@ Despite these limitations, the model is appropriate for comparative study. The a
 \section{Project Reflection}
 This section reflects on the execution of the project, evaluating the planning decisions, technical approach, challenges encountered, and lessons learned throughout the development process. 
 
+
 \subsection{Technical Approach and Design Choices}
 One of the most valuable aspects of this project was the creation of a reproducible simulation system which can work with any real TLE data. Using SGP4 for the base of analysis, allowed realistic modelling of large constellations. Simplifying antenna beam patterns allowed for the study to scale to constellations which had thousands of satellites.
 
@@ -50,3 +53,4 @@ Through independent research and iterative implementation, a new, strong underst
 This project improved proficiency in Python for computing and data analysis, through working with large data sets and by developing a modular structure for the model. 
 
 Beyond technical skills, this project strengthen problem solving and self-learning abilities. Challenges such as limited publicly available data, computational constraints, and unknown real world parameters required justified assumptions. Overall this project served as a learning tool through research, implementation, and evaluation of results. 
+

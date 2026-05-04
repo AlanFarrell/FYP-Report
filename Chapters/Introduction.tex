@@ -44,7 +44,13 @@ To achieve these objectives, this project aims to:
     \item Compare the predicted performance of LEO satellite links with existing 5G broadband capabilities.
     \item Assess the potential role of LEO systems as either a standalone or complementary broadband solution.
 \end{itemize}
+Three main research questions will be considered 
 
+\begin{itemize}
+    \item Can current LEO constellations provide broadband-grade down-link capacity to rural Ireland? 
+    \item How does coverage availability vary due to different constellation architectures
+    \item Can LEO satellites be viewed as a replacement to, or as a complementary solution to terrestrial networks. 
+\end{itemize}
 \section{Scope of Project}
 The scope of this project is focused on evaluating the feasibility of LEO satellite constellations as a solution for rural broadband connectivity in Ireland. The work concentrates on modeling and analyzing satellite coverage availability and theoretical communication performance using a simulation based approached with publicly available data. 
 
@@ -112,7 +118,7 @@ Unlike Telesat, OneWeb operates in the Ku and Ka bands and contains 720 satellit
 While the Ku-band is dedicated to users, the Ka-band is dedicated to gateway links. Each satellite has two steerable antennas, one in operation and a backup antenna. Unlike many other constellations, no satellites in OneWeb's constellation uses inter-satellite links, meaning connectivity is solely reliant on whether the user and gateway are in line of sight with a satellite.\cite{TelesatSpacexOnewebComparison}
 
 \subsection{Starlink}
-SpaceX's Starlink also operates in the Ku and Ka bands and is planned to contain several thousand satellites in multiple types of orbits. Initial deployment consisted of 1600 satellites orbiting at 550Km. Each satellite has a phased array communications payload allowing it to generate multiple steerable beams which can be adjusted depending on the location of user demand and can deliver a latency of only 25ms.\cite{starlink_technology}.\cite{TelesatSpacexOnewebComparison}
+SpaceX's Starlink also operates in the Ku and Ka bands and is planned to contain several thousand satellites in multiple types of orbits. Initial deployment consisted of 1600 satellites orbiting at 550Km. Each satellite has a phased array communications payload allowing it to generate multiple steerable beams which can be adjusted depending on the location of user demand and can deliver a latency of only 25ms\cite{starlink_technology}\cite{TelesatSpacexOnewebComparison}.
 
 Starlink also deploys optical inter-satellite links.This allows satellites to communicate with one another, meaning data can be routed across the constellation without relying on ground base stations or gateways which improves coverage in remote locations. Much like OneWeb, the Ku band services the user links while the ka band services the gateway links.\cite{TelesatSpacexOnewebComparison}
 
@@ -225,9 +231,9 @@ However, despite these limitations in recent years some companies have began pur
 \subsection{Upgrading Existing Satellites for D2D Capability}
 While there are some D2D satellite services being developed in new launches of satellites, there is also an interest in enabling D2D functionality on existing LEO constellations which were previously not capable of this. Retrofitting or incrementally upgrading satellites could represent a cost effective path to accelerate D2D deployment.
 
-One method of upgrading for D2D is software-defined payload architectures. Many modern LEO satellites are already contain flexible, re-programmable radio hardware that allows waveform and protocol updates through software. This enables satellites which were originally designed for fixed broadband to support new bandwidths compatible with territorial mobile networks such as LTE or 5g NTN, without any hardware replacement. 
+One method of upgrading for D2D is software-defined payload architectures. Many modern LEO satellites are already contain flexible, re-programmable radio hardware that allows waveform and protocol updates through software. This enables satellites which were originally designed for fixed broadband to support new bandwidths compatible with territorial mobile networks such as LTE or 5g NTN, without any hardware replacement.  
 
-Other than software payloads, enabling D2D capability on existing LEO satellites may also require modifications to antenna systems. COnventional LEO broadband satellites are designed to communicate with a dedicated user terminals equipped with high gain antennas, whereas D2D communication must support direct link to devices with limited to no antenna gain.This can places stringent requirements on  transmit power, beam-forming accuracy, and receiver sensitivity, often necessitating wider beams and lower data rates compared with broadband services \cite{ITU_R_Space}. 
+Other than software payloads, enabling D2D capability on existing LEO satellites may also require modifications to antenna systems. Conventional LEO broadband satellites are designed to communicate with a dedicated user terminals equipped with high gain antennas, whereas D2D communication must support direct link to devices with limited to no antenna gain.This can places stringent requirements on  transmit power, beam-forming accuracy, and receiver sensitivity, often necessitating wider beams and lower data rates compared with broadband services \cite{ITU_R_Space}. 
 
 ANother thing to consider is spectrum compatibility. D2D services operating in mobile telephone frequency bands must coexist with terrestrial cellular networks, requiring careful coordination to prevent destructive interference. Retrofitting LEO satellites with D2D capabilities requires not only waveform and protocol updates, but also compliance with regulatory frameworks and power constrains imposed by the ITU. 
 
