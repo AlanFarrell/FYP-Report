@@ -16,45 +16,45 @@ Warning--empty author in chalmers546711
 Warning--missing institution in chalmers546711
 
 Done.
-You've used 54 entries,
+You've used 53 entries,
             4087 wiz_defined-function locations,
-            1143 strings with 19384 characters,
-and the built_in function-call counts, 26148 in all, are:
-= -- 2228
-> -- 491
+            1139 strings with 19164 characters,
+and the built_in function-call counts, 25778 in all, are:
+= -- 2198
+> -- 487
 < -- 56
-+ -- 242
-- -- 110
-* -- 1092
-:= -- 4686
-add.period$ -- 113
-call.type$ -- 54
-change.case$ -- 88
++ -- 240
+- -- 109
+* -- 1081
+:= -- 4620
+add.period$ -- 111
+call.type$ -- 53
+change.case$ -- 86
 chr.to.int$ -- 99
-cite$ -- 57
-duplicate$ -- 2096
-empty$ -- 2201
-format.name$ -- 126
-if$ -- 5816
+cite$ -- 56
+duplicate$ -- 2063
+empty$ -- 2164
+format.name$ -- 125
+if$ -- 5733
 int.to.chr$ -- 0
-int.to.str$ -- 54
-missing$ -- 491
-newline$ -- 229
-num.names$ -- 52
-pop$ -- 1177
+int.to.str$ -- 53
+missing$ -- 483
+newline$ -- 226
+num.names$ -- 51
+pop$ -- 1155
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2023
+skip$ -- 1994
 stack$ -- 0
-substring$ -- 355
-swap$ -- 1432
+substring$ -- 352
+swap$ -- 1414
 text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 54
+type$ -- 53
 warning$ -- 3
-while$ -- 70
-width$ -- 56
-write$ -- 566
+while$ -- 69
+width$ -- 55
+write$ -- 558
 (There were 3 warnings)

@@ -9,7 +9,7 @@ This chapter describes the logic behind the software implementation of the satel
 \end{figure}
 Figure \ref{fig:ImplementationLogic} illustrates the overall execution and flow of the implementation logic. The implementation begins by setting the simulation Parameters, i.e, duration of simulation,  frequency of time steps, the density of the coverage grid, and the size of the area being studied. Following this, the TLE data is then acquired from CelesTrak, which is used to propagate satellite orbits using the SGP4 model. At each discrete time step, satellite positions are propagated and then transformed into a common Earth fixed coordinate frame, and evaluated using an elevation mask and beam width constraints to determine which satellites can provide coverage and when.
 
-The core execution of this system is based in a loop which iterates over a grid of latitude and longitude coordinated within which visibility and coverage check are preformed for all propagated satellites at each time step. After the completion of this simulation, the collected data is stored and then processed into heatmaps to be visualized, this data will then be compared tio publicly available terrestrial data. 
+The core execution of this system is based in a loop which iterates over a grid of latitude and longitude coordinated within which visibility and coverage check are performed for all propagated satellites at each time step. After the completion of this simulation, the collected data is stored and then processed into heatmaps to be visualized, this data will then be compared tio publicly available terrestrial data. 
 
 
 \section{Simulation Parameter Initialization}
@@ -44,7 +44,7 @@ lines = response.text.splitlines()
 
 However, this can create issues, as this project is pulling TLE data from thousands of satellites over many time steps, this can create a large number of HTTP requests which can be blocked by CelesTrak. To avoid this, the TLE data is pulled once at the start of the simulation and then stored locally for the duration of the simulation. This allows for a more efficient and robust implementation, as it avoids potential issues with rate limiting and ensures that the same TLE data is used throughout the simulation for consistency.
 
-On top of this it is critical to ensure that the TLE data is parsed at the right location in the code, as seen in Figure \ref{fig:ImplementationLogic}, this project employs a 0.1 lat lon step for mapping over Ireland, which equates to 1000s of grid positions, and over a duration of 24 hours with a time step of 10 seconds, in order to prevent temporary IP bans, the TLE data must be pulled first, then stored, then used. 
+On top of this it is critical to ensure that the TLE data is parsed at the right location in the code, as seen in Figure \ref{fig:ImplementationLogic}, this project employs a 0.1  latitude-longitude step for mapping over Ireland, which equates to thousands of grid positions, and over a duration of 24 hours with a time step of 10 seconds, in order to prevent temporary IP bans, the TLE data must be pulled first, then stored, then used. 
 
 Even with this approach, this project experienced some rate limiting, throttling and temporary IP bans from CelesTrak, to get around this, as offline backup of the TLE data was stored and manually updated periodically. This can be seen implemented in Listing \ref{lst:TLE-Data-Acquisition}. Should there be issues with accessing data directly from CelesTrak, it was still possible to, design and test while using an offline backup file containing TLE data.
 
@@ -373,13 +373,13 @@ To determine coverage for a given area, the system iterates over a grid of latit
 Coverage capability is measured in the theoretical maximum throughput that a satellite can provide to a given location using Shannon's capacity formula. This is calculated for each satellite that satisfies the visibility and beam width checks at each time step. The system assumes a fixed bandwidth and signal-to-noise ratio (SNR). This allows for an analysis of how much data throughput can be expected during those coverage windows.
 
 \begin{equation}
-P_{\text{received}} \text{ (dBm)} = P_{\text{transmitted}} \text{ (dBm)} + G_t \text{ (dB)} + G_r \text{ (dB)} - L_{\text{path}} \text{ (dB)} - L_{\text{other}} \text{ (dB)}.
+P_{\text{received}} \text{ (dBM)} = P_{\text{transmitted}} \text{ (dBM)} + G_t \text{ (dB)} + G_r \text{ (dB)} - L_{\text{path}} \text{ (dB)} - L_{\text{other}} \text{ (dB)}.
 \label{eq:receivedPower}
 \end{equation}
 In Equation~\eqref{eq:receivedPower},
-\(P_{\text{received}}\) (dBm) is the power level at the receiver input after all gains and losses along the communication link have been applied. It represents the signal strength available for demodulation at the receiver.
+\(P_{\text{received}}\) (dBM) is the power level at the receiver input after all gains and losses along the communication link have been applied. It represents the signal strength available for demodulation at the receiver.
 
-\(P_{\text{transmitted}}\) (dBm) is the output power of the transmitting radio or antenna system.
+\(P_{\text{transmitted}}\) (dBM) is the output power of the transmitting radio or antenna system.
 
 \(G_t\) (dB) is the transmitter antenna gain, which quantifies the ability of the transmitting antenna to direct radiated power toward the receiver relative to an isotropic radiator.
 
@@ -389,7 +389,7 @@ In Equation~\eqref{eq:receivedPower},
 
 \(L_{\text{other}}\) (dB) represents additional system losses not captured by free-space path loss alone, including atmospheric attenuation, polarization mismatch, pointing losses, hardware losses, and implementation-related inefficiencies.
 
-Equation \ref{eq:receivedPower} (Link budget equation), calculates the received power, in dBm based on transmitted power, antenna gains, and losses in the communication path. This allows the power of a signal at a user's location to be calculated. 
+Equation \ref{eq:receivedPower} (Link budget equation), calculates the received power, in dBM based on transmitted power, antenna gains, and losses in the communication path. This allows the power of a signal at a user's location to be calculated. 
 
 \begin{equation}
 P_{\text{interference}} = 10 \log_{10} \left( \sum_{i=1}^{N} 10^{\frac{P_i}{10}} \right) \; .
@@ -438,7 +438,7 @@ These equations were implemented in the system to calculate the theoretical maxi
 
 Parameters for the constellations were taken from publicly available sources, and are summarized in Table \ref{tab:leo_link_budget_paramaters}. These parameters were used to calculate the received power, interference, noise, and ultimately the Shannon capacity for each satellite providing coverage at each time step.
 
-To calculate the EIRP for Starlink, the following calculations were preformed. 
+To calculate the EIRP for Starlink, the following calculations were performed. 
 \[
 \begin{aligned}
 \text{Given:}\quad 
@@ -473,7 +473,7 @@ To calculate the EIRP for Starlink, the following calculations were preformed.
 \]
 
 
-A similar calculation was preformed for the OneWeb constellation as the EIRP was not readily given. 
+A similar calculation was performed for the OneWeb constellation as the EIRP was not readily given. 
 
 
 \begin{table}[h!]
@@ -571,14 +571,14 @@ For a given time step, the optimal satellite is selected as
 \[
 s^\ast = \arg\min_{s_i} \; \theta_i,
 \]
-where this is preformed over all satellites that are visible and capable of providing coverage at that time step. 
+where this is performed over all satellites that are visible and capable of providing coverage at that time step. 
 
-\section{Computational Complexity and run time}
-This sections aims to provide and overview of the dominant computational cost, scaling considerations and practical performance limitations. The overall run time of the system is influenced by several factors, including the number of satellites, the duration of the simulation, the time step size, and the resolution of the coverage grid. 
+\section{Computational Complexity and runtime}
+This sections aims to provide and overview of the dominant computational cost, scaling considerations and practical performance limitations. The overall runtime of the system is influenced by several factors, including the number of satellites, the duration of the simulation, the time step size, and the resolution of the coverage grid. 
 
 We can let $N_s$ be the number of satellites, $N_t$ be the number of time steps, and $N_g$ be the number of grid points. Orbit propagation using SGP4 has a computational complexity of  $\mathcal{O}(1)$ per satellite per time step. This means, the total cost of orbit propagation is $\mathcal{O}(N_s \cdot N_t)$, as each satellite's position must be computed at each time step. For a large LEO constellation such as Starlink, with thousands of satellites and a simulation which spans multiple hours with a fine time step, this can lead to a significant computational load.
 
-Coverage analysis adds another layer to this, at each time step, visibility and beam-width checks are preformed for every satellite-grid point combination. This can result in a complexity of  $\mathcal{O}(N_s \cdot N_t \cdot N_g)$. Even though each individual operation, such as the coordinate transformations, angle calculations and coverage check are relatively simple and inexpensive, the sheer number of operations can lead to long run times, especially as the grid resolution increases. For example, if we have 1000 satellites, a simulation duration of 24 hours with a time step of 10 seconds (which means 8640 time steps), and a grid of 1000 points, the number of operations would be $1000 \cdot 8640 \cdot 1000 = 8.64 \times 10^9$ operations, which take hours to compute.
+Coverage analysis adds another layer to this, at each time step, visibility and beam-width checks are performed for every satellite-grid point combination. This can result in a complexity of  $\mathcal{O}(N_s \cdot N_t \cdot N_g)$. Even though each individual operation, such as the coordinate transformations, angle calculations and coverage check are relatively simple and inexpensive, the sheer number of operations can lead to long run times, especially as the grid resolution increases. For example, if we have 1000 satellites, a simulation duration of 24 hours with a time step of 10 seconds (which means 8640 time steps), and a grid of 1000 points, the number of operations would be $1000 \cdot 8640 \cdot 1000 = 8.64 \times 10^9$ operations, which take hours to compute.
 
 To reduce the excessive computational costs, some design choices were implemented. FIrst, TLE data is loaded and parsed once at the beginning of the simulation and stored in memory, this avoids repeat network access or file reads which can take time. Secondly, the satellite propagation results are stored as time-indexed state vectors, allowed easy and repeated use during coverage checks without needing to re-propagate. The satellites which produce error codes at a given time step are also discarded to avoid unnecessary calculations. Finally, at any given time step at a grid point, if no satellites are visible, coverage checked are skipped entirely, and automatically marked as no coverage, this avoids the need to preform beam width checks for any satellites which are not even visible.   
 

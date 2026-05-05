@@ -1,14 +1,14 @@
 \chapter{Conclusions} \label{chapter:6}
-This project investigated the feasibility and performance of LEO satellite constellations as a broadband connectivity solution for rural Ireland. Using orbital propagation and coverage modelling, the performance of various constellations were evaluated in terms of coverage availability and down-link capacity. These results were then compared to terrestrial 5G networks. 
+This project investigated the feasibility and performance of LEO satellite constellations as a broadband connectivity solution for rural Ireland. Using orbital propagation and coverage modelling, the performance of various constellations was evaluated in terms of coverage availability and downlink capacity. These results were then compared to terrestrial 5G networks. 
 
 \section{Engineering Contributions}
 This project contributes in a number of ways, the first being a modular, reusable, national scale LEO coverage simulation capable of using any TLE data, which allows the comparison of various constellations networks at a national level. On top of this, it adds an Ireland specific, quantitative comparison of LEO vs rural 5G.
 \section{Key Findings}
-The results demonstrate that constellation design has a major impact on coverage performance over Ireland. Starlink consistently achieved the highest coverages availability, with almost continuous coverage in parts of the country, exceeding $75\%$ in certain parts. This performance can largely be attributed to Starlink's high satellite density, low orbital altitudes and orbital shells which regularly pass over parts of Ireland.
+The results demonstrate that constellation design has a major impact on coverage performance over Ireland. Starlink consistently achieved the highest coverage availability, with almost continuous coverage in parts of the country, exceeding $75\%$ in certain parts. This performance can largely be attributed to Starlink's high satellite density, low orbital altitudes and orbital shells which regularly pass over parts of Ireland.
 
 OneWeb showed significantly lower coverage availability, with satellites passing infrequently and with short coverage windows. Coverage was slightly superior in Northern regions but still only reached a maximum coverage availability of $11.67\%$. However, when coverage was available a strong data rate was calculated with a peak of 240.89 Mbps, showing that it is capable of delivering 5G level broadband. 
 
-Kuiper also lacked in terms of coverage availability, with only a max coverage of $7.88\%$ in the southern parts of the country, however, of the three constellations modeled, it had the weakest availability and the weakest coverage speeds, at only a maximum data rate of 207.71 Mbps. 
+Kuiper also lacked in terms of coverage availability, with only a max coverage of $7.88\%$ in the southern parts of the country, however, of the three constellations modeled, it had the weakest availability and coverage speeds, at only a maximum data rate of 207.71 Mbps. 
 
 While all three constellations are capable of providing 5G level coverage, the poor availability in Ireland from Kuiper and OneWeb (and in some parts of the country, Starlink), make them an unviable option for rural connectivity as they stand. 
 
@@ -17,12 +17,12 @@ The analysis of terrestrial 5G coverage shows a dependence on population density
 
 LEO constellations however, provide broad coverage independent of local population density and infrastructure. Making them particularly well suited to rural and remote areas. While terrestrial 5G generally provides more consistent performance where available, LEO satellites offer a realistic alternative for areas which are difficult to reach for traditional networks. 
 
-The results support the conclusion that LEO satellites broadband, at it's current capabilities, should be considered complementary technology to tradition network systems. In urban areas 5G remains optimal. However, high density constellations such as Starlink have a real potential to enhance connectivity in rural regions. 
+The results support the conclusion that LEO satellite broadband, at it's current capabilities, should be considered complementary technology to traditional network systems. In urban areas 5G remains optimal. However, high density constellations such as Starlink have a real potential to enhance connectivity in rural regions. 
 
 \section{Limitations of Study}
-This study employs a simplified model focused on coverage availability and down-link capacity. Layered network performance, up-link performance, latency variability, and effects of various levels of traffic are not modeled. On top of this, constellations parameters were based on publicly available information rather than operation performance data. These simplifications limit the accuracy of the performance estimates, but they are appropriate for a comparative, system level comparison of coverage over a region. 
+This study employs a simplified model focused on coverage availability and downlink capacity. Layered network performance, uplink performance, latency variability, and effects of various levels of traffic are not modeled. On top of this, constellations parameters were based on publicly available information rather than operation performance data. These simplifications limit the accuracy of the performance estimates, but they are appropriate for a comparative, system level comparison of coverage over a region. 
 
-Constellation parameters and DTC capability were inferred from publicly available sources rather than operator given specifications. As a result, the findings in this thesis should be treated as indicative performance trends, and not precise service grantees. 
+Constellation parameters and DTC capability were inferred from publicly available sources rather than operator given specifications. As a result, the findings in this thesis should be treated as indicative performance trends, and not precise service guarantees. 
 
 Despite these limitations, the model is appropriate for comparative study. The assumptions were applied across all constellations for a fair evaluation of  coverage estimations. 
 
@@ -44,7 +44,7 @@ Additionally, limited publicly available information regarding DTC capable satel
 The project has met it's primary objectives. A functional, versatile simulation model for LEO satellites capable of evaluating coverage metrics across multiple constellations and rural areas, not just in Ireland but globally was developed. Meaningful insights were gained, using this model, regarding the suitability of LEO constellations for rural broadband in Ireland. The results demonstrate how constellation architecture influence coverage availability and show how LEO systems can be compared to terrestrial networks, and or used in conjunction with terrestrial networks. 
 
 \subsection{Lessons Learned and Future Improvements}
-While this project focused on a high level evaluation and delivered relevant results, system level modelling such as user traffic, should be considered for any future work using this framework. Peak performance metrics are useful for evaluating feasibility but a more in depth analysis would be useful for a more refined study. Future work could extent this model by including demand distribution, beam dynamics, up-link analysis, and latency modelling. As LEO constellations evolve and more operation data becomes available this project could refine certain aspects such as DTC analysis. 
+While this project focused on a high level evaluation and delivered relevant results, system level modelling such as user traffic, should be considered for any future work using this framework. Peak performance metrics are useful for evaluating feasibility but a more in depth analysis would be useful for a more refined study. Future work could extent this model by including demand distribution, beam dynamics, uplink analysis, and latency modelling. As LEO constellations evolve and more operation data becomes available this project could refine certain aspects such as DTC analysis. 
 
 This project also had a significant personal learning experience as the majority of technical knowledge required was developed during the course of the project itself. While certain foundational skills were obtained throughout the degree, the specific details of LEO satellite communication, orbit modelling, and constellation level performance, and even programming in python were largely unknown at the offset. 
 

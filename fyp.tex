@@ -1,32 +1,45 @@
 \documentclass{report}
 
+% ---------- Language & Fonts ----------
 \usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 
+% ---------- Math & Symbols ----------
 \usepackage{amsmath,amssymb}
+
+% ---------- Graphics & Floats ----------
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage[colorinlistoftodos]{todonotes}
-\usepackage[toc,page]{appendix}
-\usepackage{url}
-\usepackage{hyperref}
-\usepackage{bookmark}
-\usepackage{titletoc}
 \usepackage{placeins}
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage{microtype}
-\usepackage{titlesec}
-\usepackage{svg}
+
+% ---------- Tables & Listings ----------
 \usepackage{booktabs}
 \usepackage{colortbl}
-\usepackage{xcolor}
+\usepackage{listings}
 \usepackage{siunitx}
-\usepackage{pdfpages}
 
+% ---------- Colour ----------
+\usepackage{xcolor}
+
+% ---------- Typography ----------
+\usepackage{microtype}
+\usepackage{titlesec}
+
+% ---------- Hyperlinks ----------
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+% ---------- Misc ----------
+\usepackage{url}
+\usepackage{appendix}
+\usepackage{pdfpages}
+\usepackage{datetime2}
+\usepackage{svg}
+
+% ---------- Page Geometry ----------
 \usepackage[
   a4paper,
   left=1.2cm,
@@ -38,10 +51,12 @@
   footskip=0.6cm
 ]{geometry}
 
+% ---------- Spacing ----------
 \setlength{\parskip}{0.3em}
 \setlength{\parindent}{0pt}
 \linespread{1.05}
 
+% ---------- Headings ----------
 \titlespacing*{\chapter}{0pt}{0pt}{10pt}
 \titlespacing*{\section}{0pt}{8pt}{4pt}
 \titlespacing*{\subsection}{0pt}{6pt}{3pt}
@@ -52,14 +67,16 @@
   {0.5em}
   {}
 
+% ---------- Captions ----------
 \captionsetup{
   font=small,
   labelfont=bf
 }
 
+% ---------- Listings ----------
 \lstset{
   language=Python,
-  basicstyle=\ttfamily,
+  basicstyle=\ttfamily\small,
   keywordstyle=\color{blue},
   stringstyle=\color{red},
   commentstyle=\color{green!50!black},
@@ -67,23 +84,26 @@
   breaklines=true
 }
 
+% ---------- Hyperref ----------
 \hypersetup{
   colorlinks=true,
   linkcolor=blue,
-  urlcolor=cyan,
-  citecolor=black
+  citecolor=black,
+  urlcolor=cyan
 }
 
-\date{March 2024}
 \setlength{\marginparwidth}{2cm}
 
+% =================================================
+%                   DOCUMENT
+% =================================================
 \begin{document}
 
 \begin{titlepage}
 \centering
 
 \textsc{\LARGE Maynooth University}\\[5mm]
-\textsc{\Large Dept. Electronic Engineering}
+\textsc{\Large Dept. of Electronic Engineering}
 
 \vspace{5mm}
 \includegraphics[width=0.5\linewidth]{figures/_NUIM.png}
@@ -95,12 +115,10 @@
 
 \vspace{2cm}
 
-\textsc{\large A Project Report submitted in partial fulfilment of the requirements of the Maynooth University for the degree of Masters of Engineering}
+\textsc{\large A Project Report submitted in partial fulfilment of the requirements for the degree of Master of Engineering}
 
 \vspace{2cm}
 
-
-\begin{center}
 {\Large
 \renewcommand{\arraystretch}{1.6}
 \begin{tabular}{@{}l l@{}}
@@ -108,7 +126,6 @@
 \textit{Student Number} & 21329721
 \end{tabular}
 }
-\end{center}
 
 \vspace{2cm}
 
@@ -116,12 +133,13 @@
 Dr Mustafa Kishk
 
 \vspace{1cm}
-
 {\large \today}
 
 \vfill
-\pagenumbering{roman}
 \end{titlepage}
+
+\cleardoublepage
+\pagenumbering{roman}
 
 \tableofcontents
 \clearpage
@@ -129,18 +147,15 @@ Dr Mustafa Kishk
 \clearpage
 \listoftables
 \clearpage
-\FloatBarrier
-
-\pagenumbering{arabic}
 
 \begin{abstract}
-  Reliable broadband connectivity remains a challenge in rural Ireland, terrestrial networks deployment is limited by geography and infrastructure cost. This project investigates the potential of Low Earth Orbit (LEO) satellite constellations as a complementary broadband solution to existing terrestrial networks. Using orbital propagation and modelling, the coverage availability and downlink capacity of LEO constellations will be evaluated over Ireland. The results show how the different designs employed by Kuiper, OneWeb and Starlink drastic change coverage availability and performance metrics. Comparison with terrestrial 5G highlights the lack of rural coverage and highlights the use case for a complementary system of both LEO constellations and terrestrial networks.  
-
-
+  Reliable broadband connectivity remains a challenge in rural Ireland, where terrestrial networks deployment is limited by geography and infrastructure cost. This project investigates the potential of Low Earth Orbit (LEO) satellite constellations as a complementary broadband solution to existing terrestrial networks. Using orbital propagation and modelling, the coverage availability and downlink capacity of LEO constellations are evaluated over Ireland. The results show how the different designs employed by Kuiper, OneWeb and Starlink drastically change coverage availability and performance metrics. Comparison with terrestrial 5G highlights the lack of rural coverage and the use case for a complementary system of both LEO constellations and terrestrial networks
+\end{abstract} 
+\clearpage
 
 \section*{Declaration}
 I have read and understand the Department's policy on plagiarism. I declare that this thesis is entirely my own work and that it has not been previously submitted, for any other degree or qualification at any other institution. Where the work of other's has been used, it has been acknowledged and referenced.
-AI LLMs were used during the preparation of this thesis to assist with editing, clarity, and structuring of written content. All technical analysis, interpretation of results, modelling, and conclusions presented are my own work. These tools were not used in the generation of original content or results and were used in accordance with National University of Ireland Maynooth guidelines.
+AI large language models (LLMs) were used were used during the preparation of this thesis to assist with editing, clarity, and structuring of written content. All technical analysis, interpretation of results, modelling, and conclusions presented are my own work. These tools were not used in the generation of original content or results and were used in accordance with National University of Ireland Maynooth guidelines.
 
 
   \noindent
@@ -155,14 +170,20 @@ AI LLMs were used during the preparation of this thesis to assist with editing, 
   Student Number:\ \textit{21329721} \\[0.6em]
   Date:\ \underline{\hspace{4cm}}
 
-\end{abstract}
 
+\clearpage
 \section*{Acknowledgements}
-I would like to express my gratitude to my supervisor, Mustafa Kishk, for his guidance, assistance and constructive feedback throughout this project. His insight was invaluable to the direction this work took and in helping me stay on course. 
+I would like to express my gratitude to my supervisor, Mustafa Kishk, for his guidance, assistance, and constructive feedback throughout this project. His insight was invaluable to the direction this work took and helped me stay on course. 
 
 I would also like to thank the academic staff of National University of Ireland Maynooth Electronic Engineering departments for providing the knowledge and resources that helped form this project. Their teaching and support during my studies have contributed greatly. 
 
-Lastly, I would like ot thank all my family and friends for their encouragement and support, their help and patience was greatly appreciated throughout the year. 
+Lastly, I would like to thank all my family and friends for their encouragement and support, their help and patience were greatly appreciated throughout the year. 
+
+
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
 \input{Chapters/Introduction.tex}
 \input{Chapters/LitReview.tex}

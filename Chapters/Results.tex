@@ -53,7 +53,7 @@ d \approx 5.5 \times 10^5 \, \mathrm{m}.
 \]
 
 \subsection{Free-Space Path Loss}
-Assuming a downlink frequency of 19 Ghz, the FSPL is computed using Friis equation expressed in terms of distance and carrier frequency:
+Assuming a downlink frequency of 19 GHz, the FSPL is computed using Friis equation expressed in terms of distance and carrier frequency:
 
 \begin{equation}
 \label{eq:fspl}
@@ -83,7 +83,7 @@ P_{received} = P_\mathrm{transmitted} + G_\mathrm{received} - \mathrm{FSPL}.
 P_{received} = 46 + 33 - 173 = -94 dBW.
 \end{equation}
 
-\subsection{SINR and Capcity Estimate}
+\subsection{SINR and Capacity Estimate}
 The SINR is computed as (\ref{eq:snr}).
 
 \begin{equation}
@@ -119,7 +119,7 @@ Then expressing $P_{received}= -94 dBW$ in Watts,
     P_{received}(dBW) = 10log_{10}(P(W)) \rightarrow P_{received}(W) = 10^{\frac{-94}{10}} = 4 \times 10^ {-10} W
 \end{equation}
 
-The SINR can then be computed as seen in (\ref{eq:sinrSolved}) where no interfering satellites are assumed, so $Interferance = 0$.
+The SINR can then be computed as seen in (\ref{eq:sinrSolved}) where no interfering satellites are assumed, so $Interference = 0$.
 
 \begin{equation}
 \label{eq:sinrSolved}
@@ -136,7 +136,7 @@ C = B \log_2 (1 + \mathrm{SINR}) = 100 \times 10^6log_2(1+500) \approx 897 Mbps.
 The value obtained form (\ref{eq:shannonCapac}) is a best-case, noise-limited, directly overhead scenario, whereas any simulation in the following sections will involve more realistic geometry and interference. This is an absolute limit of what a sample satellite may achieve under the given simulation parameters. However, this defines an upper ceilings of what can be achieved in the following simulations. 
 
 \section{5G performance metrics}
-In order to evaluate LEO satellite metrics, it is important to have a baseline performance metric, this will be in the form of known 5G standards. According to the International Telecommunication Union's global standard or International Mobile Telecommunications (ITU IMT-2020) \cite{ITU-R-M2410-2017},peak performance assumes ideal conditions and states up to 20 Gbps down-link and 10 Gbps up-link for a single user. However, in realistic network conditions with active users and scheduling constraints, the average user experienced is expected to be at least 100 Mbps on the down-link and 50 Mbps on the up-link\cite{ITU-R-M2410-2017}.
+In order to evaluate LEO satellite metrics, it is important to have a baseline performance metric, this will be in the form of known 5G standards. According to the International Telecommunication Union's global standard or International Mobile Telecommunications (ITU IMT-2020) \cite{ITU-R-M2410-2017},peak performance assumes ideal conditions and states up to 20 Gbps downlink and 10 Gbps uplink for a single user. However, in realistic network conditions with active users and scheduling constraints, the average user experienced is expected to be at least 100 Mbps on the downlink and 50 Mbps on the uplink\cite{ITU-R-M2410-2017}.
 
 \section{Population Density of Ireland}
 To help understand if LEO constellations as they stand can help deliver rural connectivity and or relieve some load from existing networks in more urban areas, it is import to know what areas have what population. Figure \ref{fig:popDensity} shows the population of Ireland from the 2022 Census\cite{CSO_ED_2022_Boundaries}. Unsurprisingly, the majority of people are within a small amount of urban centres such as Dublin with an exceptionally sparse population in rural regions. This population density map provides import context for interpreting the satellite coverage results. This context is important to keep in mind when discussing whether or not LEO satellites can, as they stand, provide coverage to rural areas in Ireland. 
@@ -152,9 +152,9 @@ To help understand if LEO constellations as they stand can help deliver rural co
 \section{Starlink Simulation - 08:00 to 20:00, 23 April 2026}
 Of the three systems modeled, Starlink has the strongest coverage available in Ireland. This result is somewhat predictable as there are significantly more satellites in Starlink's constellation with the data set used in this project containing 10,188 satellites for Starlink alone., however Starlink does not provide continuous coverage over Ireland during the simulated window, but offers substantial availability in mid-latitude regions.
 
-When looking at these results it is critical that care is taken to look at both Figure \ref{fig:StarlinkCoverage-percentage} and \ref{fig:StarlinkCoverage-mbps}. Figure \ref{fig:StarlinkCoverage-percentage} shows how often an area will receive coverage from a Starlink Satellite a percentage of time, while Figure \ref{fig:StarlinkCoverage-mbps} shows, when available, how strong the coverage is according to the shannon capacity formula. It is important to look at both these figures together, as this will show the complete coverage story. This is consistent with all following sections.   
+When looking at these results it is critical that care is taken to look at both Figure \ref{fig:StarlinkCoverage-percentage} and \ref{fig:StarlinkCoverage-mbps}. Figure \ref{fig:StarlinkCoverage-percentage} shows how often an area will receive coverage from a Starlink Satellite a percentage of time, while Figure \ref{fig:StarlinkCoverage-mbps} shows, when available, how strong the coverage is according to the Shannon capacity formula. It is important to look at both these figures together, as this will show the complete coverage story. This is consistent with all following sections.   
 
-In Figure \ref{fig:StarlinkCoverage-percentage}, the average coverage time as a percentage can be seen. The max coverage in Ireland was found to be $75.38\%$ time over the 12 hour period modelled. The coverage is strongly skewed towards the midlands of the country with a strong band going form Dublin to Galway. While continuous cover is not achieved here, the results indicate that coverage gaps are intermittent rather than persistent. 
+In Figure \ref{fig:StarlinkCoverage-percentage}, the average coverage time as a percentage can be seen. The max coverage in Ireland was found to be $75.38\%$ of the time over the 12 hour period modelled. The coverage is strongly skewed towards the midlands of the country with a strong band going form Dublin to Galway. While continuous cover is not achieved here, the results indicate that coverage gaps are intermittent rather than persistent. 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.8\textwidth]{figures/Coverage_heatmaps/Thursday-23rd(8am-8pm)/Starlink/Starlink_all_8am-8pm_coverage_percentage.png}
@@ -163,7 +163,7 @@ In Figure \ref{fig:StarlinkCoverage-percentage}, the average coverage time as a 
 \end{figure}
 
 
-Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Shannon Capacity formula. With a mean value of 320.33 Mbps and some areas reaching 320.9 Mbps. This is a strong indication that these satellites are capable of 5g speeds. Going off the peal coverage of $75.38\%$ at a peak data rate of $321.30Mbps$. When coverage is available, the Starlink downlink capacity is consistently broadband-grade and comparable to rural 5G performance. 
+Figure \ref{fig:StarlinkCoverage-mbps} shows the average data rate as per the Shannon Capacity formula. With a mean value of 320.33 Mbps and some areas reaching 320.9 Mbps. This is a strong indication that these satellites are capable of 5g speeds. Based on the peak coverage of $75.38\%$ at a peak data rate of $321.30Mbps$. When coverage is available, the Starlink downlink capacity is consistently broadband-grade and comparable to rural 5G performance. 
 
 
 \begin{figure}[h!]
@@ -204,7 +204,7 @@ As DTC capable Starlink satellites are not publicly available, this project uses
 Using this information an approximate filter was applied to to the Starlink TLE data. If a satellite was found to be within certain NORAD batch ranges, and or between certain inclination shells, it was considered to be likely to be capable of DTC payloads. 
 Figures \ref{fig:StarlinkDTCpercerntage} and \ref{fig:StarlinkDTCMbps} start a trend which will become apparent in the next sections. While Figure \ref{fig:StarlinkDTCpercerntage} shows the coverage availability to be only a mean of $0.18\%$ of the time, Figure \ref{fig:StarlinkDTCMbps} shows that when there is coverage, the downlink capacity is quite strong, at a mean of 99.98 Mbps and a maximum theoretical throughput of 176.37 Mbps. 
 
-Looking at Figures \ref{fig:StarlinkDTCTrackGlobal} and \ref{fig:StarlinkDTCTracksIreland} show why this is the case, there simply is not enough satellites passing over the country to provide consistent coverage. This is entirely to do with satellite orbital geometry and has nothing to do with the satellites down-link capacities. 
+Looking at Figures \ref{fig:StarlinkDTCTrackGlobal} and \ref{fig:StarlinkDTCTracksIreland} show why this is the case, there simply is not enough satellites passing over the country to provide consistent coverage. This is entirely to do with satellite orbital geometry and has nothing to do with the satellites downlink capacities. 
 
 \begin{figure}[h!]
     \centering
@@ -322,6 +322,77 @@ The downlink capacity seen in Figure \ref{fig:KuiperCoverage_mbps} are sufficien
     \label{fig:KuiperTracksIreland}
 \end{figure}
 
+\FloatBarrier
+\section{Simulation Summary}
+Table \ref{tab:leo_comparison} provides a summary of the previous simulations, showing which constellations achieved the most and least coverage time and throughput. 
+\begin{table}[h]
+\centering
+\caption{Comparison of 12-hour LEO constellation simulations over Ireland (08:00--20:00, 23 April 2026)}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Constellation} & \textbf{Max Coverage (\%)} & \textbf{Mean Coverage (\%)} & \textbf{Mean Capacity (Mbps)} & \textbf{Max Capacity (Mbps)} \\
+\hline
+Starlink & 75.38 & 32.01 & 320.33 & 321.30 \\
+\hline
+Starlink DTC & 0.87 & 0.18 & 93.98 & 176.37 \\
+\hline
+OneWeb & 11.67 & 10.77 & 240.87 & 240.89 \\
+\hline
+Kuiper & 7.88 & 1.67 & 69.13 & 207.71 \\
+\hline
+\end{tabular}
+\label{tab:leo_comparison}
+\end{table}
+
+
+
+\FloatBarrier
+\section{Effects of Different Beam-widths}
+Satellite beam-width is a design parameter which may impact both coverage availability and achievable downlink. To evaluate the impact of beam-width a shorter simulation was ran, on Friday, \DTMdisplaydate{2026}{04}{24}{-1} from 8:00\,am--11:00\,am. These simulations were ran using a beam-width of $10^{\circ}$ and $20^{\circ}$, while all other simulation parameters were kept identical. The results of this can be seen in Figure \ref{fig:Beamwidths}.
+
+
+Figures \ref{fig:10degPercent} and \ref{fig:20degPercent} show the coverage time percentage. The Narrower $10^{\circ}$ beam shows significantly reduced coverage time across the country compared to the $20^{\circ}$ beam. The narrower beam leads to more localized coverage, meaning coverage becomes more confined to regions with denser ground tracks of satellites. An increased beam-width leads to a uniform coverage availability across the country. This hints that wider beams -or more advanced beam-forming techniques - can partially make up for a lack of satellite visibility, and increase the likelihood of coverage in a region.  
+
+The Figures \ref{fig:10degMbps} and \ref{fig:20degMbps} depict the average downlink speed between the $10^{\circ}$ and $20^{\circ}$ beams respectively. There is no significant improvement of on over another with the $10^{\circ}$ beam achieving an mean of 320.42 Mbps and a maximum of 321.64 Mbps while the $20^{\circ}$ beam achieved a mean of 320.19 Mbps, and a maximum of 321.04 Mbps. This means that with simulation parameters and methods, beam-width does not significantly influence achievable data rates, and within this simulation, the primary effect of a beam-width is improved coverage time. 
+
+\begin{figure}[!ht]
+  \centering
+  % Row 1
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/Coverage_heatmaps/DifferentBeamwidths/Starlink_10Degree_percentage.png}
+    \caption{Starlink $10^{\circ}$ Beam-Width Coverage Percentage}
+     \label{fig:10degPercent}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    
+    \centering
+    \includegraphics[width=\linewidth]{figures/Coverage_heatmaps/DifferentBeamwidths/Starlink_10Degree_mbps.png}
+    \caption{Starlink $10^{\circ}$ Beam-width Data Rate}
+    \label{fig:10degMbps}
+  \end{subfigure}
+
+  \bigskip
+
+  % Row 2
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/Coverage_heatmaps/DifferentBeamwidths/Starlink_20Degree_Percentage.png}
+    \caption{Starlink $20^{\circ}$ Beam-Width Coverage Percentage}
+    \label{fig:20degPercent}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/Coverage_heatmaps/DifferentBeamwidths/Starlink_20Degree_mbps.png}
+    \caption{Starlink $20^{\circ}$ Beam-Width Data Rate}
+    \label{fig:20degMbps}
+  \end{subfigure}
+\caption{Effects of Satellite Beam-width}
+\label{fig:Beamwidths}
+\end{figure}
+
 
 
 
@@ -358,9 +429,7 @@ The coverage patterns match the population density map in Figure \ref{fig:popDen
     \centering
     \includegraphics[width=\linewidth]{figures/5g-vodafone.png}
     \caption{5G coverage in Ireland — Vodafone }
-  \end{subfigure}
-
-  
+  \end{subfigure} 
 \caption{5G coverage in Ireland for different mobile network providers%
 \protect\cite{comreg_coverage_map}}
 
