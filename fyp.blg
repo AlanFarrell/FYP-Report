@@ -12,49 +12,50 @@ Database file #1: references.bib
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty journal in ookla_alaska_connectivity_2026
+Warning--empty journal in Michael2025BroadbandCost
 Warning--empty author in chalmers546711
 Warning--missing institution in chalmers546711
 
 Done.
-You've used 53 entries,
+You've used 62 entries,
             4087 wiz_defined-function locations,
-            1139 strings with 19164 characters,
-and the built_in function-call counts, 25778 in all, are:
-= -- 2198
-> -- 487
+            1183 strings with 20615 characters,
+and the built_in function-call counts, 29399 in all, are:
+= -- 2515
+> -- 523
 < -- 56
-+ -- 240
-- -- 109
-* -- 1081
-:= -- 4620
-add.period$ -- 111
-call.type$ -- 53
-change.case$ -- 86
++ -- 258
+- -- 118
+* -- 1220
+:= -- 5324
+add.period$ -- 129
+call.type$ -- 62
+change.case$ -- 103
 chr.to.int$ -- 99
-cite$ -- 56
-duplicate$ -- 2063
-empty$ -- 2164
-format.name$ -- 125
-if$ -- 5733
+cite$ -- 66
+duplicate$ -- 2361
+empty$ -- 2495
+format.name$ -- 134
+if$ -- 6522
 int.to.chr$ -- 0
-int.to.str$ -- 53
-missing$ -- 483
-newline$ -- 226
-num.names$ -- 51
-pop$ -- 1155
+int.to.str$ -- 62
+missing$ -- 552
+newline$ -- 267
+num.names$ -- 60
+pop$ -- 1339
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1994
+skip$ -- 2278
 stack$ -- 0
-substring$ -- 352
-swap$ -- 1414
+substring$ -- 377
+swap$ -- 1588
 text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 53
-warning$ -- 3
-while$ -- 69
-width$ -- 55
-write$ -- 558
-(There were 3 warnings)
+type$ -- 62
+warning$ -- 4
+while$ -- 78
+width$ -- 64
+write$ -- 652
+(There were 4 warnings)

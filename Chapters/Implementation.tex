@@ -9,7 +9,7 @@ This chapter describes the logic behind the software implementation of the satel
 \end{figure}
 Figure \ref{fig:ImplementationLogic} illustrates the overall execution and flow of the implementation logic. The implementation begins by setting the simulation Parameters, i.e, duration of simulation,  frequency of time steps, the density of the coverage grid, and the size of the area being studied. Following this, the TLE data is then acquired from CelesTrak, which is used to propagate satellite orbits using the SGP4 model. At each discrete time step, satellite positions are propagated and then transformed into a common Earth fixed coordinate frame, and evaluated using an elevation mask and beam width constraints to determine which satellites can provide coverage and when.
 
-The core execution of this system is based in a loop which iterates over a grid of latitude and longitude coordinated within which visibility and coverage check are performed for all propagated satellites at each time step. After the completion of this simulation, the collected data is stored and then processed into heatmaps to be visualized, this data will then be compared tio publicly available terrestrial data. 
+The core execution of this system is based in a loop which iterates over a grid of latitude and longitude coordinated within which visibility and coverage check are performed for all propagated satellites at each time step. After the completion of this simulation, the collected data is stored and then processed into heatmaps to be visualized, this data will then be compared to publicly available terrestrial data. 
 
 
 \section{Simulation Parameter Initialization}
@@ -31,7 +31,7 @@ The first stage of implementation involves defining a set of simulation paramete
 \end{itemize}
 
 \section{Data acquisition}
-The next stage of the implementation is acquiring up-to-date orbital Parameters for the given LEO constellation(Starlink, Kuiper, OneWeb). TLE sets are retrieved from Celestrak. This data provides the perturbations required  to propagate the orbits using SGP4. The TLE data used in this system are taken directly from Celestrak \cite{celestrakTLE}. Downloading this data produces a text stream which has sets of three lines of text blocks, satellite name, followed by line 1 and line 2 of the TLE. The implementation of this system parses these entries for each satellite.  
+The next stage of the implementation is acquiring up-to-date orbital parameters for the given LEO constellation(Starlink, Kuiper, OneWeb). TLE sets are retrieved from Celestrak. This data provides the perturbations required  to propagate the orbits using SGP4. The TLE data used in this system are taken directly from Celestrak \cite{celestrakTLE}. Downloading this data produces a text stream which has sets of three lines of text blocks, satellite name, followed by line 1 and line 2 of the TLE. The implementation of this system parses these entries for each satellite.  
 
 Using the most up to date TLEs ensures that the system accurately represents the dynamic nature of large LEO constellations, which orbital parameters may change drastically and regularly due to factors such as manual maneuvers. 
 
@@ -42,11 +42,11 @@ response = requests.get("https://celestrak.org/NORAD/elements/gp.php?GROUP=starl
 lines = response.text.splitlines()
 \end{lstlisting}
 
-However, this can create issues, as this project is pulling TLE data from thousands of satellites over many time steps, this can create a large number of HTTP requests which can be blocked by CelesTrak. To avoid this, the TLE data is pulled once at the start of the simulation and then stored locally for the duration of the simulation. This allows for a more efficient and robust implementation, as it avoids potential issues with rate limiting and ensures that the same TLE data is used throughout the simulation for consistency.
+However, this can create issues. This project is pulling TLE data from thousands of satellites over many time steps, this can create a large number of HTTP requests which can be blocked by CelesTrak. To avoid this, the TLE data is pulled once at the start of the simulation and then stored locally for the duration of the simulation. This allows for a more efficient and robust implementation, as it avoids potential issues with rate limiting and ensures that the same TLE data is used throughout the simulation for consistency.
 
 On top of this it is critical to ensure that the TLE data is parsed at the right location in the code, as seen in Figure \ref{fig:ImplementationLogic}, this project employs a 0.1  latitude-longitude step for mapping over Ireland, which equates to thousands of grid positions, and over a duration of 24 hours with a time step of 10 seconds, in order to prevent temporary IP bans, the TLE data must be pulled first, then stored, then used. 
 
-Even with this approach, this project experienced some rate limiting, throttling and temporary IP bans from CelesTrak, to get around this, as offline backup of the TLE data was stored and manually updated periodically. This can be seen implemented in Listing \ref{lst:TLE-Data-Acquisition}. Should there be issues with accessing data directly from CelesTrak, it was still possible to, design and test while using an offline backup file containing TLE data.
+Even with this approach, this project experienced some rate limiting, throttling and temporary IP bans from CelesTrak, to get around this, an offline backup of the TLE data was stored and manually updated periodically. This can be seen implemented in Listing \ref{lst:TLE-Data-Acquisition}. Should there be issues with accessing data directly from CelesTrak, it was still possible to, design and test while using an offline backup file containing TLE data.
 
 \begin{lstlisting}[caption={TLE data acquisition logic}, label={lst:TLE-Data-Acquisition}]
         try:
@@ -178,7 +178,7 @@ propagated = {
 
 
 \section{Coordinate Transformations} \label{section:mathematical_coordinate_transformation}
-Satellite positions produced by SGP4 are given in True Equator, Mean Equinox (TEME) format. TEME remains fixed to relative to the stars not to the Earth. It uses the Earths true equatorial plane at that moment in tim, but for the x-axis it uses the mean equinox which helps smooth out some of the short term wobbles in the Earths's rotation.  
+Satellite positions produced by SGP4 are given in True Equator, Mean Equinox (TEME) format. TEME remains fixed relative to the stars not to the Earth. It uses the Earths true equatorial plane at that moment in time, but for the x-axis it uses the mean equinox which helps smooth out some of the short term wobbles in the Earth's rotation.  
 
 As TEME does not rotate with the Earth, but ground locations given in latitude and longitude do rotate with the Earth, for visibility and elevation calculations, both the satellite and the observer location need to be in the same rotating frame. For this reason TEME must be converted to Earth Centered Earth Fixed (ECEF) coordinate system \cite{inproceedings}. 
  
@@ -230,7 +230,7 @@ z_{\text{TEME}}
 This aligns the satellite position with a Earth fixed rotating frame.
 
 \subsection{Geodetic ECEF}
-To compare a satellite with an observer on Earth, the observer's latitude, longitude and altitude must be expressed as Cartesian X, Y, Z coordinates in the ECEF frame. As the Earth is not a perfect sphere it is approximated as a WSG-84 ellipsoid. This is defined by it's semi major axis(the equatorial size), the flattening(how much the poles are compressed) and the first eccentricity (a measure of how non spherical the ellipsoid is). This can be seen in (\ref{eq:WGS-84}) \cite{WGS84_ECEF_Conversion}.
+To compare a satellite with an observer on Earth, the observer's latitude, longitude and altitude must be expressed as Cartesian X, Y, Z coordinates in the ECEF frame. As the Earth is not a perfect sphere it is approximated as a WSG-84 ellipsoid. This is defined by its semi major axis(the equatorial size), the flattening(how much the poles are compressed) and the first eccentricity (a measure of how non spherical the ellipsoid is). This can be seen in (\ref{eq:WGS-84}) \cite{WGS84_ECEF_Conversion}.
 
 \begin{equation}\label{eq:WGS-84}
 f = \frac{a - b}{a},
@@ -436,7 +436,7 @@ Capacity = Bandwidth \cdot \log_2 \left( 1 + \text{SINR}_{\text{linear}} \right)
 
 These equations were implemented in the system to calculate the theoretical maximum throughput for each satellite providing coverage at each time step. This allows for an analysis of coverage in Ireland. 
 
-Parameters for the constellations were taken from publicly available sources, and are summarized in Table \ref{tab:leo_link_budget_paramaters}. These parameters were used to calculate the received power, interference, noise, and ultimately the Shannon capacity for each satellite providing coverage at each time step.
+Parameters for the constellation were taken from publicly available sources, and are summarized in Table \ref{tab:leo_link_budget_paramaters}. These parameters were used to calculate the received power, interference, noise, and ultimately the Shannon capacity for each satellite providing coverage at each time step.
 
 To calculate the EIRP for Starlink, the following calculations were performed. 
 \[
@@ -576,10 +576,10 @@ where this is performed over all satellites that are visible and capable of prov
 \section{Computational Complexity and runtime}
 This sections aims to provide and overview of the dominant computational cost, scaling considerations and practical performance limitations. The overall runtime of the system is influenced by several factors, including the number of satellites, the duration of the simulation, the time step size, and the resolution of the coverage grid. 
 
-We can let $N_s$ be the number of satellites, $N_t$ be the number of time steps, and $N_g$ be the number of grid points. Orbit propagation using SGP4 has a computational complexity of  $\mathcal{O}(1)$ per satellite per time step. This means, the total cost of orbit propagation is $\mathcal{O}(N_s \cdot N_t)$, as each satellite's position must be computed at each time step. For a large LEO constellation such as Starlink, with thousands of satellites and a simulation which spans multiple hours with a fine time step, this can lead to a significant computational load.
+We can let $N_s$ be the number of satellites, $N_t$ be the number of time steps, and $N_g$ be the number of grid points. Orbit propagation using SGP4 has a computational complexity of  $\mathcal{O}(1)$ per satellite per time step. This means, the total cost of orbit propagation is $\mathcal{O}(N_s \cdot N_t)$, as each satellite's position must be computed at each time step. For a large LEO constellations such as Starlink, with thousands of satellites and a simulation which spans multiple hours with a fine time step, this can lead to a significant computational load.
 
 Coverage analysis adds another layer to this, at each time step, visibility and beam-width checks are performed for every satellite-grid point combination. This can result in a complexity of  $\mathcal{O}(N_s \cdot N_t \cdot N_g)$. Even though each individual operation, such as the coordinate transformations, angle calculations and coverage check are relatively simple and inexpensive, the sheer number of operations can lead to long run times, especially as the grid resolution increases. For example, if we have 1000 satellites, a simulation duration of 24 hours with a time step of 10 seconds (which means 8640 time steps), and a grid of 1000 points, the number of operations would be $1000 \cdot 8640 \cdot 1000 = 8.64 \times 10^9$ operations, which take hours to compute.
 
-To reduce the excessive computational costs, some design choices were implemented. FIrst, TLE data is loaded and parsed once at the beginning of the simulation and stored in memory, this avoids repeat network access or file reads which can take time. Secondly, the satellite propagation results are stored as time-indexed state vectors, allowed easy and repeated use during coverage checks without needing to re-propagate. The satellites which produce error codes at a given time step are also discarded to avoid unnecessary calculations. Finally, at any given time step at a grid point, if no satellites are visible, coverage checked are skipped entirely, and automatically marked as no coverage, this avoids the need to preform beam width checks for any satellites which are not even visible.   
+To reduce the excessive computational costs, some design choices were implemented. Firstly, TLE data is loaded and parsed once at the beginning of the simulation and stored in memory, this avoids repeat network access or file reads which can take time. Secondly, the satellite propagation results are stored as time-indexed state vectors, allowed easy and repeated use during coverage checks without needing to re-propagate. The satellites which produce error codes at a given time step are also discarded to avoid unnecessary calculations. Finally, at any given time step at a grid point, if no satellites are visible, coverage checks are skipped entirely, and automatically marked as no coverage, this avoids the need to preform beam width checks for any satellites which are not even visible.   
 
 However, this creates issues with memory usage, as the system needs to store the propagated state vectors for all satellites at all time steps. For a large constellation and long simulation duration, this can lead to high memory consumption. To get around this, larger satellite constellations are ran for 12 hour periods instead of 24, with time steps of 30 seconds instead of 10 or 15. This increases the speed of the simulation by 2-3x. 

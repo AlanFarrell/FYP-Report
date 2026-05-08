@@ -1,41 +1,41 @@
 \chapter{Introduction} \label{chapter:1}
-Reliable broadband has become fundamental for modern life, enabling access to information, communication, education, and economic opportunities. However, many rural areas in Ireland still lack access to high-speed broadband connectivity, creating a significant digital divide between urban and rural communities. This disparity limits the ability of rural residents to fully participate in the digital economy and access essential online services.
+Reliable broadband has become fundamental for modern life, enabling access to information, communication, education, and economic opportunities. However, there exist a significant digital divide between urban and rural communities. This disparity limits the ability of rural residents to fully participate in the digital economy and access essential online services.
 
-In Ireland, this divide can be particularly pronounced, despite initiatives such as the National BroadBand Plan (NBBP) which aims to provide high-speed broadband to all premises by 2028 \cite{NBPPolicy}. Large geographical areas with low population density, such as the west of Ireland as seen in Figure \ref{fig:NBPmap} \cite{NBPMap}, present significant challenges for traditional terrestrial broadband deployment due to high infrastructure costs and logistical difficulties. Many rural communities remain under-served, with limited options for reliable Internet access, because of this, technologies capable of delivering high-speed, low-latency, broadband without extensive ground infrastructure should be explored. 
+In Ireland, this divide can be particularly pronounced, despite initiatives such as the National Broadband Plan (NBBP) which aims to provide high-speed broadband to all premises by 2028 \cite{NBPPolicy}. Large geographical areas with low population density, such as the west of Ireland as seen in Figure \ref{fig:NBPmap} \cite{NBPMap}, present significant challenges for traditional terrestrial broadband deployment due to high infrastructure costs and logistical difficulties. Many rural communities remain under-served, with limited options for reliable internet access. Therefore, technologies capable of delivering high-speed, low-latency broadband without extensive ground infrastructure should be explored. 
 
-Low Earth Orbit (LEO) satellite systems have emerged as a potential solution to these challenges. Operating at altitudes significantly lower than geostationary satellites, LEO constellations can offer reduced latency, improved link budgets and more flexible coverage \cite{esaOrbits}. This project aims to evaluate the potential of LEO satellite systems to provide broadband connectivity to rural areas in Ireland. By modeling the coverage and performance of existing and planned LEO constellations, this project seeks to assess their ability to bridge the digital divide and provide reliable Internet access to under-served communities.
+Low Earth Orbit (LEO) satellite systems have emerged as a potential solution to these challenges. Operating at altitudes significantly lower than geostationary satellites, LEO constellations can offer reduced latency, improved link budgets, and more flexible coverage \cite{esaOrbits}. This project evaluates the potential of LEO satellite systems to provide broadband connectivity to rural areas in Ireland. By modeling the coverage and performance of existing and planned LEO constellations, this project seeks to assess their ability to bridge the digital divide and provide reliable internet access to under-served communities.
 
-This project will address these challenges by developing a simulation to evaluate the coverage and capacity potential of LEO satellite systems over Ireland Using publicly available orbital data and established propagation models, the work will quantify satellite coverage times, and theoretical data rates across a grid of locations in Ireland. The results will provide insights into the feasibility of LEO satellite systems as a solution for rural broadband connectivity.
+This project will address these challenges by developing a simulation to evaluate the coverage and capacity potential of LEO satellite systems over Ireland. Using publicly available orbital data and established propagation models, the work will quantify satellite coverage times, and theoretical data rates across a grid of locations in Ireland. The results will provide insights into the feasibility of LEO satellite systems as a solution for rural broadband connectivity.
 
 \section{Background and Motivation}
-Terrestrial network deployment, particularly fiber based networks can be costly, and typically more cost effective in more urban areas where return on investment is more apparent. Rural regions by comparison have dispersed populations and potentially challenging terrain which can significantly increase the deployment costs, limiting infrastructure expansion. 
+Terrestrial network deployment, particularly fiber-based networks can be costly \cite{Michael2025BroadbandCost}, and are typically more cost effective in more urban areas where return on investment is more apparent. Rural regions by comparison have dispersed populations and potentially challenging terrain which can significantly increase the deployment costs, limiting infrastructure expansion. 
 
-In Ireland this difference is evident from Figure \ref{fig:NBPmap}, where the areas in Amber are targets for state intervention under the NBP and the areas in blue are areas where commercial operators are already delivering high speed broadband services \cite{NBPMap}. It is evident through this map that areas such as Dublin receive significantly improved service.
+In Ireland this difference is evident from Figure \ref{fig:NBPmap}, where the areas in Amber are targets for state intervention under the NBP and the areas in blue are areas where commercial operators are already delivering high-speed broadband services \cite{NBPMap}. It is evident through this map that areas such as Dublin receive significantly improved service.
 \FloatBarrier
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.4\textwidth]{figures/IrelandBroadband.png}
-    \caption{High speed broadband in parts of Ireland \cite{NBPMap}}
+    \caption{High-speed broadband in parts of Ireland \cite{NBPMap}}
     \label{fig:NBPmap}
 \end{figure}
 \FloatBarrier
 
 \section{What is LEO}
-LEO satellites orbit closely to the Earth's surface, this can be anywhere below $\approx 1500\,\text{km}$, however some even orbit as low as 160km. These satellites do not have to follow a particular orbit and are not locked in one spot above the Earth. LEO satellites have a multitude of uses such as satellite imaging of the Earth due to the distance of orbit they are able to take images at a higher resolution. The International Space Station (ISS) is also in low earth orbit, this means it is cheaper and easier for the astronauts to travel to and from it. This report is largely concerned with LEO's ability to send data quickly back to Earth due to it's close proximity. Often times these satellites work as part of a constellation in order to achieve constant coverage over an area\cite{esaLEOImage2020}.
+LEO satellites orbit closely to the Earth's surface, this is typically below approximately 1500 km, however some even orbit as low as 160 km. These satellites do not have to follow a particular orbit and are not locked in one spot above the Earth. LEO satellites have a multitude of use cases, such as satellite imaging of the Earth due to the distance of orbit they are able to take images at a higher resolution. The International Space Station (ISS) is also in low earth orbit, making it cheaper and reducing journey time for astronauts to travel to and from it. Oftentimes these satellites work as part of a constellation in order to achieve constant coverage over an area\cite{esaLEOImage2020}.
 
-This is slightly different from other types of satellites such as Geostationary orbit (GEO), medium Earth orbit satellites (MEO). GEO satellites match Earth's rotation, taking a full 23 hours, and 56 minutes to orbit. These satellites are locked into place at a fixed orbit, traveling around 3 kilometers per second at an altitude of 35,786 km. 
+This is slightly different from other types of satellites such as Geostationary orbit (GEO) and medium Earth orbit satellites (MEO). GEO satellites match Earth's rotation, taking a full 23 hours, and 56 minutes to orbit. These satellites are locked into place at a fixed orbit, traveling around 3 kilometers per second at an altitude of 35,786 km. 
 
-GEO satellites are often used as telecommunication satellites, allowing antennas on the Earth to remain at one location. This effect is strengthened by the effe1ct that one satellite can service a significant portion of the Earth's surface, needing only three satellites to achieve nearly global coverage. The distance from which these satellites orbit is what makes them useful for certain telecommunications and as weather satellites, but this can also be a drawback, due to the enormous distance between a satellite and a user, communications can be slow\cite{esaOrbits}. 
+GEO satellites are often used as telecommunication satellites, allowing antennas on the Earth to remain at one location. This effect is strengthened by the fact that one satellite can service a significant portion of the Earth's surface, needing only three satellites to achieve nearly global coverage. The distance from which these satellites orbit is what makes them useful for certain telecommunications and as weather satellites, but this can also be a drawback, due to the enormous distance between a satellite and a user, communications can be slow\cite{esaOrbits}. 
 
-MEO satellites can cover a large range of altitudes and occupy the space between LEO and GEO. MEO satellites are largely used for navigation such as GPS on your phone. One example of this is the Galileo constellation. Again these satellites can also suffer from slow communications due to long round trips the data has to make. \cite{esaOrbits} 
+MEO satellites can cover a large range of altitudes and occupy the space between LEO and GEO. MEO satellites are largely used for navigation such as GPS on your phone. One example of this is the Galileo constellation. These satellites can also suffer from slow communications due to long round trips the data has to make. \cite{esaOrbits} 
 
 
 \section{Problem Statement}
-Despite investment in Ireland's terrestrial broadband infrastructure through initiatives such as the NBBP \cite{NBPPolicy}, substantial challenges remain in delivering consistent high-performing broadband connectivity to rural and sparsely populated areas. The economic and technical limitations with fiber deployment and mobile network density results in long roll-out times with uneven service availability across rural regions.
+Despite investment in Ireland's terrestrial broadband infrastructure through initiatives such as the NBBP \cite{NBPPolicy}, substantial challenges remain in delivering consistent high-performing broadband connectivity to rural and sparsely populated areas. The economic and technical limitations with fiber deployment and mobile network density result in long roll-out times with uneven service availability across rural regions.
 
 LEO satellite constellations have emerged as a potential alternative broadband solution, offering wide-area coverage with reduced reliance on extensive ground infrastructure. LEO constellations present the potential for improved latency and throughput. However, the practical suitability of these systems for addressing Ireland's rural connectivity challenges has not yet been sufficiently quantified, particularly in terms of their ability to operate as a standalone solution or as a complement to existing terrestrial networks.
 
-The primary objective of this project is to evaluate whether LEO satellite constellations are capable of delivering a broadband service comparable to, or exceeding, that of 5G in rural areas of Ireland that remain under-served under the NBP \cite{NBPMap}. A secondary objective is to assess the feasibility of integrating LEO satellite systems as part of a complementary or hybrid broadband solution alongside existing infrastructures.
+The primary objective is to evaluate whether LEO satellite constellations can deliver broadband performance comparable to, or exceeding, that of 5G in rural areas of Ireland that remain under-served under the NBP \cite{NBPMap}. A secondary objective is to assess the feasibility of integrating LEO satellite systems as part of a complementary or hybrid broadband solution alongside existing infrastructures.
 
 To achieve these objectives, this project aims to:
 
@@ -46,7 +46,7 @@ To achieve these objectives, this project aims to:
     \item Compare the predicted performance of LEO satellite links with existing 5G broadband capabilities.
     \item Assess the potential role of LEO systems as either a standalone or complementary broadband solution.
 \end{itemize}
-Three main research questions will be considered 
+Three main research questions will be considered,
 
 \begin{itemize}
     \item Can current LEO constellations provide broadband-grade downlink capacity to rural Ireland? 
@@ -54,26 +54,29 @@ Three main research questions will be considered
     \item Can LEO satellites be viewed as a replacement to, or as a complementary solution to terrestrial networks?
 \end{itemize}
 \section{Scope of Project}
-The scope of this project is focused on evaluating the feasibility of LEO satellite constellations as a solution for rural broadband connectivity in Ireland. The work concentrates on modeling and analyzing satellite coverage availability and theoretical communication performance using a simulation-based approached with publicly available data. 
+The scope of this project is focused on evaluating the feasibility of LEO satellite constellations as a solution for rural broadband connectivity in Ireland. The work concentrates on modeling and analyzing satellite coverage availability and theoretical communication performance using a simulation-based approach with publicly available data. 
 
 This project includes the development of a software simulation for LEO satellites using real Two-Line Element (TLE) data. The simulation will evaluate satellite visibility, coverage, and theoretical data rates across a grid of locations in Ireland. The project will compare the performance of LEO satellite systems against terrestrial broadband solutions in terms of coverage and potential data rates.
 
 The geographic scope is limited to Ireland, with a particular emphasis on rural areas that are currently under-served by terrestrial broadband. The project will focus on existing and planned LEO constellations, such as Starlink, OneWeb, and Kuiper, to assess their potential impact on rural connectivity in Ireland.
 
-Several aspects are intentionally excluded from the scope of this project. The simulation does not account for detailed processes such as modulation schemes,  encoding, adaptive power control or access scheduling. Atmospheric effects, terrain obstructions, attenuation from weather, and traffic from user demand are not explicitly considered. On top of this, network level behaviors such as gateway placement, routing strategies, handover delays, are not within the scope of this project. 
+Several aspects are intentionally excluded from the scope of this project. The simulation does not account for detailed processes such as modulation schemes, 
+encoding, adaptive power control or access scheduling. Atmospheric effects, terrain obstructions, attenuation from weather, and traffic from user demand are not explicitly considered. On top of this, network level behaviors such as gateway placement, routing strategies, handover delays, are not within the scope of this project. 
 
-By constraining the scope, this project aims to deliver a clear, reproducible, a computationally achievable assessment of whether LEO satellite systems can meaningfully enhance broadband connectivity in rural Ireland.
+By constraining the scope, this project aims to deliver a clear, reproducible, and computationally achievable assessment of whether LEO satellite systems can meaningfully enhance broadband connectivity in rural Ireland.
 
 \section{LEO Satellite Constellation Architectures}
-Compared to geostationary satellites, LEO constellations offer significantly lower propagation delay and reduced path loss, enabling a high quality broadband service \cite{2019AcAau.159..123D} \cite{10.1145/3286062.3286075}. With LEO continuous service is achieved through coordinated constellation geometry and handover logic between satellites as opposed to fixed satellite positioning.
+Compared to GEO satellites, LEO constellations offer significantly lower propagation delay and reduced path loss, enabling a high quality broadband service \cite{2019AcAau.159..123D} \cite{10.1145/3286062.3286075}. With LEO continuous service is achieved through coordinated constellation geometry and handover logic between satellites as opposed to fixed satellite positioning.
 
-LEO constellations are generally organized into multiple orbital planes, with satellites even spaced within each plane to ensure consistent regional coverage. Key architectural parameters include orbital altitude, inclination, number of orbital planes, and the number of satellites per plane. As the orbital altitude decreases, the latency reduces, however a larger total satellite count is then required to account for coverage gaps \cite{2019AcAau.159..123D} . These design trade-offs include system cost, performance and scalability. 
+LEO constellations are generally organized into multiple orbital planes, with satellites evenly spaced within each plane to ensure consistent regional coverage. Key architectural parameters include orbital altitude, inclination, number of orbital planes, and the number of satellites per plane. As the orbital altitude decreases, the latency reduces, however a larger total satellite count is then required to account for coverage gaps \cite{2019AcAau.159..123D} . These design trade-offs include system cost, performance and scalability. 
 
 LEO satellite constellation architecture is a complex trade-off between coverage, latency, and system complexity. Understanding the cost and impact of key design features is crucial for successful LEO constellation deployment.  
 \section{Existing LEO Constellations}
+LEO satellites often use defined frequency bands to communicate with, two of the main bands are the Ku-band and Ka-band and can be seen in \ref{table:ku-ka-bands}
 \FloatBarrier
 \begin{table}[h!]
 \caption{Common frequency ranges for Ku and Ka-band satellite communications\cite{esa_satellite_frequency_bands}.}
+\label{table:ku-ka-bands}
 \centering
 \begin{tabular}{lcc}
 \hline
@@ -87,7 +90,7 @@ Ka-band & 18 - 26  \\
 
 In recent years, several companies have begun deploying extensive constellations in order to achieve global broadband services. The following section will give an overview of some of these companies. 
 \subsection{Telesat}
-Telesat's LEO constellation operates in the Ka-band and is designed to provide global broadband coverage, with high throughput and low latency. Telesat's constellation uses 1.8GHz of the Ka-band with a downlink (17.8-20.2 GHz) and an uplink (27.7-30.0 GHz) stream, and is made up of two sets of orbits. This consists of, six polar orbits at an altitude of \~ 1000 km and 5 inclined orbits at \~ 1200km. These orbits contain at least 12 and 5 satellites, respectively. The polar orbits are focused on providing full global coverage while the inclined orbits mainly focus on the middle latitudes where most of Telesat's customers are.
+Telesat's LEO constellation operates in the Ka-band and is designed to provide global broadband coverage, with high throughput and low latency. Telesat's constellation uses 1.8 GHz of the Ka-band with a downlink (17.8-20.2 GHz) and an uplink (27.7-30.0 GHz) stream, and is made up of two sets of orbits. This consists of, six polar orbits at an altitude of \~ 1000 km and 5 inclined orbits at \~ 1200 km. These orbits contain at least 12 and 5 satellites, respectively. An indicative diagram depicting what the orbital patterns of Telesat look like can be seen in Figure \ref{fig:telesatmap} . The polar orbits are focused on providing full global coverage while the inclined orbits mainly focus on the middle latitudes where most of Telesat's customers are.
 
 In both of these sets of orbits, optical inter-satellite links are employed to ensure that continuous connectivity is secured. Each satellite in the constellation can function as an IP node and has an on-board digital signal processing module supporting demodulation, routing and re-modulation. 
 
@@ -115,14 +118,15 @@ Each satellite uses a direct radiation array which means it can create multiple 
 
 
 \subsection{OneWeb}
-Unlike Telesat, OneWeb operates in the Ku and Ka bands and contains 720 satellites in 18 circular orbits orbiting at \~1200Km. Each satellite operates on a 'bent pipe payload' system, meaning signals received from users on the ground are amplified and forwarded to a gateway instead of being routed on board the satellite itself. Each satellite generates 16 fixed beams to ensure that users are always in view of at least one satellite. 
+Unlike Telesat, OneWeb operates in the Ku and Ka bands and contains 720 satellites in 18 circular orbits orbiting at approximately 1200 km. An indicative diagram of the OneWeb constellation can be seen in Figure \ref{fig:onewebmap}. Each satellite operates on a 'bent pipe payload' system, meaning signals received from users on the ground are amplified and forwarded to a gateway instead of being routed on board the satellite itself. Each satellite generates 16 fixed beams to ensure that users are always in view of at least one satellite. 
 
 While the Ku-band is dedicated to users, the Ka-band is dedicated to gateway links. Each satellite has two steerable antennas, one in operation and a backup antenna. Unlike many other constellations, no satellites in OneWeb's constellation uses inter-satellite links, meaning connectivity is solely reliant on whether the user and gateway are in line of sight with a satellite \cite{TelesatSpacexOnewebComparison}.
 
 \subsection{Starlink}
-SpaceX's Starlink also operates in the Ku and Ka bands and is planned to contain several thousand satellites in multiple types of orbits. Initial deployment consisted of 1600 satellites orbiting at 550Km. Each satellite has a phased array communications payload allowing it to generate multiple steerable beams which can be adjusted depending on the location of user demand and can deliver a latency of only 25ms\cite{starlink_technology}\cite{TelesatSpacexOnewebComparison}.
+SpaceX's Starlink also operates in the Ku and Ka bands and is planned to contain several thousand satellites in multiple types of orbits. Initial deployment consisted of 1600 satellites orbiting at 550 km, and an indicative map of this constellation can be seen in Figure \ref{fig:starlinkmap}. Each satellite has a phased array communications payload allowing it to generate multiple steerable beams which can be adjusted depending on the location of user demand and can deliver a latency of only 25ms\cite{starlink_technology}\cite{TelesatSpacexOnewebComparison}.
 
 Starlink also deploys optical inter-satellite links.This allows satellites to communicate with one another, meaning data can be routed across the constellation without relying on ground base stations or gateways which improves coverage in remote locations. Much like OneWeb, the Ku band services the user links while the ka band services the gateway links\cite{TelesatSpacexOnewebComparison}.
+
 
 \begin{figure}[h!]
     \centering
@@ -130,6 +134,18 @@ Starlink also deploys optical inter-satellite links.This allows satellites to co
     \caption{Starlink constellation \cite{TelesatSpacexOnewebComparison}}
     \label{fig:starlinkmap}
 \end{figure}
+
+
+
+
+\FloatBarrier
+\subsection{Other Constellations}
+In addition to the constellations discussed above, several other LEO constellations are being developed. One of these is Amazon's Kuiper, which plans to deploy a constellation of over 3000 satellites at altitudes between 590 km to 630 km. The Kuiper constellation is designed to use the Ka-band and incorporate optical-inter-satellite links, forming a mesh network in space \cite{amazon_leo_2026}. 
+
+AST SpaceMobile is another constellation of approximately 168 LEO satellites, targeting Direct-to-Device (DTC) communication, enabling smartphones to connect to LEO satellites directly. Its satellites operate at lower frequencies that are compatible with existing cellular networks and have large antenna arrays, enabling coverage of areas up to $\approx 780,000 km^2$ per satellite. This system prioritizes broad coverage and direct connectivity over high-throughput broadband performance \cite{ast_spacemobile_vs_starlink_2023}.
+
+China is also developing large-scale LEO constellations, with the most notable constellation being the Guowang megaconstellation, a state-backed system which is planned to consist of 13,000 satellites in multiple orbital shells from 500 km to 1,145 km \cite{guowang_constellation_2024}. Aside from this, the Qianfan constellation aims to deploy up to 15,000 satellites for global broadband services \cite{china_satellite_internet_race_2026}. 
+
 
 \FloatBarrier
 \subsection{Summary}
@@ -144,7 +160,7 @@ Starlink also deploys optical inter-satellite links.This allows satellites to co
 \hline
 Telesat & Ka & $\geq$117 & 1000 / 1200 & 99.5 / 37.4 & $\geq$12 / $\geq$10 & Digital processing (DRA) & Yes \\
 OneWeb & Ku/Ka & 720 & 1200 & 87 & 40 & Bent-pipe (fixed beams) & No \\
-Starlink (Phase 1) & Ku/Ka & 1600 (→4425) & 550 & 53–81 & 50–75 & Phased-array (steerable) & Yes \\
+Starlink (Phase 1) & Ku/Ka & 1600 (→4425) & 550 & 53-81 & 50-75 & Phased-array (steerable) & Yes \\
 \hline
 \end{tabular}
 }
@@ -153,14 +169,15 @@ Starlink (Phase 1) & Ku/Ka & 1600 (→4425) & 550 & 53–81 & 50–75 & Phased-a
 
 Table \ref{tab:summary} highlights some of the key design strategies among existing LEO constellations. Starlink is unique with the largest constellation and lowest orbit among this group of constellations. This enables Starlink's low latency world-wide coverage. Telesat with fewer satellites but advances processing of payloads utilizes inter-satellite links for efficient data routing, while OneWeb using a bent pipe architecture without ISLs, making it much more dependent on ground gateways. Overall, satellites systems with ISLs and dynamic beam forming have greater flexibility and are superior for rural connectivity compared to OneWeb's traditional approach which is reliant on terrestrial infrastructure. 
 
+The constellations modelled in this project will largely be limited to those which it is possible to access TLE data.
 
 \section{Challenges and Limitations of LEO Systems}
 Despite the rapid growth of LEO constellations, there are technical and regulatory challenges. It is crucial that these issues are understood in light of this project, particularly in the context of Direct-to-Cell technology.
-\subsection{Orbital congestion and Space debris}
-The deployment of thousands of satellites introduces risk of orbital congestion and collisions. Congestion in low Earth orbit reached record highs in 2023, with over 2800 satellites entering LEO during the year. The majority of these satellites in LEO are commercial communications constellations. On top of this, there are over 35,000 objects in orbit that are tracked by space surveillance networks. 26,000 of these are larger than 10cm and a further one million pieces are larger than 1cm. These have the potential to cause serious issues for operating satellites and force operators to spend limited fuel resources to perform maneuvers. In 2023 the ESA created the Zero debris charter to encourage others to become debris neutral by 2030 \cite{payloadspace2024_debris}.
+\subsection{Orbital Congestion and Space Debris}
+The deployment of thousands of satellites introduces risk of collisions and orbital congestion. Congestion in low Earth orbit reached record highs in 2023, with over 2800 satellites entering LEO during the year. The majority of these satellites in LEO are commercial communications constellations. On top of this, there are over 35,000 objects in orbit that are tracked by space surveillance networks. 26,000 of these are larger than 10cm and a further one million pieces are larger than 1cm. These have the potential to cause serious issues for operating satellites and force operators to spend limited fuel resources to perform maneuvers. In 2023 the ESA created the Zero Debris Charter to encourage others to become debris neutral by 2030 \cite{payloadspace2024_debris}.
 
 \subsection{Spectrum and Regulations}
-Spectrum allocation and regulations are some of the most significant challenges for LEO broadband systems. Unlike terrestrial networks which operation within defined know frequency bands, LEO constellations require global coverage to avoid interference with existing services. While most LEO systems operate within the KU and KA band (12-18Ghz and 18-26Ghz) \cite{esa_satellite_frequency_bands}, these frequencies are shared with other satellite and terrestrial services. This creates conflicts which have to be managed through international agreements and licensing. 
+Spectrum allocation and regulations are some of the most significant challenges for LEO broadband systems. Unlike terrestrial networks which operate within defined, known frequency bands, LEO constellations require global coverage to avoid interference with existing services. While most LEO systems operate within the KU and KA band (12-18Ghz and 18-26Ghz) \cite{esa_satellite_frequency_bands}, these frequencies are shared with other satellite and terrestrial services. This creates conflicts which have to be managed through international agreements and licensing. 
 
 The International Telecommunication Union (ITU) governs the global spectrum allocation while national regulatory services such as ComReg in Ireland enforce local compliance. Any operator must have a license for uplink and downlink frequencies, ensuring compatibility with existing networks. Due to the growing number of LEO constellations, complexity in frequency coordination has increased, and this requires interference mitigation techniques such as dynamic beam forming and adaptive power control\cite{ituWRS22SatelliteRegulation2023}.
 
@@ -181,11 +198,11 @@ Australia has formally integrated LEO broadband into its national broadband stra
 \subsection{United States of America - Alaska}
 Alaska has one of the most well developed deployments of LEO satellite broadband. Due to the rugged geography, low population density and permafrost conditions, fiber deployment is exceptionally expensive and challenging in many regions. As a result, large areas of rural Alaska have historically relied on geostationary satellite systems or low-capacity legacy connections, which offer limited performance and high latency.
 
-In recent years, LEO satellite systems - primarily Starlink - have been adopted across rural Alaskan communities. These services are being used by households as well as public institutions such as schools, healthcare facilities, and emergency services. Deployment reports show that LEO broadband has enabled reliable Internet, with government funded programs which incorporate LEO services for undeserved regions\cite{aasb_starlink_alaska}.
+In recent years, LEO satellite systems have been adopted across rural Alaskan communities. These services are being used by households as well as public institutions such as schools, healthcare facilities, and emergency services. Deployment reports show that LEO broadband has enabled reliable internet, with government funded programs which incorporate LEO services for undeserved regions\cite{aasb_starlink_alaska}.
 
-Independent performance measurement analyses further shows the benefits of LEO systems in Alaska. Compared to traditional Geostationary services, LEO connectivity has been shown to significantly reduce latency and improve overall service reliability. LEO broadband now form a core component of Alaska's broadband strategies, with government funded programs incorporating LEO services. \cite{ookla_alaska_connectivity_2026}
+Independent performance measurement analyses further shows the benefits of LEO systems in Alaska. Compared to traditional Geostationary services, LEO connectivity has been shown to significantly reduce latency and improve overall service reliability. LEO broadband now form a core component of Alaska's broadband strategies, with government funded programs incorporating LEO services \cite{ookla_alaska_connectivity_2026}.
 
-Alaska is set to receive \$1.2 billion in funding from the federal government's Broadband Equity Access and Deployment (BEAD) program, of which \$629 million has been set aside for broadband projects. This will be used to connect 44,734 under-served or unserved locations across Alaska. Due to the previously discussed geography issues, this initiative will use a mix of technologies. 14,400 of these locations will be served with Starlink. A breakdown of how this broadband will be rolled out can be seen in Figure \ref{fig:AlaskaBEAD}.
+Alaska is set to receive \$1.2 billion in funding from the federal government's Broadband Equity Access and Deployment (BEAD) program, of which \$629 million has been set aside for broadband projects\cite{ookla_alaska_connectivity_2026}. This will be used to connect 44,734 under-served or unserved locations across Alaska. Due to the previously discussed geography issues, this initiative will use a mix of technologies. 14,400 of these locations will be served with Starlink. A breakdown of how this broadband will be rolled out can be seen in Figure \ref{fig:AlaskaBEAD}.
 
 \begin{figure}[htbp]
     \centering
@@ -195,42 +212,32 @@ Alaska is set to receive \$1.2 billion in funding from the federal government's 
 \end{figure}
 \FloatBarrier
 
-Starlink in 2025 was able to bring up the percentage of OOKLAS speed-test users in Alaska with broadband speeds of 100/20  Mbps from $4.35\%$ in the first half of 2025 to $15.9\%$ in the second half of 2025. In fact a greater number of rural Starlink users in Alaska are receiving broadband speeds of 100/20 Mbps than it's urban users. By the end of 2025 $16.8\%$ of Starlink users in rural areas were able to get broadband speeds of 100/20 Mbps compared to just $12.3\%$ of urban users \cite{ookla_alaska_connectivity_2026}.
+Starlink in 2025 was able to bring up the percentage of OOKLAS speed-test users in Alaska with broadband speeds of 100/20  Mbps from $4.35\%$ in the first half of 2025 to $15.9\%$ in the second half of 2025. In fact a greater number of rural Starlink users in Alaska are receiving broadband speeds of 100/20 Mbps than its urban users. By the end of 2025 $16.8\%$ of Starlink users in rural areas were able to get broadband speeds of 100/20 Mbps compared to just $12.3\%$ of urban users \cite{ookla_alaska_connectivity_2026}.
 
-According to OOKLA, Starlink's median download speeds rose from 73.5 Mbps in March 2025 to 108.5 Mbps in March 2026, and it's median upload speeds go from 10.7 Mbps in March 2025 to 17.1 Mbps in March 2026. This increase in speed can be seen in Figures \ref{fig:alaska_downspeed} and \ref{fig:alaska_upspeed}.
+According to OOKLA, Starlink's median download speeds rose from 73.5 Mbps in March 2025 to 108.5 Mbps in March 2026, and its median upload speeds go from 10.7 Mbps in March 2025 to 17.1 Mbps in March 2026. This increase in speed can be seen in Figures \ref{fig:alaska_downspeed} and \ref{fig:alaska_upspeed}.
 
 
 \begin{figure}[htbp]
   \centering
-
-  \begin{subfigure}{0.9\textwidth}
-    \centering
-    \includegraphics[
-      width=\textwidth,
-      height=0.35\textheight,
-      keepaspectratio
-    ]{figures/alaska-broadband-provide.png}
-    \caption{Downlink speeds}
-    \label{fig:alaska_downspeed}
-  \end{subfigure}
-
-  \vspace{1em}
-
-  \begin{subfigure}{0.9\textwidth}
-    \centering
-    \includegraphics[
-      width=\textwidth,
-      height=0.35\textheight,
-      keepaspectratio
-    ]{figures/alaska-broadband-provide (1).png}
-    \caption{Uplink speeds}
-    \label{fig:alaska_upspeed}
-  \end{subfigure}
-
-  \caption{Alaska broadband performance metrics \cite{ookla_alaska_connectivity_2026}.}
-  \label{fig:alaska_broadband}
+  \includegraphics[
+    width=0.9\textwidth,
+    height=0.35\textheight,
+    keepaspectratio
+  ]{figures/alaska-broadband-provide.png}
+  \caption{Downlink speeds}
+  \label{fig:alaska_downspeed}
 \end{figure}
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[
+    width=0.9\textwidth,
+    height=0.35\textheight,
+    keepaspectratio
+  ]{figures/alaska-broadband-provide (1).png}
+  \caption{Uplink speeds}
+  \label{fig:alaska_upspeed}
+\end{figure}
 
 This provides solid evidence of a real world example of how LEO satellite broadband can function as along term connectivity solution. While there are differences in Ireland such as environmental differences, the underlying challenges are the same - low population density, high infrastructure costs, and limited commercial incentives for fiber deployment. Alaska is a compelling case to further investigate the potential for LEO broadband in Ireland. 
 \FloatBarrier
@@ -247,14 +254,14 @@ However, despite these limitations in recent years some companies have began pur
 \subsection{Upgrading Existing Satellites for D2D Capability}
 While there are some D2D satellite services being developed in new launches of satellites, there is also an interest in enabling D2D functionality on existing LEO constellations which were previously not capable of this. Retrofitting or incrementally upgrading satellites could represent a cost effective path to accelerate D2D deployment.
 
-One method of upgrading for D2D is software-defined payload architectures. Many modern LEO satellites are already contain flexible, re-programmable radio hardware that allows waveform and protocol updates through software. This enables satellites which were originally designed for fixed broadband to support new bandwidths compatible with territorial mobile networks such as LTE or 5g NTN, without any hardware replacement.  
+One method of upgrading for D2D is software-defined payload architectures. Many modern LEO satellites are already contain flexible, re-programmable radio hardware that allows waveform and protocol updates through software. This enables satellites which were originally designed for fixed broadband to support new bandwidths compatible with territorial mobile networks such as LTE or 5G NTN, without any hardware replacement.  
 
 Other than software payloads, enabling D2D capability on existing LEO satellites may also require modifications to antenna systems. Conventional LEO broadband satellites are designed to communicate with a dedicated user terminals equipped with high gain antennas, whereas D2D communication must support direct link to devices with limited to no antenna gain.This can places stringent requirements on  transmit power, beam-forming accuracy, and receiver sensitivity, often necessitating wider beams and lower data rates compared with broadband services \cite{ITU_R_Space}. 
 
-ANother thing to consider is spectrum compatibility. D2D services operating in mobile telephone frequency bands must coexist with terrestrial cellular networks, requiring careful coordination to prevent destructive interference. Retrofitting LEO satellites with D2D capabilities requires not only waveform and protocol updates, but also compliance with regulatory frameworks and power constrains imposed by the ITU. 
+Another consideration is spectrum compatibility. D2D services operating in mobile telephone frequency bands must coexist with terrestrial cellular networks, requiring careful coordination to prevent destructive interference. Retrofitting LEO satellites with D2D capabilities requires not only waveform and protocol updates, but also compliance with regulatory frameworks and power constraints imposed by the ITU. 
 
 \subsection{T-Mobile and Starlink}
-T-Mobile and Starlink have implemented D2D by integrating cellular compatible payloads into a subset of Starlink's second generation satellites, enabling direct communication with smartphones without specialized user equipment \cite{TMobileSpaceXCoverage2022}. These systems operate using licenses terrestrial cellular spectrum provided by T-Mobile, with LEO satellites acting as large, moving cellular base stations in space \cite{TMobileSpaceXCoverage2022}. To compensate for the limited transmit power and small antennas of hand-held devices, Starlink uses large phase-array antennas operating at lower frequencies, which prioritizes wide area coverage and reliability over higher data rates. Due to this, initial services are limited to test messaging and low speed data, with higher throughput services to come when constellation density and support for the communication standards increase \cite{fccstarlink}.
+T-Mobile and Starlink have implemented D2D by integrating cellular compatible payloads into a subset of Starlink's second generation satellites, enabling direct communication with smartphones without specialized user equipment \cite{TMobileSpaceXCoverage2022}. These systems operate using licensed terrestrial cellular spectrum provided by T-Mobile, with LEO satellites acting as large, moving cellular base stations in space \cite{TMobileSpaceXCoverage2022}. To compensate for the limited transmit power and small antennas of hand-held devices, Starlink uses large phase-array antennas operating at lower frequencies, which prioritizes wide area coverage and reliability over higher data rates. Due to this, initial services are limited to test messaging and low speed data, with higher throughput services to come when constellation density and support for the communication standards increase \cite{fccstarlink}.
 
 
 \section{Ethical Considerations}
@@ -262,29 +269,32 @@ This project is entirely simulation-based and does not involve any human partici
 
 The simulation evaluates theoretical coverage availability and link budget rather than user-specific behavior. While real world performance studies of operational LEO systems are referenced, such as Starlink performance metrics, these are drawn exclusively from published research and are used solely for contextual comparison. No attempt is made to identify or analyze individual users. 
 
-Care is taken to clearly distinguish between theoretical performance limits, simulation assumptions, and real world performance. This is done in order to ensure there is no misrepresentation of or over-generalization of results. In particular this thesis does not claim to predict guaranteed service quality or commercial performance of a specific operator. 
+Care is taken to clearly distinguish between theoretical performance limits, simulation assumptions, and real world performance. This ensures there is no misrepresentation of or over-generalization of results. In particular this thesis does not claim to predict guaranteed service quality or commercial performance of a specific operator. 
 
 \subsection{Ethical Considerations of LEO technology}
 While LEO satellite constellations offer potential to improve rural broadband connectivity, their deployment raises ethical, environmental, and societal concerns that need to be considered. 
 
-One of the primary concerns, is orbital congestion and space debris. As the number of active satellites increases, the risk of collision in low Earth orbit also increases,m raising concerns about long term sustainability of LEO constellations. The European Space Agency (ESA) reports that the current growth of LEO constellations could lead to collision events, potentially rendering certain orbital regimes unusable in the future \cite{ESA_SpaceDebris}. This raises concerns of intergenerational responsibility and the long-term stewardship of shared orbital resources. 
+One of the primary concerns, is orbital congestion and space debris. As the number of active satellites increases, the risk of collision in low Earth orbit also increases, raising concerns about long term sustainability of LEO constellations. The European Space Agency (ESA) reports that the current growth of LEO constellations could lead to collision events, potentially rendering certain orbital regimes unusable in the future \cite{ESA_SpaceDebris}. This raises concerns of intergenerational responsibility and the long-term stewardship of shared orbital resources. 
 
-There is also the issues of radio frequency spectrum and orbital slots being finite global resources regulated by international bodies such as the International Telecommunication Union (ITU). The deployment of large LEO constellations risk disproportionate occupation of shared resources , potentially limiting access for future infrastructure that wishes to use these resources \cite{ITU_R_Space}. 
+There are also the issues of radio frequency spectrum and orbital slots being finite global resources regulated by international bodies such as the International Telecommunication Union (ITU). The deployment of large LEO constellations risk disproportionate occupation of shared resources , potentially limiting access for future infrastructure that wishes to use these resources \cite{ITU_R_Space}. 
 
-LEO broadband also raises concerns regarding digital inequality and service affordability. While LEO systems can technically extend broadband coverage to remote regions, access often depends on the affordability of user terminals and subscription fees. Studies have shown that without targeted policy or a subsidy scheme, LEO services may primarily benefit higher income users potentially reinforcing aspects of the digital divide \cite{AnalysysMasonLEO2024}. Figure highlights that after a certain threshold, LEO constellations become cheaper than Fiber to the Home (FTTH) systems, it is ethically crucial this saving is passed on to the end user. Considering that it is predicted for LEO satellite constellations to service as many as 4.2 million customers by 2030 and can be more cost effective in terms of deployment for $5-42\%$ of household depending on country and the bandwidth, it is crucial this service remains affordable for lower income households.
+LEO broadband also raises concerns regarding digital inequality and service affordability. While LEO systems can technically extend broadband coverage to remote regions, access often depends on the affordability of user terminals and subscription fees. Studies have shown that without targeted policy or a subsidy scheme, LEO services may primarily benefit higher income users potentially reinforcing aspects of the digital divide \cite{AnalysysMasonLEO2024}. Figure \ref{fig:costcomparison} shows how after a certain threshold of coverage, it bceomes cheaper to deploy LEO satellites constellations for broadband than fiber deployment, it is ethically crucial this saving is passed on to the end user. Considering that it is predicted for LEO satellite constellations to service as many as 4.2 million customers by 2030 and can be more cost effective in terms of deployment for $5-42\%$ of household depending on country and the bandwidth, it is crucial this service remains affordable for lower income households.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.75\linewidth]{figures/LEOcostComparison.png}
   \caption{Cost comparison of FTTH and LEO networks\cite{AnalysysMasonLEO2024}}
-  \label{fig:StarLinkUpDown}
+  \label{fig:costcomparison}
 \end{figure}
 
 
-Additional ethical concerns are to do with astronomical impacts. Large constellations have been shown to increase optical and radio interference, affecting ground based astronomical observations and research. The International Astronomical Union (IAU) has raised concerns that uncontrolled growth of LEo constellations may cause lasting harm to observation research which is a shared scientific resource\cite{IAU_SatelliteConstellations}. 
+Additional ethical concerns are to do with astronomical impacts. Large constellations have been shown to increase optical and radio interference, affecting ground based astronomical observations and research. The International Astronomical Union (IAU) has raised concerns that uncontrolled growth of LEO constellations may cause lasting harm to observation research which is a shared scientific resource\cite{IAU_SatelliteConstellations}. 
 
-The final ethical concern which will be discussed is environmental impacts. The frequency of rocket launches required to deploy and maintain thousands of satellites emit considerable amounts of greenhouse gasses, black carbon and alumina particles directly into the upper atmosphere, where their climate impact is amplified compare to surface level emissions\cite{RawlsMcDowell2020SatelliteMegaconstellations}. In addition to launch emissions, satellite end of life and re-entry introduces metal particles, such as aluminum oxides, into the upper atmosphere. While individual re-entries pose a minimal risk, the long term impact of frequent satellite re-entries is not fully yet known \cite{ESA_SpaceDebris}.
+The final ethical concern which will be discussed is environmental impacts. The frequency of rocket launches required to deploy and maintain thousands of satellites emit considerable amounts of greenhouse gasses, black carbon and alumina particles directly into the upper atmosphere, where their climate impact is amplified compared to surface level emissions\cite{RawlsMcDowell2020SatelliteMegaconstellations}. In addition to launch emissions, satellite end of life and re-entry introduces metal particles, such as aluminum oxides, into the upper atmosphere. While individual re-entries pose a minimal risk, the long term impact of frequent satellite re-entries is not fully yet known \cite{ESA_SpaceDebris}.
 
+
+\section{Potential Solutions to Ethical Concerns}
+The large scale deployment of LEO constellations raises several ethical and concerns that must be addressed alongside their benefits. Given that these constellations occupy and utilize shared space and resources, coordination between international bodies is essential to manage satellite deployment, spectrum allocation, and end-of-life deorbiting requirements. It is crucial that the growth of LEO constellations is accompanied by regulatory oversight to balance the innovation with sustainability.
 
 
 

@@ -9,21 +9,23 @@
 \contentsline {subsection}{\numberline {1.6.1}Telesat}{3}{subsection.1.6.1}%
 \contentsline {subsection}{\numberline {1.6.2}OneWeb}{4}{subsection.1.6.2}%
 \contentsline {subsection}{\numberline {1.6.3}Starlink}{4}{subsection.1.6.3}%
-\contentsline {subsection}{\numberline {1.6.4}Summary}{5}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.4}Other Constellations}{5}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.5}Summary}{5}{subsection.1.6.5}%
 \contentsline {section}{\numberline {1.7}Challenges and Limitations of LEO Systems}{5}{section.1.7}%
-\contentsline {subsection}{\numberline {1.7.1}Orbital congestion and Space debris}{5}{subsection.1.7.1}%
-\contentsline {subsection}{\numberline {1.7.2}Spectrum and Regulations}{5}{subsection.1.7.2}%
-\contentsline {section}{\numberline {1.8}LEO Satellite Coverage Analysis in Other Countries}{5}{section.1.8}%
-\contentsline {subsection}{\numberline {1.8.1}Canada}{5}{subsection.1.8.1}%
+\contentsline {subsection}{\numberline {1.7.1}Orbital Congestion and Space Debris}{5}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Spectrum and Regulations}{6}{subsection.1.7.2}%
+\contentsline {section}{\numberline {1.8}LEO Satellite Coverage Analysis in Other Countries}{6}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}Canada}{6}{subsection.1.8.1}%
 \contentsline {subsection}{\numberline {1.8.2}Australia}{6}{subsection.1.8.2}%
 \contentsline {subsection}{\numberline {1.8.3}United States of America - Alaska}{6}{subsection.1.8.3}%
 \contentsline {subsection}{\numberline {1.8.4}Relevance to Ireland}{8}{subsection.1.8.4}%
 \contentsline {section}{\numberline {1.9}LEO Satellites and Direct-to-Device}{8}{section.1.9}%
 \contentsline {subsection}{\numberline {1.9.1}Upgrading Existing Satellites for D2D Capability}{8}{subsection.1.9.1}%
-\contentsline {subsection}{\numberline {1.9.2}T-Mobile and Starlink}{8}{subsection.1.9.2}%
-\contentsline {section}{\numberline {1.10}Ethical Considerations}{8}{section.1.10}%
+\contentsline {subsection}{\numberline {1.9.2}T-Mobile and Starlink}{9}{subsection.1.9.2}%
+\contentsline {section}{\numberline {1.10}Ethical Considerations}{9}{section.1.10}%
 \contentsline {subsection}{\numberline {1.10.1}Ethical Considerations of LEO technology}{9}{subsection.1.10.1}%
-\contentsline {section}{\numberline {1.11}Thesis Structure}{10}{section.1.11}%
+\contentsline {section}{\numberline {1.11}Potential Solutions to Ethical Concerns}{10}{section.1.11}%
+\contentsline {section}{\numberline {1.12}Thesis Structure}{10}{section.1.12}%
 \contentsline {chapter}{\numberline {2}Literature Review}{11}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Orbit Modelling and Regional LEO Coverage}{11}{section.2.1}%
 \contentsline {section}{\numberline {2.2}LEO Satellite Systems for Rural Connectivity}{12}{section.2.2}%
@@ -39,7 +41,7 @@
 \contentsline {subsection}{\numberline {3.4.2}ECEF}{17}{subsection.3.4.2}%
 \contentsline {section}{\numberline {3.5}Assumptions}{18}{section.3.5}%
 \contentsline {chapter}{\numberline {4}Implementation}{19}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Simulation Parameter Initialization}{20}{section.4.1}%
+\contentsline {section}{\numberline {4.1}Simulation Parameter Initialization}{19}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Data acquisition}{20}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Orbit propagation}{22}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Coordinate Transformations}{23}{section.4.4}%
@@ -65,18 +67,22 @@
 \contentsline {section}{\numberline {5.7}OneWeb Simulation - 08:00 to 20:00, 23 April 2026}{35}{section.5.7}%
 \contentsline {section}{\numberline {5.8}Kuiper Simulation - 08:00 to 20:00, 23 April 2026}{37}{section.5.8}%
 \contentsline {section}{\numberline {5.9}Simulation Summary}{39}{section.5.9}%
-\contentsline {section}{\numberline {5.10}Effects of Different Beam-widths}{39}{section.5.10}%
-\contentsline {section}{\numberline {5.11}Traditional 5G Coverage in Ireland}{40}{section.5.11}%
-\contentsline {chapter}{\numberline {6}Conclusions}{42}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Engineering Contributions}{42}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Key Findings}{42}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Comparison with Terrestrial 5G}{42}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Limitations of Study}{42}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Project Reflection}{43}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Technical Approach and Design Choices}{43}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Challenges Encountered}{43}{subsection.6.5.2}%
-\contentsline {subsection}{\numberline {6.5.3}Evaluation of outcomes}{43}{subsection.6.5.3}%
-\contentsline {subsection}{\numberline {6.5.4}Lessons Learned and Future Improvements}{43}{subsection.6.5.4}%
-\contentsline {chapter}{\numberline {7}Appendix A}{47}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Example AI prompts used}{47}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Code Explanation and Refactoring support}{47}{section.7.2}%
+\contentsline {section}{\numberline {5.10}Effects of Different Beam-widths}{40}{section.5.10}%
+\contentsline {section}{\numberline {5.11}Beam Contention model}{42}{section.5.11}%
+\contentsline {section}{\numberline {5.12}Other Losses}{44}{section.5.12}%
+\contentsline {section}{\numberline {5.13}Traditional 5G Coverage in Ireland}{45}{section.5.13}%
+\contentsline {chapter}{\numberline {6}Conclusions}{47}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Engineering Contributions}{47}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Key Findings}{47}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Comparison with Terrestrial 5G}{47}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Limitations of Study}{47}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Project Reflection}{48}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Technical Approach and Design Choices}{48}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Challenges Encountered}{48}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}Evaluation of outcomes}{48}{subsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.5.4}Lessons Learned and Future Improvements}{48}{subsection.6.5.4}%
+\contentsline {chapter}{\numberline {7}Appendix A}{53}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Example AI prompts used}{53}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Code Explanation and Refactoring support}{53}{section.7.2}%
+\contentsline {section}{\numberline {7.3}section RA form}{53}{section.7.3}%
+\contentsline {section}{\numberline {7.4}GitHub}{56}{section.7.4}%

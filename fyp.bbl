@@ -86,6 +86,13 @@ N.~Mohan, A.~E. Ferguson, H.~Cech, R.~Bose, P.~R. Renatin, M.~K. Marina, and
   \url{https://www.esa.int/Enabling_Support/Space_Transportation/Types_of_orbits},
   accessed: 2025-10-20.
 
+\bibitem{Michael2025BroadbandCost}
+\BIBentryALTinterwordspacing
+M.~Ilesanmi, ``The high cost of deploying broadband in low-density areas,''
+  June 2025, accessed: 2026-05-08. [Online]. Available:
+  \url{https://www.researchgate.net/publication/392627668_The_High_Cost_of_Deploying_Broadband_in_Low-_Density_Areas}
+\BIBentrySTDinterwordspacing
+
 \bibitem{esaLEOImage2020}
 E.~S. Agency, ``Low earth orbit (leo) - esa multimedia image,''
   \url{https://www.esa.int/ESA_Multimedia/Images/2020/03/Low_Earth_orbit},
@@ -109,6 +116,33 @@ M.~Handley, ``Delay is not an option: Low latency routing in space,'' in
 \bibitem{starlink_technology}
 Starlink, ``Starlink technology,'' \url{https://starlink.com/technology},
   accessed: 2025-11-09.
+
+\bibitem{amazon_leo_2026}
+\BIBentryALTinterwordspacing
+{Amazon}, ``Amazon leo,'' 2026, accessed: 2026-05-07. [Online]. Available:
+  \url{https://www.aboutamazon.com/what-we-do/devices-services/amazon-leo}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ast_spacemobile_vs_starlink_2023}
+\BIBentryALTinterwordspacing
+{Starlink Insider}, ``Ast spacemobile vs starlink: Here's how they compare,''
+  2023, accessed: 2026-05-07. [Online]. Available:
+  \url{https://starlinkinsider.com/ast-spacemobile-vs-starlink/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{guowang_constellation_2024}
+\BIBentryALTinterwordspacing
+{China in Space}, ``Guowang becomes china's largest constellation,'' 2024,
+  accessed: 2026-05-07. [Online]. Available:
+  \url{https://www.china-in-space.com/p/guowang-becomes-chinas-largest-constellation}
+\BIBentrySTDinterwordspacing
+
+\bibitem{china_satellite_internet_race_2026}
+\BIBentryALTinterwordspacing
+{Internet In Space}, ``China's satellite internet race: Qianfan and guowang
+  explained,'' March 2026, accessed: 2026-05-07. [Online]. Available:
+  \url{https://internetin.space/blog/china-satellite-internet-race/}
+\BIBentrySTDinterwordspacing
 
 \bibitem{payloadspace2024_debris}
 PayloadSpace, ``Esa report shows unsustainable levels of orbital debris,''
@@ -201,6 +235,15 @@ S.~Meinrath, K.~Grindal, G.~Fishbein, and N.~DeGidio, ``Starlink capacity
 \bibitem{spacetrack}
 {U.S. Space Force}, ``{Space-Track.org Login},''
   \url{https://www.space-track.org/auth/login}, 2026, accessed: 2026-02-24.
+
+\bibitem{N2YO}
+{N2YO.com}, ``N2yo satellite tracking and orbital data,''
+  \url{https://www.n2yo.com/}, 2026, accessed: 2026-05-08.
+
+\bibitem{AMSAT}
+{Radio Amateur Satellite Corporation (AMSAT)}, ``Amsat: The radio amateur
+  satellite corporation,'' \url{https://www.amsat.org/}, 2026, accessed:
+  2026-05-08.
 
 \bibitem{usradioguyNewTLE}
 {USRadioGuy}, ``{Using the New TLE Format},''
@@ -354,6 +397,19 @@ B.~Wang. (2025, Mar.) Fcc allows spacex starlink direct to cellphone power for
 {Spaceflight Now}. (2022) Falcon 9 launches starlink 5-1 mission. Live coverage
   and mission details for the Starlink Group 5-1 launch. [Online]. Available:
   \url{https://spaceflightnow.com/2022/12/28/falcon-9-starlink-5-1-live-coverage/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{itu_rain_attenuation_model_2026}
+\BIBentryALTinterwordspacing
+{RF Essentials}, ``What is the itu rain attenuation model and how do i apply it
+  to a link budget?'' 2026, accessed: 2026-05-07. [Online]. Available:
+  \url{https://rfessentials.com/rf-knowledge-base/what-is-the-itu-rain-attenuation-model-and-how-do-i-apply-it-to-a-link-budget/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{farrell_fyp_2026}
+\BIBentryALTinterwordspacing
+A.~Farrell, ``Final year project: Leo satellite coverage analysis,'' 2026.
+  [Online]. Available: \url{https://github.com/AlanFarrell/FYP}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

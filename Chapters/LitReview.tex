@@ -1,6 +1,6 @@
 \chapter{Literature Review}\label{chapter:2}
 
-The growing deployment of LEO constellations has led to a substantial volume of research focused on their coverage characteristics, performance, and sustainability for broadband delivery. Much of the existing literature focuses on modeling a simulation techniques for evaluating satellite visibility, coverage availability, and achievable link capacity. 
+The growing deployment of LEO constellations has led to a substantial volume of research focused on their coverage characteristics, performance, and sustainability for broadband delivery. Much of the existing literature focuses on modelling and simulation techniques for evaluating satellite visibility, coverage availability, and achievable link capacity. 
 
 
 \section{Orbit Modelling and Regional LEO Coverage}
@@ -29,26 +29,25 @@ In order to quantify coverage performance, Morgan \textit{et al.}\cite{MorganJon
 \begin{figure}[htbp]
   \centering
   \includegraphics[height=0.35\textheight]{figures/MSTV.png}
-  \caption{Maximum, minimum, and average MTSV versus orbit inclination. 
-The top plot uses a minimum elevation angle of $20^\circ$, and the bottom plot uses $0^\circ$. \cite{MorganJones2019LEO}}
+  \caption{Maximum, minimum, and average MTSV versus orbit inclination \cite{MorganJones2019LEO}.}
   \label{fig:MSTV}
 \end{figure}
 \FloatBarrier
 Morgan \textit{et al.}\cite{MorganJones2019LEO} also highlights that increasing constellation size does not linearly improve visibility as overlap between satellites leads to diminishing returns beyond a certain deployment density. 
 
-While the framework presented by Morgan \textit{et al.}\cite{MorganJones2019LEO} focuses primarily on satellite visibility rather than throughput or link capacity,this study provides a solid foundation for further methodology and testing. In the context of this project, the modeling approach are directly applicable to evaluating LEO constellation coverage over Ireland. By extending this visibility framework to include coverage time and link budget, it becomes possible to move beyond service availability and quantitatively assess whether LEO satellite systems can deliver broadband performance comparable to rural 5G networks \cite{MorganJones2019LEO}.
+While the framework presented by Morgan \textit{et al.}\cite{MorganJones2019LEO} focuses primarily on satellite visibility rather than throughput or link capacity, this study provides a solid foundation for further methodology and testing. In the context of this project, the modeling approaches are directly applicable to evaluating LEO constellation coverage over Ireland. By extending this visibility framework to include coverage time and link budget, it becomes possible to move beyond service availability and quantitatively assess whether LEO satellite systems can deliver broadband performance comparable to rural 5G networks \cite{MorganJones2019LEO}.
 \FloatBarrier
 
 
 \section{LEO Satellite Systems for Rural Connectivity}
 En Salem \textit{et al.} \cite{EnSalemXXXX} extend geometric coverage analysis by including communication performance into their simulation. Instead of assuming that satellites and base stations are at fixed, exact locations, their model treats these nodes as being randomly spread out in space. This makes the simulation more realistic and helps capture how real satellite and ground networks behave on average rather than in one specific layout. Monte-Carlo simulations were run to see how well the network performs. These simulations measured performance metrics such as coverage probability, SINR, and achievable data rate, under varying satellite and terrestrial deployment densities.
 
-A key point of En Salem \textit{et al.} \cite{EnSalemXXXX} is the evaluation of hybrid terrestrial-LEO networks, in which satellite links operate as a complementary access layer in areas with sparse terrestrial infrastructure.En Salem \textit{et al.} \cite{EnSalemXXXX} shows that, in low-density rural areas, the addition of LEO satellites leads to an increase in coverage probability and average user throughput compared to terrestrial only deployments \cite{EnSalemXXXX}. The trends from the simulated results that compare coverage probability and rate distributions across different networks show that LEO constellations are most effective when terrestrial base station density falls below a critical threshold. Figure \ref{fig:ContinuouslyConnectedUsers} demonstrates how as As the number of simultaneous users increases, coverage probability drops, because users start to interfere with each other and network resources are shared. Systems with more base-station antennas maintain higher coverage, since they can serve multiple users more effectively. The hybrid terrestrial-satellite system consistently performs better than the terrestrial-only system, especially when the network becomes congested.
+A key point of En Salem \textit{et al.} \cite{EnSalemXXXX} is the evaluation of hybrid terrestrial-LEO networks, in which satellite links operate as a complementary access layer in areas with sparse terrestrial infrastructure. En Salem \textit{et al.} \cite{EnSalemXXXX} shows that, in low-density rural areas, the addition of LEO satellites leads to an increase in coverage probability and average user throughput compared to terrestrial only deployments \cite{EnSalemXXXX}. The trends from the simulated results that compare coverage probability across different networks show that LEO constellations are most effective when terrestrial base station density falls below a critical threshold. Figure \ref{fig:ContinuouslyConnectedUsers} demonstrates how as the number of simultaneous users increases, coverage probability drops, because users start to interfere with each other and network resources are shared. Systems with more base-station antennas maintain higher coverage, since they can serve a greater amount of users more effectively. The hybrid terrestrial-satellite system consistently performs better than the terrestrial-only system, especially when the network becomes congested.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[height=0.35\textheight]{figures/paper2ContinuouslyConnectedUsers.pdf}
-  \caption{Coverage probability versus the number of users $M$ for different values of the number of base station antennas $N_T$ \cite{EnSalemXXXX}}
+  \includegraphics[width=0.48\linewidth]{figures/paper2ContinuouslyConnectedUsers.pdf}
+  \caption{Coverage probability versus the number of users $M$ for different number of base station antennas $N_T$ \cite{EnSalemXXXX}}
   \label{fig:ContinuouslyConnectedUsers}
 \end{figure}
 
@@ -82,6 +81,7 @@ Rather than trying to map exact coverage over an entire country, En Salem \texti
 
 
 \FloatBarrier
+\clearpage
 \section{Starlink Performance}
 Mohan \textit{et al.} \cite{Mohan2023Starlink} presents a comprehensive evaluation of LEO satellite broadband. It analyses over 19 million crowd-sourced speed-test measurements from Starlink users across more than 30 countries. Mohan \textit{et al.} \cite{Mohan2023Starlink} examines key performance indicators include round-trip latency, downlink and uplink throughput, and temporal variation. This allows comparison of LEO satellite broadband and terrestrial technologies such as 5G. The results show that Starlink consistently achieves median latencies below 100ms, which places Starlink LEO performance within the range of terrestrial broadband for many regions. Figure \ref{fig:ISPvsStarlinkMap} demonstrates this. 
 
@@ -102,13 +102,13 @@ In terms of throughput, Mohan \textit{et al.} \cite{Mohan2023Starlink} reports a
   \label{fig:StarLinkUpDown}
 \end{figure}
 
-Mohan \textit{et al.} \cite{Mohan2023Starlink} further distinguishes between broadband capability and performance stability by studying application performance under real world realistic usage scenarios. In addition to large-scale throughput distributions, the study includes a controlled gaming experiment comparing terrestrial , cellular, and Starlink connections, showing how Starlink can sustain data rates that work well for real-time applications like video calls and online streaming. These results can be found in Table \ref{tab:luna_gaming}. While terrestrial broadband does achieve a higher peak throughput, the Starlink results show that LEO systems can deliver stable , broadband-grade performance comparable to cellular networks in practice. 
+Mohan \textit{et al.} \cite{Mohan2023Starlink} further distinguishes between broadband capability and performance stability by studying application performance under real world realistic usage scenarios. In addition to large-scale throughput distributions, the study includes a controlled gaming experiment comparing terrestrial , cellular, and Starlink connections, showing how Starlink can sustain data rates that work well for real-time applications like video calls and online streaming. Table \ref{tab:luna_gaming} shows Luna gaming results of over 150 minutes of playtime with values denote median $\pm$ standard deviation, and the worst performer is highlighted. While terrestrial broadband does achieve a higher peak throughput, the Starlink results show that LEO systems can deliver stable , broadband-grade performance comparable to cellular networks in practice. 
 
 \FloatBarrier
 \begin{table}[htbp]
 \centering
 \small
-\caption{Luna gaming results over 150 minutes of playtime. Values denote median $\pm$ standard deviation, and the worst performer is highlighted.}
+\caption{Luna gaming results}
 \label{tab:luna_gaming}
 \begin{tabular}{lccc}
 \toprule
